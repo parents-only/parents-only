@@ -1,24 +1,40 @@
-import React, { useState } from 'react';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-// import { ApolloProvider } from '@apollo/react-hooks';
-// import ApolloClient from 'apollo-boost';
-// import { StoreProvider } from './utils/GlobalState';
+//import logo from './logo.svg';
+import './App.css';
+import React from 'react';
+import { ApolloProvider } from "@apollo/react-hooks";
+import ApolloClient from "apollo-boost";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Login from './components/LoginForm';
+import Navbar from './components/Navbar';
 
-// import Header from './components/Header';
-// import BookList from './pages/BookList';
-// import Detail from './pages/Detail';
+const client = new ApolloClient({
+  request: operation => {
+    const token = localStorage.getItem('id_token');
 
-// const client = new ApolloClient({
-//   uri: '/graphql'
-// });
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : ''
+      }
+    });
+  },
+  uri: '/graphql'
+});
 
-// Remove all traces of prop drilling
 function App() {
-  const [currentBook, setCurrentBook] = useState('');
-
   return (
-    <h1>HELLO, Parents Only</h1>
+<ApolloProvider client={client}>
+      <Router>
+        <>
+          <Navbar />
+          <Switch>
+          <Route exact path='/' component={Login} />
+          <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+          </Switch>
+        </>
+      </Router>
+</ApolloProvider>
   );
 }
 
 export default App;
+
