@@ -1,5 +1,5 @@
 {
-  "name": "state-activities",
+  "name": "parents-only",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
@@ -8,12 +8,17 @@
     "start:prod": "cd server && npm start",
     "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
+    "heroku-postbuild": "cd client && npm run build",
     "seed": "cd server && npm run seed"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "if-env": "^1.0.4"
+    "apollo-server-express": "^2.19.2",
+    "if-env": "^1.0.4",
+    "react-dom": "^17.0.1",
+    "react-photo-gallery": "^8.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.2.0"
