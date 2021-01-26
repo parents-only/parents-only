@@ -6,6 +6,8 @@ import ApolloClient from "apollo-boost";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/LoginForm';
 import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Footer from './components/Footer';
 
 const client = new ApolloClient({
   request: operation => {
@@ -27,9 +29,10 @@ function App() {
         <>
           <Navbar />
           <Switch>
-          <Route exact path='/' component={Login} />
+          <Route exact path='/' component={Home} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
+          <Footer />
         </>
       </Router>
 </ApolloProvider>

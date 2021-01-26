@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
-
 import Auth from '../utils/auth';
+import logo from './parents-only.png';
+
 
 const AppNavbar = () => {
   // set modal display state
@@ -15,6 +16,7 @@ const AppNavbar = () => {
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
+            <img src={logo} alt='' style={{ height: 50, margin: 7 }} />
             Parents Only
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
