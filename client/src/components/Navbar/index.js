@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-import SignUpForm from './SignupForm';
-import LoginForm from './LoginForm';
-import Auth from '../utils/auth';
+import SignUpForm from '../SignupForm';
+import LoginForm from '../LoginForm';
+import Auth from '../../utils/auth';
 import logo from './parents-only.png';
 
 
@@ -28,6 +28,9 @@ const AppNavbar = () => {
                 <>
                   {<Nav.Link as={Link} to='/friends'>
                     See Your Friends
+                  </Nav.Link>}
+                  {<Nav.Link as={Link} to='/profile'>
+                    Profile
                   </Nav.Link>}
                   <Nav.Link as={Link} to='/explore'>
                     Explore Parents
