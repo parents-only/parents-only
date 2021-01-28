@@ -1,14 +1,13 @@
 import React from 'react';
-import ViewMembersPage from '../components/ViewMembersPage/index';
 
-const Explore = () => {
+const SeeFriends = () => {
     return (
         <main>
         <div className="flex-row justify-space-between">
-            <ViewMembersPage />
+           
         </div>
         </main>
     )
 }
 
-export default Explore;
+export default SeeFriends;
