@@ -1,14 +1,14 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
-import LandingPage from '../components/LandingPage/index';
+import ViewMembersPage from '../components/ViewMembersPage/index';
 
-const Home = () => {
+const Explore = () => {
 
 
     return (
         <main>
         <div className="flex-row justify-space-between">
-            <LandingPage />
+            <ViewMembersPage />
             
 
         </div>
@@ -17,4 +17,4 @@ const Home = () => {
 }
 
 
-export default Home;
+export default Explore;
