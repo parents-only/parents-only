@@ -15,6 +15,9 @@ export const photos = [
         height: 4016,
         width: 6016
     },
+];
+
+export const photos2 = [
     {
         src: "/img/family2.jpg",
         height: 3888,
@@ -29,8 +32,14 @@ export const photos = [
         src: "/img/friends.jpg",
         width: 4626,
         height: 3168
+    },
+    {
+        src: "/img/dinner.jpg",
+        width: 3024,
+        height: 4032
     }
 ];
+    
 
 // const img = new Image();
 // img.onload = function() {
