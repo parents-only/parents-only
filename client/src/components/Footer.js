@@ -5,7 +5,7 @@ const footerNav = () => {
 
     return (
         <Navbar bg='dark' variant='dark' expand='lg' fixed="bottom" >
-    
+        <ul style={{ color: "white"}}>© Parents Only</ul> 
         </Navbar>
     )
 }
