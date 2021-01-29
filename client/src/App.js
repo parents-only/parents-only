@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Profile from './components/Profile'
 import Explore from './pages/Explore';
 import SeeFriends from './pages/SeeFriends';
+import Chat from './pages/Chat';
 
 
 const client = new ApolloClient({
@@ -35,6 +36,7 @@ function App() {
           <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/profile' component={Profile} />
+          <Route exact path="/chat" component={Chat} />
           <Route exact path="/friends" component={SeeFriends} />
           <Route exact path='/explore' component={Explore} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
