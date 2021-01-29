@@ -11,7 +11,6 @@ import Footer from './components/Footer';
 import Profile from './components/Profile'
 import Explore from './pages/Explore';
 import SeeFriends from './pages/SeeFriends';
-import Profile from './pages/Profile';
 import NoMatch from './pages/NoMatch';
 
 
