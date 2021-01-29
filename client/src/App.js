@@ -5,12 +5,15 @@ import { ApolloProvider } from "@apollo/react-hooks";
 // import Switch from 'react-ios-switch';
 import ApolloClient from "apollo-boost";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Login from './components/LoginForm';
+//import Login from './components/LoginForm';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Footer from './components/Footer';
+import Profile from './components/Profile'
 import Explore from './pages/Explore';
 import SeeFriends from './pages/SeeFriends';
+import NoMatch from './pages/NoMatch';
+
 
 
 const client = new ApolloClient({
@@ -37,9 +40,11 @@ function App() {
           <Navbar />
           <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/profile' component={Profile} />
           <Route exact path="/friends" component={SeeFriends} />
           <Route exact path='/explore' component={Explore} />
-          <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+          
+          <Route component={NoMatch} />
           </Switch>
           <Footer />
         </>
