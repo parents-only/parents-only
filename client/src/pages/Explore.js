@@ -11,7 +11,7 @@ const Explore = () => {
 
     return (
 
-        <div className="app">
+        <div className="body">
             {showAdvanced ? <Advanced /> : <Simple />}
             <div className='row'>
                 <p style={{ color: '#fff' }}>Show advanced example</p> <Switch checked={showAdvanced} onChange={setShowAdvanced} />

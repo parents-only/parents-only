@@ -1,4 +1,4 @@
-#root {
+#body {
     text-align: center;
     display: flex;
     justify-content: center;
@@ -9,14 +9,14 @@
     background: linear-gradient(#e66465, #9198e5);
   }
   
-  #root>div {
+  #body>div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   
-  .app>div {
+  .body>div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -68,9 +68,9 @@
     height: 100%;
   }
   
-  .swipe:last-of-type {
+  /* .swipe:last-of-type {
   
-  }
+  } */
   
   .card h3 {
     position: absolute;
