@@ -1,7 +1,8 @@
 //import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { ApolloProvider } from "@apollo/react-hooks";
+// import Switch from 'react-ios-switch';
 import ApolloClient from "apollo-boost";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/LoginForm';
@@ -10,6 +11,7 @@ import Home from './pages/Home';
 import Footer from './components/Footer';
 import Explore from './pages/Explore';
 import SeeFriends from './pages/SeeFriends';
+
 
 const client = new ApolloClient({
   request: operation => {
@@ -25,6 +27,9 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+
+
   return (
 <ApolloProvider client={client}>
       <Router>
