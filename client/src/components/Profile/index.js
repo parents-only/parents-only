@@ -1,8 +1,6 @@
 import React from 'react';
 import './index.css';
 import FriendList from '../FriendList'
-import Gallery from 'react-photo-gallery';
-import { photos, photos2 } from '../LandingPage/photos';
 
 function Profile() {
     return (
@@ -12,7 +10,7 @@ function Profile() {
                     <img src="http://www.boostnet.in/wp-content/uploads/2016/10/Header-1.png" alt="" />
                 </div>
                 <div id="bottomHalf">
-                    <img src="https://via.placeholder.com/150" alt="" />
+                    <img src="BabyAJ.JPG" alt="" style={{ height: 150, width: 150}}/>
                 </div>
             </div>
             <div class="wrapper" id="status">
@@ -165,6 +163,7 @@ function Profile() {
                     <h4>Recommended<br>
                     </br>Parents</h4>
                 </div>
+                <div class="grid-6"></div>
             </div>
         </div>
 
