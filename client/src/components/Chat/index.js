@@ -43,7 +43,7 @@ class MessageList extends React.Component {
                             <div>
                                 {message.senderId}
                             </div>
-                            <div>
+                            <div className="messageBox">
                                 {message.text}
                             </div>
                         </li>

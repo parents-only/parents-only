@@ -45,10 +45,15 @@ function App() {
           <Switch>
           <Route exact path='/' component={Home} />
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Route exact path="/chat" component={Chat} />
 =======
           <Route exact path='/profile' component={Profile} />
 >>>>>>> develop
+=======
+          <Route exact path='/profile' component={Profile} />
+          <Route exact path="/chat" component={Chat} />
+>>>>>>> e65f89db14a63bab4c11be5592fcb086abd50aa2
           <Route exact path="/friends" component={SeeFriends} />
           <Route exact path='/explore' component={Explore} />
           <Route component={NoMatch} />
