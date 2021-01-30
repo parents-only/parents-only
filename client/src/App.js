@@ -12,13 +12,10 @@ import Footer from './components/Footer';
 import Profile from './components/Profile'
 import Explore from './pages/Explore';
 import SeeFriends from './pages/SeeFriends';
-<<<<<<< HEAD
 import Chat from './pages/Chat';
-=======
 import NoMatch from './pages/NoMatch';
-import {ContextProvider} from '../src/utils/context';
-
->>>>>>> develop
+import { ContextProvider } from '../src/utils/context';
+import { StoreProvider } from "./utils/GlobalState";
 
 const client = new ApolloClient({
   request: operation => {
@@ -38,30 +35,26 @@ function App() {
 
 
   return (
-<ApolloProvider client={client}>
-    <ContextProvider>
-      <Router>
-          <Navbar />
-          <Switch>
-          <Route exact path='/' component={Home} />
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <Route exact path="/chat" component={Chat} />
-=======
-          <Route exact path='/profile' component={Profile} />
->>>>>>> develop
-=======
-          <Route exact path='/profile' component={Profile} />
-          <Route exact path="/chat" component={Chat} />
->>>>>>> e65f89db14a63bab4c11be5592fcb086abd50aa2
-          <Route exact path="/friends" component={SeeFriends} />
-          <Route exact path='/explore' component={Explore} />
-          <Route component={NoMatch} />
-          </Switch>
-          <Footer />
-      </Router>
+    <ApolloProvider client={client}>
+      <ContextProvider>
+        <StoreProvider>
+          <Router>
+            <Navbar />
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path="/chat" component={Chat} />
+              <Route exact path='/profile' component={Profile} />
+              <Route exact path='/profile' component={Profile} />
+              <Route exact path="/chat" component={Chat} />
+              <Route exact path="/friends" component={SeeFriends} />
+              <Route exact path='/explore' component={Explore} />
+              <Route component={NoMatch} />
+            </Switch>
+            <Footer />
+          </Router>
+        </StoreProvider>
       </ContextProvider>
-</ApolloProvider>
+    </ApolloProvider>
   );
 }
 

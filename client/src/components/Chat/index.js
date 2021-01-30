@@ -1,5 +1,7 @@
 import React from 'react';
 import './style.css';
+import { useStoreContext } from "../../utils/GlobalState";
+import { TOGGLE_CHAT } from "../../utils/actions";
 
 
 const DUMMY_DATA = [
@@ -13,25 +15,44 @@ const DUMMY_DATA = [
     }
 ]
 
-class Chat extends React.Component {
+const Chat = () => {
 
-    constructor() {
-        super()
-        this.state = {
-            messages: DUMMY_DATA
-        }
+    const [state, dispatch] = useStoreContext();
+
+    // constructor() {
+    //     super()
+    //     this.state = {
+    //         messages: DUMMY_DATA
+    //     }
+    // }
+
+    function toggleChat() {
+        dispatch({ type: TOGGLE_CHAT });
     }
 
-    render() {
+
+
+    if (!state.cartOpen) {
         return (
-            <div className="chat">
-                {/* <Title /> */}
-                <MessageList messages={this.state.messages} />
-                {/* <SendMessageForm /> */}
+            <div className="chat-closed" onClick={toggleChat}>
+                {/* <i className="fas fa-comment-alt"></i> */}
+                <span
+                    className="messageIcon"
+                    role="img"
+                    aria-label="messages">💬</span>
             </div>
         )
     }
-}
+
+    return (
+        <div className="chat">
+            <div className="close" onClick={toggleChat}>[close]</div>
+            {/* <Title /> */}
+            <MessageList messages={this.state.messages} />
+            {/* <SendMessageForm /> */}
+        </div>
+    )
+};
 
 class MessageList extends React.Component {
     render() {
