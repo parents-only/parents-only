@@ -41,13 +41,8 @@ const AppNavbar = () => {
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
-<<<<<<< HEAD:client/src/components/Navbar.js
-                  <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-                )}
-=======
                 <Nav.Link onClick={() => handlers.setShowModal(true)}>Login/Sign Up</Nav.Link>
               )}
->>>>>>> develop:client/src/components/Navbar/index.js
             </Nav>
           </Navbar.Collapse>
         </Container>
