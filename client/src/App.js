@@ -13,7 +13,7 @@ import Profile from './components/Profile'
 import Explore from './pages/Explore';
 import SeeFriends from './pages/SeeFriends';
 import NoMatch from './pages/NoMatch';
-
+import {ContextProvider} from '../src/utils/context';
 
 
 const client = new ApolloClient({
@@ -35,20 +35,19 @@ function App() {
 
   return (
 <ApolloProvider client={client}>
+    <ContextProvider>
       <Router>
-        <>
           <Navbar />
           <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/profile' component={Profile} />
           <Route exact path="/friends" component={SeeFriends} />
           <Route exact path='/explore' component={Explore} />
-          
           <Route component={NoMatch} />
           </Switch>
           <Footer />
-        </>
       </Router>
+      </ContextProvider>
 </ApolloProvider>
   );
 }
