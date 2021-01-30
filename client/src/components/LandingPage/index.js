@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import { photos, photos2 } from './photos';
-
-import { render } from 'react-dom';
+import {wrapContext} from '../../utils/context';
 import Gallery from 'react-photo-gallery';
 import {  Card } from 'react-bootstrap';;
 
+
 const LandingPage = () => {
+ const { handlers } = useContext(wrapContext);
 
     return (
         <div>
@@ -20,8 +21,8 @@ const LandingPage = () => {
                         <Card.Text>
                             insert text here
                         </Card.Text>
-                        <Card.Link href="/login">Login</Card.Link>
-                        <Card.Link href="">Sign up</Card.Link>
+                        <Card.Link onClick={()=> handlers.setShowModal(true)}>Login</Card.Link>
+                        <Card.Link onClick={()=>handlers.setShowModal(true)}>Sign up</Card.Link>
                     </Card.Body>
                 </Card>
             </div>
@@ -33,7 +34,7 @@ const LandingPage = () => {
     
 
 } 
-   
+
 
 
 export default LandingPage; 
