@@ -19,7 +19,10 @@ const LandingPage = () => {
                         <Card.Title>Parents Only</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">Join us today!</Card.Subtitle>
                         <Card.Text>
-                            insert text here
+                        Welcome to Parents Only!
+                        </Card.Text>
+                        <Card.Text>
+                        To get started, sign up or login.
                         </Card.Text>
                         <Card.Link onClick={()=> handlers.setShowModal(true)}>Login</Card.Link>
                         <Card.Link onClick={()=>handlers.setShowModal(true)}>Sign up</Card.Link>
