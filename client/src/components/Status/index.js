@@ -12,7 +12,6 @@ class Status extends Component {
 
     inputPost = () => {
         return <div dangerouslySetInnerHTML={this.state.userInput} />;
-        document.querySelector(textarea) = ""
     }
 
     render() {
