@@ -4,8 +4,9 @@ import {
 } from "./actions";
 
 const initialState = {
-    // messages: [],
-    // friends: [],
+    messages: [],
+    friends: [],
+    status: {},
     chatOpen : false
 }
 

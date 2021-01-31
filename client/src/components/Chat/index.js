@@ -32,7 +32,7 @@ const Chat = () => {
 
 
 
-    if (!state.cartOpen) {
+    if (!state.chatOpen) {
         return (
             <div className="chat-closed" onClick={toggleChat}>
                 {/* <i className="fas fa-comment-alt"></i> */}
@@ -48,7 +48,7 @@ const Chat = () => {
         <div className="chat">
             <div className="close" onClick={toggleChat}>[close]</div>
             {/* <Title /> */}
-            <MessageList messages={this.state.messages} />
+            <MessageList messages={state.messages} />
             {/* <SendMessageForm /> */}
         </div>
     )
