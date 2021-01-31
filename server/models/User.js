@@ -24,7 +24,18 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'User'
       }
-    ]
+    ],
+    age: {
+        type: Number,
+        required: true,
+        min: [18, 'You must be 18 or older to use this website.'],
+        max: 120
+    },
+    location: {
+        type: Schema.Types.ObjectId,
+        ref: 'Location'
+    }
+    
   },
   // set this to use virtual below
   {
