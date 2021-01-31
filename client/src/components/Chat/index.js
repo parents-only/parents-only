@@ -34,7 +34,6 @@ const Chat = () => {
     }
 
 
-
     if (!state.chatOpen) {
         return (
             <div className="chat-closed" onClick={toggleChat}>
