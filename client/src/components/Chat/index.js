@@ -2,6 +2,9 @@ import React from 'react';
 import './style.css';
 import { useStoreContext } from "../../utils/GlobalState";
 import { TOGGLE_CHAT } from "../../utils/actions";
+import MessageList from '../MessageList/index';
+import MessageForm from '../MessageForm/index';
+import { Message } from '@apollo/protobufjs';
 
 
 const DUMMY_DATA = [
@@ -31,7 +34,6 @@ const Chat = () => {
     }
 
 
-
     if (!state.chatOpen) {
         return (
             <div className="chat-closed" onClick={toggleChat}>
@@ -49,30 +51,31 @@ const Chat = () => {
             <div className="close" onClick={toggleChat}>[close]</div>
             {/* <Title /> */}
             <MessageList messages={state.messages} />
+            <MessageForm />
             {/* <SendMessageForm /> */}
         </div>
     )
 };
 
-class MessageList extends React.Component {
-    render() {
-        return (
-            <ul className="message-list">
-                {this.props.messages.map(message => {
-                    return (
-                        <li key={message.id}>
-                            <div>
-                                {message.senderId}
-                            </div>
-                            <div className="messageBox">
-                                {message.text}
-                            </div>
-                        </li>
-                    )
-                })}
-            </ul>
-        )
-    }
-}
+// class MessageList extends React.Component {
+//     render() {
+//         return (
+//             <ul className="message-list">
+//                 {this.props.messages.map(message => {
+//                     return (
+//                         <li key={message.id}>
+//                             <div>
+//                                 {message.senderId}
+//                             </div>
+//                             <div className="messageBox">
+//                                 {message.text}
+//                             </div>
+//                         </li>
+//                     )
+//                 })}
+//             </ul>
+//         )
+//     }
+// }
 
 export default Chat;
