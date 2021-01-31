@@ -1,8 +1,7 @@
 import React from 'react';
 import './index.css';
 import FriendList from '../FriendList'
-import Gallery from 'react-photo-gallery';
-import { photos, photos2 } from '../LandingPage/photos';
+import Status from '../Status'
 
 function Profile() {
     return (
@@ -12,32 +11,11 @@ function Profile() {
                     <img src="http://www.boostnet.in/wp-content/uploads/2016/10/Header-1.png" alt="" />
                 </div>
                 <div id="bottomHalf">
-                    <img src="https://via.placeholder.com/150" alt="" />
+                    <img src="BabyAJ.JPG" alt="" style={{ height: 150, width: 150 }} />
                 </div>
             </div>
             <div class="wrapper" id="status">
-                <div class="grid-1">
-                    <p>This is my status. it is a very good status. if you don't like it then I don't like you. If you are still reading this then you clearly don't realize this isnt the finished product and is just a place hold. lol bye.</p>
-                </div>
-                <div class="grid-2">
-                    <div class="statusCard">
-                        <div class="row px-3"> <img class="profile-pic mr-3" src="https://via.placeholder.com/150" />
-                            <div class="flex-column">
-                                <h3 class="mb-0 font-weight-normal">AJ Stribling</h3> <select name="privacy" class="privacy">
-                                    <option>Public status</option>
-                                    <option>Private status</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row px-3 form-group"> <textarea class="text-muted bg-light mt-4 mb-3" placeholder="Hi AJ, what's on your mind today?"></textarea> </div>
-                        <div class="row px-3">
-                            <p class="fa fa-user options mb-0 mr-4"></p>
-                            <p class="fa fa-map-marker options mb-0 mr-4"></p>
-                            <p class="fa fa-image options mb-0 mr-4"></p> <img class="options" src="https://img.icons8.com/material/24/000000/more--v2.png" width="30px" height="28px" />
-                            <div class="btn btn-dark ml-auto">Post</div>
-                        </div>
-                    </div>
-                </div>
+                    <Status />
                 <div class="grid-3">
                     <h4>Friends</h4>
                     <FriendList />
@@ -165,6 +143,7 @@ function Profile() {
                     <h4>Recommended<br>
                     </br>Parents</h4>
                 </div>
+                <div class="grid-6"></div>
             </div>
         </div>
 
