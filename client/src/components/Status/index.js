@@ -16,10 +16,13 @@ class Status extends Component {
 
     render() {
         return (
-            <div class="container">
+
+            <div class="grid-1">
                 <div class="grid-1">
                     <p id="status">{this.state.userInput}</p>
                 </div>
+                <br></br>
+                <br></br>
                 <div class="grid-2">
                     <div class="statusCard">
                         <div class="row px-3"> <img class="profile-pic mr-3" src="https://via.placeholder.com/150" />
@@ -40,7 +43,7 @@ class Status extends Component {
                     </div>
                 </div>
             </div>
-        
+
         );
     }
 }
