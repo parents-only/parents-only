@@ -20,7 +20,7 @@ function Profile() {
                     <p>This is my status. it is a very good status. if you don't like it then I don't like you. If you are still reading this then you clearly don't realize this isnt the finished product and is just a place hold. lol bye.</p>
                 </div>
                 <div class="grid-2">
-                    <div class="card">
+                    <div class="statusCard">
                         <div class="row px-3"> <img class="profile-pic mr-3" src="https://via.placeholder.com/150" />
                             <div class="flex-column">
                                 <h3 class="mb-0 font-weight-normal">AJ Stribling</h3> <select name="privacy" class="privacy">

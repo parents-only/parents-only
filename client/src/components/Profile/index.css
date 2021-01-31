@@ -85,15 +85,10 @@
     text-align: center;
 }
 
-body {
-    color: #000;
-    overflow-x: hidden;
-    height: 100%;
-}
-
-.card {
+.statusCard {
     border-radius: 10px;
     width: 500px;
+    box-shadow: 0px 0px 25px;
 }
 
 .profile-pic {
@@ -168,7 +163,6 @@ select:focus {
     box-sizing: border-box;
 }
 body {
-    margin: 5px;
     position: relative;
 }
 #gallery {
