@@ -21,11 +21,14 @@ const AppNavbar = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
-            <Nav className='ml-auto' style={{ position: 'absolute', bottom: 0, right: 30 }}>
-              
+            <Nav className='ml-auto' style={{ position: 'absolute', bottom: 0, right: 30, fontSize: "30px" }}>
+
               {/* if user is logged in show saved friends and logout */}
               {Auth.loggedIn() ? (
                 <>
+                  {/* {<Nav.Link as={Link} to='/chat'>
+                    Messages
+                  </Nav.Link>} */}
                   {<Nav.Link as={Link} to='/friends'>
                     See Your Friends
                   </Nav.Link>}
