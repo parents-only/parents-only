@@ -11,11 +11,11 @@ const LandingForm = () => {
 
     return (
         <div>
-            <div className="signup-card-overlay" style={{ position: "absolute", top: "150px", left: "100px" }}>
-                <Card style={{ width: '18rem', textAlign: "center", margin: "0 auto", marginBottom: 10, position: "absolute", backgroundColor: "rgb( 255, 255, 255, 0.8 )" }}>
+            <div className="signup-card-overlay" style={{ position: "absolute", top: "300px", left: "100px" }}>
+                <Card style={{ width: '18rem', textAlign: "center", margin: "0 auto", marginBottom: 10, backgroundColor: "rgb( 255, 255, 255, 0.8 )" }}>
                     <Card.Body style={{ padding: "0px" }}>
                         <div>
-                            <Card.Title style={{ border: "1px solid black", fontSize: "35px", padding: "0.25em" }}>PARENTS ONLY</Card.Title>
+                            <Card.Title style={{ fontSize: "35px", padding: "0.25em" }}>PARENTS ONLY</Card.Title>
                         </div>
                         
                         <Card.Subtitle className="mb-2 text-muted" style={{ paddingTop: "1em", fontSize: "25px" }}>Join us today!</Card.Subtitle>
@@ -28,6 +28,8 @@ const LandingForm = () => {
                         
                     </Card.Body>
                 </Card>
+            </div>
+            <div>
                 <Modal
                     size='lg'
                     show={showModal}
