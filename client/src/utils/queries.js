@@ -42,6 +42,10 @@ export const QUERY_USER = gql`
       _id
       username
       email
+      age
+      location
+      bio
+      avatar
       friendCount
       friends {
         _id
@@ -63,6 +67,10 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      avatar
+      age
+      location
+      bio
       friendCount
       messages {
         _id
@@ -80,6 +88,7 @@ export const QUERY_ME = gql`
         _id
         username
       }
+
     }
   }
 `;

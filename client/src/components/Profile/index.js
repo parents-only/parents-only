@@ -1,10 +1,21 @@
 import React from 'react';
 import './index.css';
 import FriendList from '../FriendList'
+import { QUERY_ME } from "../../utils/queries";
+import { useQuery } from "@apollo/react-hooks";
+import Auth from "../../utils/auth";
 import Gallery from 'react-photo-gallery';
 import { photos, photos2 } from '../LandingPage/photos';
 
+
 function Profile() {
+
+    
+    const { data: userData } = useQuery(QUERY_ME);
+  
+    const loggedIn = Auth.loggedIn();
+  
+
     return (
         <div>
             <div id="mainProfile">
@@ -38,16 +49,21 @@ function Profile() {
                         </div>
                     </div>
                 </div>
+                {loggedIn && userData ? (
                 <div class="grid-3">
                     <h4>Friends</h4>
-                    <FriendList />
+                    <FriendList
+                        />
                 </div>
+                ) : null}
+                {loggedIn && userData ? (
                 <div class="grid-4">
                     <h4>About me</h4>
-                    <p>Age:</p>
-                    <p>Location:</p>
-                    <p>Bio:</p>
+                    <p>Age: {userData.age}</p>
+                    <p>Location: {userData.location}</p>
+                    <p>Bio: {userData.bio}</p>
                 </div>
+                ) : null}
                 <div class="grid-5">
                     <h4>Photos</h4>
                     <div id="gallery">

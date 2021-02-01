@@ -11,7 +11,7 @@ const typeDefs = gql`
     friends: [User]
     avatar: String
     age: Int
-    location: Point
+    location: String
     bio: String 
   }
 
@@ -39,6 +39,7 @@ const typeDefs = gql`
     userById(_id: ID!): User
     messages(username: String): [Message]
     message(_id: ID!): Message
+    
   }
 
   type Mutation {

@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 
+
 const userSchema = new Schema(
   {
     username: {
@@ -25,16 +26,26 @@ const userSchema = new Schema(
         ref: 'User'
       }
     ],
+    avatar: {
+      type: String,
+      defaultValue: "../../public/images/default.png",
+    },
     age: {
         type: Number,
         required: true,
         min: [18, 'You must be 18 or older to use this website.'],
         max: 120
     },
-    location: {
-        type: Schema.Types.ObjectId,
-        ref: 'Location'
+    location: [{
+      lat: {
+        type: Number,
+        required: true,
     },
+    lon: {
+        type: Number,
+        required: true,
+    },
+    }],
     bio: { 
       type: String,
       maxlength: 250

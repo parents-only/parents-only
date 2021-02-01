@@ -80,3 +80,30 @@ export const REMOVE_FRIEND = gql`
     }
   }
 `;
+
+export const ADD_PHOTO = gql`
+  mutation addPhoto($id: ID!) {
+    removeFriend(id: $id) {
+      _id
+      username
+      friends {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const REMOVE_PHOTO = gql`
+  mutation removePhoto($id: ID!) {
+    removeFriend(id: $id) {
+      _id
+      username
+      friends {
+        _id
+        username
+      }
+    }
+  }
+`;
+

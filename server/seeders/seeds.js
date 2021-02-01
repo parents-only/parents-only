@@ -9,13 +9,15 @@ db.once('open', async () => {
   // create user data
   const userData = [];
 
-  for (let i = 0; i < 100; i += 1) {
+  for (let i = 0; i < 50; i += 1) {
     const username = faker.internet.userName();
     const email = faker.internet.email(username);
     const password = faker.internet.password();
-    const age = faker.age(18, 100);
-    const bio = faker.lorem.paragraph(3, 1);
-    userData.push({ username, email, password, age, bio });
+    const avatar = faker.internet.avatar();
+    const age = faker.random.number(18, 100);
+    const location = [faker.address.latitude(), faker.address.longitude()]
+    const bio = faker.lorem.sentences(3);
+    userData.push({ username, email, password, avatar, age, location, bio });
   }
 
   const createdUsers = await User.collection.insertMany(userData);
