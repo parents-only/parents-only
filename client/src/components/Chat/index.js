@@ -41,14 +41,14 @@ const Chat = () => {
                 <span
                     className="messageIcon"
                     role="img"
-                    aria-label="messages">💬</span>
+                    aria-label="messages">Messages</span>
             </div>
         )
     }
 
     return (
         <div className="chat">
-            <div className="close" onClick={toggleChat}>[close]</div>
+            <div className="close" onClick={toggleChat}>X</div>
             {/* <Title /> */}
             <MessageList messages={state.messages} />
             <MessageForm />

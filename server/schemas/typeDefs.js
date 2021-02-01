@@ -16,8 +16,10 @@ const typeDefs = gql`
     messageText: String
     createdAt: String
     username: String
-    reactionCount: Int
-    reactions: [Reaction]
+    chatRoom_id: ID
+    sentBy( _id: ID ): User
+    receivedBy( _id: ID ): User
+    numberOfMessage: Int
   }
 
   type Reaction {
@@ -26,7 +28,6 @@ const typeDefs = gql`
     createdAt: String
     username: String
   }
-
 
   type Query {
     me: User

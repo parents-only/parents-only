@@ -13,8 +13,8 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({
-            _id: context.user._id
-          })
+          _id: context.user._id
+        })
           .select('-__v -password')
           .populate('messages')
           .populate('friends');
@@ -34,8 +34,8 @@ const resolvers = {
       username
     }) => {
       return User.findOne({
-          username
-        })
+        username
+      })
         .select('-__v -password')
         .populate('friends')
         .populate('messages');
@@ -125,30 +125,30 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    addReaction: async (parent, {
-      messageId,
-      reactionBody
-    }, context) => {
-      if (context.user) {
-        const updatedMessage = await Message.findOneAndUpdate({
-          _id: messageId
-        }, {
-          $push: {
-            reactions: {
-              reactionBody,
-              username: context.user.username
-            }
-          }
-        }, {
-          new: true,
-          runValidators: true
-        });
+    // addReaction: async (parent, {
+    //   messageId,
+    //   reactionBody
+    // }, context) => {
+    //   if (context.user) {
+    //     const updatedMessage = await Message.findOneAndUpdate({
+    //       _id: messageId
+    //     }, {
+    //       $push: {
+    //         reactions: {
+    //           reactionBody,
+    //           username: context.user.username
+    //         }
+    //       }
+    //     }, {
+    //       new: true,
+    //       runValidators: true
+    //     });
 
-        return updatedMessage;
-      }
+    //     return updatedMessage;
+    //   }
 
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
     addFriend: async (parent, {
       friendId
     }, context) => {
