@@ -6,7 +6,7 @@ import Chat from '../../components/Chat/index';
 const Footer = () => {
 
     return (
-        <Navbar bg='dark' variant='dark' expand='lg' fixed="bottom" >
+        <Navbar bg='dark' variant='dark' expand='lg' fixed="sticky" >
             <ul style={{ color: "white" }}>© Parents Only</ul>
 
             {

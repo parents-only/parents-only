@@ -8,7 +8,7 @@ import { wrapContext } from '../../utils/context';
 
 
 const LandingPage = () => {
- const { handlers } = useContext(wrapContext);
+    const { handlers } = useContext(wrapContext);
 
     const [showModal, setShowModal] = useState(false);
 
