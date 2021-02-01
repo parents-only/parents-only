@@ -11,21 +11,15 @@ const LandingForm = () => {
 
     return (
         <div>
-            <div className="signup-card-overlay" style={{ position: "absolute", top: "150px", left: "100px" }}>
-                <Card style={{ width: '18rem', textAlign: "center", margin: "0 auto", marginBottom: 10, position: "absolute", backgroundColor: "rgb( 255, 255, 255, 0.8 )" }}>
-                    <Card.Body style={{ padding: "0px" }}>
-                        <div>
-                            <Card.Title style={{ border: "1px solid black", fontSize: "35px", padding: "0.25em" }}>PARENTS ONLY</Card.Title>
-                        </div>
-                        
-                        <Card.Subtitle className="mb-2 text-muted" style={{ paddingTop: "1em", fontSize: "25px" }}>Join us today!</Card.Subtitle>
-                        <Card.Text style={{ padding: "0.5em", fontSize: "20px" }}>
+            <div>
+                <Card style={{ width: "20rem", position: "absolute", top: "300px", left: "100px", backgroundColor: "rgb(255, 255, 255, 0.8)" }}> 
+                    <Card.Header style={{ textAlign: "center", fontSize: "30px", fontWeight: "bold" }}>PARENTS ONLY</Card.Header>
+                    <Card.Body style={{ textAlign: "center" }}>
+                        <Card.Subtitle>Join us today!</Card.Subtitle>
+                        <Card.Text>
                             To join our amazing group of parents looking to meet other parents just like you, click the link below to get started!
                         </Card.Text>
-                        <div style={{ paddingBottom: "1em" }}>
-                        <Card.Link onClick={() => setShowModal(true)} style={{ fontSize: "20px", border: "1px solid black", padding: "0.5em" }}>JOIN NOW</Card.Link> 
-                        </div>
-                        
+                        <Card.Link style={{ fontSize: "20px", border: "1px solid", padding: "0.5em" }} onClick={() => setShowModal(true)}>JOIN NOW</Card.Link> 
                     </Card.Body>
                 </Card>
                 <Modal
