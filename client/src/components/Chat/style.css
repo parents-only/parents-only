@@ -31,6 +31,15 @@ html, body {
     border-radius: .5rem;
 }
 
+.chat-closed {
+    margin-left: auto;
+    background: white;
+    width: 100px;
+    border-radius: 10rem;
+    align-items: center;
+    text-align: center;
+}
+
 .title {
     display: flex;
     justify-content: center;
@@ -46,6 +55,10 @@ html, body {
 
 .message {
     margin: 15px 0;
+}
+
+.btn {
+    color: white;
 }
 
 .messageBox {

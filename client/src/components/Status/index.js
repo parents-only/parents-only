@@ -24,7 +24,7 @@ class Status extends Component {
                     <div class="statusCard">
                         <div class="row px-3"> <img class="profile-pic mr-3" src="https://via.placeholder.com/150" />
                             <div class="flex-column">
-                                <h3 class="mb-0 font-weight-normal">AJ Stribling</h3> <select name="privacy" class="privacy">
+                                <h3 class="mb-0 font-weight-normal">Your Name Here</h3> <select name="privacy" class="privacy">
                                     <option>Public status</option>
                                     <option>Private status</option>
                                 </select>
