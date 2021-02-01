@@ -5,7 +5,7 @@ import LoginForm from '../LoginForm';
 
 
 const LandingPage = () => {
-
+    
     const [showModal, setShowModal] = useState(false);
 
     return (
