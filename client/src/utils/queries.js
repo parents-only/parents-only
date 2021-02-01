@@ -107,3 +107,21 @@ export const QUERY_ME_BASIC = gql`
     }
   }
 `;
+
+//For a filtered search
+export const USER_SEARCH_QUERY = gql`
+  query userSearch($filter: String!) {
+    user(filter: $filter) {
+      _id
+      username
+      email
+      age
+      location
+      friendCount
+      friends {
+        _id
+        username
+      }
+    }
+  }
+`;

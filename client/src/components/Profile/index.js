@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import FriendList from '../FriendList'
+import FriendList from '../FriendList/index'
 import { QUERY_ME } from "../../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
 import Auth from "../../utils/auth";
@@ -52,8 +52,7 @@ function Profile() {
                 {loggedIn && userData ? (
                 <div class="grid-3">
                     <h4>Friends</h4>
-                    <FriendList
-                        />
+                    <FriendList/>
                 </div>
                 ) : null}
                 {loggedIn && userData ? (

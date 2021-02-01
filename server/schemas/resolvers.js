@@ -66,6 +66,19 @@ const resolvers = {
         _id
       });
     }
+    ,
+
+    //Filtered user search
+    userSearch: async (parent, args) => {
+      const params = args.filter  
+      const searchedUser = await User.find(params);
+        
+      return {
+       searchedUser
+      };
+    
+    },  
+    
 
   },
   Mutation: {

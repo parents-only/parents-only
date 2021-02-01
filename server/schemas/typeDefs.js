@@ -37,6 +37,7 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     userById(_id: ID!): User
+    userSearch($filter: String!) : User
     messages(username: String): [Message]
     message(_id: ID!): Message
     
