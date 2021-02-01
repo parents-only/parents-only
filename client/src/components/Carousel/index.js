@@ -1,6 +1,6 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import { photos } from '../LandingPage/photos';
+
 
 
 const PictureSlider = () => {
