@@ -34,6 +34,10 @@ const userSchema = new Schema(
     location: {
         type: Schema.Types.ObjectId,
         ref: 'Location'
+    },
+    bio: { 
+      type: String,
+      maxlength: 250
     }
     
   },
@@ -61,8 +65,8 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 // when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
-//userSchema.virtual('bookCount').get(function () {
- // return this.savedBooks.length;
+//userSchema.virtual('friendCount').get(function () {
+ // return this.friendsList.length;
 //});
 
 const User = model('User', userSchema);

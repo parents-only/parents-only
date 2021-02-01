@@ -9,12 +9,13 @@ db.once('open', async () => {
   // create user data
   const userData = [];
 
-  for (let i = 0; i < 50; i += 1) {
+  for (let i = 0; i < 100; i += 1) {
     const username = faker.internet.userName();
     const email = faker.internet.email(username);
     const password = faker.internet.password();
-
-    userData.push({ username, email, password });
+    const age = faker.age(18, 100);
+    const bio = faker.lorem.paragraph(3, 1);
+    userData.push({ username, email, password, age, bio });
   }
 
   const createdUsers = await User.collection.insertMany(userData);
@@ -33,6 +34,8 @@ db.once('open', async () => {
 
     await User.updateOne({ _id: userId }, { $addToSet: { friends: friendId } });
   }
+
+
 
   console.log('all done!');
   process.exit(0);

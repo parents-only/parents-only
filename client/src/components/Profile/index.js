@@ -46,7 +46,7 @@ function Profile() {
                     <h4>About me</h4>
                     <p>Age:</p>
                     <p>Location:</p>
-                    <p>Hobbies:</p>
+                    <p>Bio:</p>
                 </div>
                 <div class="grid-5">
                     <h4>Photos</h4>

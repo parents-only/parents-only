@@ -9,15 +9,10 @@ const typeDefs = gql`
     friendCount: Int
     messages: [Message]
     friends: [User]
+    avatar: String
     age: Int
-    location: Location
-    
-  }
-
-  type Location {
-      _id: ID
-      lat: Float
-      long: Float
+    location: Point
+    bio: String 
   }
 
   type Message {
