@@ -3,6 +3,17 @@ const faker = require('faker');
 const db = require('../config/connection');
 const { User, Message } = require('../models/index');
 
+function moreLikelyToBeYounger(){
+    let initialVal = Math.floor(Math.random() * 10) + 1; 
+    if(initialVal<5){
+        return Math.floor(Math.random() * 6) + 18;
+    }
+    else if(initialVal<8){
+        return Math.floor(Math.random() * 20) + 24;
+    }
+    else return Math.floor(Math.random() * 60) + 61;
+}
+
 db.once('open', async () => {
   await Message.deleteMany({});
   await User.deleteMany({});
@@ -16,9 +27,9 @@ db.once('open', async () => {
     const password = faker.internet.password();
     const lat = faker.address.latitude();
     const lon = faker.address.longitude();
-    const age = faker.random.number(102) + 18;
     const bio = faker.lorem.sentences(3);
     const avatar = faker.internet.avatar();
+    const age = moreLikelyToBeYounger()
 
     userData.push({ username, email, password, location: [lat, lon], age, bio, avatar });
   }
