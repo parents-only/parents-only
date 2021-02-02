@@ -18,6 +18,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
+      minlength: 5
     },
     friends: [
       {
@@ -53,6 +54,10 @@ userSchema.methods.isCorrectPassword = async function (password) {
 //userSchema.virtual('bookCount').get(function () {
  // return this.savedBooks.length;
 //});
+
+userSchema.virtual('friendCount').get(function() {
+  return this.friends.length;
+});
 
 const User = model('User', userSchema);
 

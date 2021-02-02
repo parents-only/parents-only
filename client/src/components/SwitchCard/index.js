@@ -1,5 +1,9 @@
-const React = require('react')
-const sleep = require('p-sleep')
+const React = require('react');
+const sleep = require('p-sleep');
+
+// seed db
+// pull users from db with a request
+// fetch x many users 
 
 const settings = {
   snapBackDuration: 300,

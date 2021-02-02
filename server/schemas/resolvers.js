@@ -1,5 +1,5 @@
 const {
-  User
+  User, Message
 } = require("../models");
 const {
   AuthenticationError
