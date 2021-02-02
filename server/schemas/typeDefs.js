@@ -38,10 +38,10 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     userById(_id: ID!): User
-    userSearch($filter: String!) : User
+    userSearch(filter: String!) : User
     messages(username: String): [Message]
     message(_id: ID!): Message
-    
+   
   }
 
   type Mutation {
@@ -50,6 +50,17 @@ const typeDefs = gql`
     addMessage(messageText: String!): Message
     addReaction(messageId: ID!, reactionBody: String!): Message
     addFriend(friendId: ID!): User
+    updateUser(
+      username: String
+      firstName: String
+      lastName: String
+      email: String
+      password: String
+      age: Int
+      location: String
+      bio: String
+    ): User
+    
   }
 
   type Auth {

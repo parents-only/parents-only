@@ -1,6 +1,6 @@
 import React from 'react';
 import FriendList from '../components/FriendList/'
-import UserSearch from '../components/Search/'
+//import UserSearch from '../components/Search/'
 
 const SeeFriends = () => {
    
@@ -10,7 +10,7 @@ const SeeFriends = () => {
         <FriendList />
         </div>
         <div>
-        <UserSearch />
+        
         </div>
         </main>
         

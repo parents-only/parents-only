@@ -68,17 +68,7 @@ const resolvers = {
     }
     ,
 
-    //Filtered user search
-    userSearch: async (parent, args) => {
-      const params = args.filter  
-      const searchedUser = await User.find(params);
-        
-      return {
-       searchedUser
-      };
-    
-    },  
-    
+
 
   },
   Mutation: {
@@ -90,6 +80,15 @@ const resolvers = {
         token,
         user
       };
+    },
+    updateUser: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        });
+      }
+
+      throw new AuthenticationError("Not logged in");
     },
     login: async (parent, {
       email,
