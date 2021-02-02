@@ -37,7 +37,7 @@ const userSchema = new Schema(
     ],
     age: {
         type: Number,
-        min: [18, 'You must be 18 years or older to use this app'],
+        min: [18, 'You must be 18 years or older to use this website'],
         max: 120,
         required: true
     },
