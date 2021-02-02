@@ -12,7 +12,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { ADD_FRIEND } from '../utils/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
-const ProfileCard = ({img, name, age, location, bio, match, nomatch}) => {
+const ProfileCard = ({username, avatar, name, age, location, bio, match, nomatch}) => {
     
     const { username: userParam } = useParams();
 
@@ -65,10 +65,6 @@ const ProfileCard = ({img, name, age, location, bio, match, nomatch}) => {
 
     return (
     
-      
-
-       
-       
 
         <div className="card">
             <h2 className="bg-dark text-secondary p-3 display-inline-block">
@@ -76,7 +72,7 @@ const ProfileCard = ({img, name, age, location, bio, match, nomatch}) => {
             </h2>
 
             <div className="img-container">
-                <img src={babyAJ} alt={name} style={{width: "100%", borderRadius: ".5rem"}}></img>
+                <img src={avatar} alt={username} style={{width: "100%", borderRadius: ".5rem"}}></img>
             </div>
             <div className="content">
                 <h1 className="userName">{name}</h1>

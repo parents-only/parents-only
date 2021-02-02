@@ -24,7 +24,32 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'User'
       }
-    ]
+    ],
+    avatar: {
+      type: String,
+      defaultValue: "../../public/images/default.png",
+    },
+    age: {
+        type: Number,
+        required: true,
+        min: [18, 'You must be 18 or older to use this website.'],
+        max: 120
+    },
+    location: [{
+      lat: {
+        type: Number,
+        required: true,
+    },
+    lon: {
+        type: Number,
+        required: true,
+    },
+    }],
+    bio: { 
+      type: String,
+      maxlength: 250
+    }
+    
   },
   // set this to use virtual below
   {

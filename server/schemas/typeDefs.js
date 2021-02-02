@@ -9,6 +9,10 @@ const typeDefs = gql`
     friendCount: Int
     messages: [Message]
     friends: [User]
+    avatar: String
+    age: Int
+    location: String
+    bio: String 
   }
 
   type Message {
@@ -43,6 +47,16 @@ const typeDefs = gql`
     addMessage(messageText: String!): Message
     addReaction(messageId: ID!, reactionBody: String!): Message
     addFriend(friendId: ID!): User
+    updateUser(
+      username: String
+      firstName: String
+      lastName: String
+      email: String
+      password: String
+      age: Int
+      location: String
+      bio: String
+    ): User
   }
 
   type Auth {

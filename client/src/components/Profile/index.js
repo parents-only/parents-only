@@ -19,7 +19,7 @@ const Profile = () => {
             
             <div id="mainProfile">
                 <div id="topHalf">
-                    <img src="http://www.boostnet.in/wp-content/uploads/2016/10/Header-1.png" alt="" />
+                    <img src={"http://www.boostnet.in/wp-content/uploads/2016/10/Header-1.png"} alt="" />
                 </div>
                 <div id="bottomHalf">
                     <img src="BabyAJ.JPG" alt="" style={{ height: 150, width: 150 }} />
@@ -30,7 +30,7 @@ const Profile = () => {
                 <div class="grid-3">
                     <h4>Friends</h4>
                     {loggedIn && userData ? (
-                    <div className="col-12 col-lg-3 mb-3">
+                    <div >
                         <FriendList
                         username={userData.me.username}
                         friendCount={userData.me.friendCount}
