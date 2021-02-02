@@ -32,9 +32,9 @@ const Profile = () => {
                     {loggedIn && userData ? (
                     <div >
                         <FriendList
-                        username={userData.me.username}
-                        friendCount={userData.me.friendCount}
-                        friends={userData.me.friends}
+                        //username={userData.me.username}
+                        //friendCount={userData.me.friendCount}
+                        //friends={userData.me.friends}
                         />
                     </div>
                     ) : null}
@@ -42,9 +42,9 @@ const Profile = () => {
                 {loggedIn && userData ? (
                 <div class="grid-4">
                     <h4>About me</h4>
-                    <p>Age: {userData.me.age}</p>
-                    <p>Location: {userData.me.location}</p>
-                    <p>Bio: {userData.me.bio}</p>
+                    <p>Age: </p>
+                    <p>Location: </p>
+                    <p>Bio: </p>
                 </div>
                  ) : null}
                 <div class="grid-5">
