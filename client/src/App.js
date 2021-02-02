@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 //import Login from './components/LoginForm';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import Footer from './components/Footer';
+import Footer from './components/Footer/index';
 import Profile from './components/Profile'
 import Explore from './pages/Explore';
 import SeeFriends from './pages/SeeFriends';
