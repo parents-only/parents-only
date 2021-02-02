@@ -13,8 +13,12 @@ db.once('open', async () => {
     const username = faker.internet.userName();
     const email = faker.internet.email(username);
     const password = faker.internet.password();
+    const lat = faker.address.latitude();
+    const lon = faker.address.longitude();
+    const age = faker.random.number(102) + 18;
 
-    userData.push({ username, email, password });
+
+    userData.push({ username, email, password, location: [lat, lon], age });
   }
 
   const createdUsers = await User.collection.insertMany(userData);

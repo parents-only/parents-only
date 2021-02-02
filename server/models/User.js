@@ -42,8 +42,7 @@ const userSchema = new Schema(
         required: true
     },
     location: {
-        type: [Number],
-        required: true
+        type: [Number]
     },
     bio: {
         type: String,
