@@ -1,14 +1,25 @@
 import React from 'react';
 import './index.css';
-import FriendList from '../FriendList'
+import FriendList from '../FriendList/'
 import Status from '../Status'
+import { QUERY_USER, QUERY_ME } from "../../utils/queries";
+import Auth from "../../utils/auth";
+import { Redirect, useParams } from "react-router-dom";
+// This component, Redirect, will allow us to redirect the user to another route within the application. Think of it like how we've used location.replace() in the past, but it leverages React Router's ability to not reload the browser!
+import { ADD_FRIEND } from '../../utils/mutations';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 
-function Profile() {
+const Profile = () => {
+    const { data: userData } = useQuery(QUERY_ME);
+
+    const loggedIn = Auth.loggedIn();
+  
     return (
         <div>
+            
             <div id="mainProfile">
                 <div id="topHalf">
-                    <img src="http://www.boostnet.in/wp-content/uploads/2016/10/Header-1.png" alt="" />
+                    <img src={"http://www.boostnet.in/wp-content/uploads/2016/10/Header-1.png"} alt="" />
                 </div>
                 <div id="bottomHalf">
                     <img src="BabyAJ.JPG" alt="" style={{ height: 150, width: 150 }} />
@@ -18,14 +29,24 @@ function Profile() {
                     <Status />
                 <div class="grid-3">
                     <h4>Friends</h4>
-                    <FriendList />
+                    {loggedIn && userData ? (
+                    <div >
+                        <FriendList
+                        username={userData.me.username}
+                        friendCount={userData.me.friendCount}
+                        friends={userData.me.friends}
+                        />
+                    </div>
+                    ) : null}
                 </div>
+                {loggedIn && userData ? (
                 <div class="grid-4">
                     <h4>About me</h4>
-                    <p>Age:</p>
-                    <p>Location:</p>
-                    <p>Hobbies:</p>
+                    <p>Age: {userData.me.age}</p>
+                    <p>Location: {userData.me.location}</p>
+                    <p>Bio: {userData.me.bio}</p>
                 </div>
+                 ) : null}
                 <div class="grid-5">
                     <h4>Photos</h4>
                     <div id="gallery">
