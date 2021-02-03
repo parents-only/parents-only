@@ -109,9 +109,21 @@ export const QUERY_ME_BASIC = gql`
 
 export const QUERY_FRIEND_CARD = gql`
   {
+      me{
+          _id
+          username
+          email
+          avatar
+          friendCount
+          friends {
+              _id
+              username
+          }
+      }
       cards {
           _id
           username
+          avatar
       }
   }
 `;
