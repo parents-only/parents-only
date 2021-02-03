@@ -10,10 +10,10 @@ import { ADD_FRIEND } from '../../utils/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 const Profile = () => {
-    const { data } = useQuery(QUERY_ME);
-    const user = data
-
     const loggedIn = Auth.loggedIn();
+    //const { data:userData } = useQuery(QUERY_ME);
+    //const user = data?.user || [];
+
   
     return (
         <div>

@@ -30,7 +30,10 @@ const SignupForm = () => {
 
     try {
       const { data } = await addUser({
-        variables: { ...userFormData }
+        variables: { 
+            ...userFormData,
+            age: parseInt(userFormData.age)
+        }
       });
       Auth.login(data.addUser.token);
     } catch (err) {
@@ -95,16 +98,16 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='age'>Password</Form.Label>
+          <Form.Label htmlFor='age'>Age</Form.Label>
           <Form.Control
-            type='age'
+            type='number'
             placeholder='Your age'
             name='age'
             onChange={handleInputChange}
             value={userFormData.age}
             required
           />
-          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+          <Form.Control.Feedback type='invalid'>Age is required!</Form.Control.Feedback>
         </Form.Group>
 
         <Button
