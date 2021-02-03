@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import FriendList from '../FriendList/index'
+import FriendList from '../FriendList'
 import Status from '../Status'
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
@@ -10,9 +10,9 @@ import { ADD_FRIEND } from '../../utils/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 const Profile = () => {
+    const { data: userData } = useQuery(QUERY_ME);
+
     const loggedIn = Auth.loggedIn();
-    //const { data:userData } = useQuery(QUERY_ME);
-    //const user = data?.user || [];
 
   
     return (
@@ -28,22 +28,36 @@ const Profile = () => {
             </div>
             <div class="wrapper" id="status">
                     <Status />
+            </div>
+           
                 <div class="grid-3">
                     <h4>Friends</h4>
-                    
+                    {loggedIn && userData ? (
                     <div className='container'>
-                        <FriendList />
+                        <FriendList
+                            username={userData.me.username}
+                            friendCount={userData.me.friendCount}
+                            friends={userData.me.friends}                        
+                        />
                     </div>
-                    
+                    ) : null}
                 </div>
+                   
+            
+                
                
                 <div class="grid-4">
+                    {loggedIn && userData ? (
+                    <div className="myInfo">
                     <h4>About me</h4>
                     <p>Age: </p>
                     <p>Location: </p>
                     <p>Bio: </p>
+                    </div>
+                    ) : null}
                 </div>
-                
+            )
+            
                 <div class="grid-5">
                     <h4>Photos</h4>
                     <div id="gallery">
@@ -163,10 +177,11 @@ const Profile = () => {
                 </div>
                 <div class="grid-6"></div>
             </div>
-        </div>
+       
+        
 
     );
-}
+};
 
 export default Profile;
 

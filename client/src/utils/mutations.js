@@ -13,7 +13,7 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!, $age: Int!) {
+  mutation addUser($username: String!, $email: String!, $password: String!, $age: Int ) {
     addUser(username: $username, email: $email, password: $password, age: $age) {
       token
       user {
@@ -70,7 +70,7 @@ export const ADD_FRIEND = gql`
 
 export const REMOVE_FRIEND = gql`
   mutation removeFriend($id: ID!) {
-    removeFriend(id: $id) {
+    removeFriend(friendId: $id) {
       _id
       username
       friends {
