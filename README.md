@@ -60,6 +60,20 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.  
 
+Technologies/Libraries used:
+* Node.js:
+    * react
+    * react-bootstrap/css
+    * express
+    * apollo-server
+    * graphql
+    * mongoose
+    * bcrypt
+    * faker
+    * jsonwebtokens
+
+
+
 ## Screenshots
 ![picture alt](client/public/img/landingpage.PNG)
 ![picture alt](client/public/img/matchpage.PNG)
