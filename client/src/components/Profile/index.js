@@ -22,9 +22,11 @@ const Profile = () => {
                 <div id="topHalf">
                     <img src={"http://www.boostnet.in/wp-content/uploads/2016/10/Header-1.png"} alt="" />
                 </div>
+                {loggedIn && userData ? (
                 <div id="bottomHalf">
-                    <img src="BabyAJ.JPG" alt="" style={{ height: 150, width: 150 }} />
+                    <img src={userData.me.avatar} alt={userData.me.username} style={{ height: 150, width: 150 }} />
                 </div>
+                 ) : null}
             </div>
             <div className="wrapper" id="status">
                     <Status />
@@ -46,12 +48,12 @@ const Profile = () => {
                     
                     
                     <h4>About me</h4>
-                    <p>Age: </p>
-                    <p>Location: </p>
-                    <p>Bio: </p>         
+                    <p>Age: {userData.me.age}</p>
+                    <p>Location: coming soon</p>
+                    <p>Bio: {userData.me.bio}</p>         
                 </div>
                 ) : null}
-            )
+            
             
                 <div className="grid-5">
                     <h4>Photos</h4>
