@@ -106,3 +106,12 @@ export const QUERY_ME_BASIC = gql`
     }
   }
 `;
+
+export const QUERY_FRIEND_CARD = gql`
+  {
+      cards [
+          _id
+          username
+      ]
+  }
+`;
