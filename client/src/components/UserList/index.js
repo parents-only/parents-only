@@ -1,13 +1,13 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import UserList from "../UserList";
-import { QUERY_ALL_USERS } from "../../utils/queries";
+import { QUERY_USERS } from "../../utils/queries";
 
 
 function UserList() {
  
 
-  const {loading, data:username} = useQuery(QUERY_ALL_USERS)
+  const {loading, data:username} = useQuery(QUERY_USERS)
   
   
   function filterUsers() {
