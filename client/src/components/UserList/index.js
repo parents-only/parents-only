@@ -4,7 +4,7 @@ import UserList from "../UserList";
 import { QUERY_USERS } from "../../utils/queries";
 
 
-function UserList() {
+export function UserList ([users]) {
  
 
   const {loading, data:username} = useQuery(QUERY_USERS)
@@ -37,4 +37,3 @@ function UserList() {
   );
 }
 
-export default UserList;
