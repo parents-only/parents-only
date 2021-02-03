@@ -1,18 +1,14 @@
-import React, { useState } from 'react';
-// import { Form, Button, Alert } from 'react-bootstrap';
-// import { useMutation } from '@apollo/react-hooks';
-// import { ADD_USER } from '../utils/mutations';
-// import Auth from '../utils/auth';
-import './style.css';
-import babyAJ from '../ProfileCard/BabyAJ.JPG';
+import React from "react";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import Auth from "../utils/auth";
 import { Redirect, useParams } from "react-router-dom";
 // This component, Redirect, will allow us to redirect the user to another route within the application. Think of it like how we've used location.replace() in the past, but it leverages React Router's ability to not reload the browser!
 import { ADD_FRIEND } from '../utils/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import MessageForm from '../MessageForm';
 
-const ProfileCard = ({username, avatar, name, age, location, bio, match, nomatch}) => {
+
+const ProfileCard = () => {
     
     const { username: userParam } = useParams();
 
@@ -27,7 +23,7 @@ const ProfileCard = ({username, avatar, name, age, location, bio, match, nomatch
 
     // redirect to personal profile page if username is the logged-in user's
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-        return <Redirect to="/profile" />;
+        return <Redirect to={`/profile/${user.username}`} />;
         // With this, we're checking to see if the user is logged in and if so, if the username stored in the JSON Web Token is the same as the userParam value. If they match, we return the <Redirect> component with the prop to set to the value /profile, which will redirect the user away from this URL and to the /profile route.
     }
 
@@ -72,13 +68,13 @@ const ProfileCard = ({username, avatar, name, age, location, bio, match, nomatch
             </h2>
 
             <div className="img-container">
-                <img src={avatar} alt={username} style={{width: "100%", borderRadius: ".5rem"}}></img>
+                <img src={user.avatar} alt={user.username} style={{width: "100%", borderRadius: ".5rem"}}></img>
             </div>
             <div className="content">
-                <h1 className="userName">{name}</h1>
-                <p>Age : {age}</p>
-                <p>Location : {location}</p>
-                <p>Bio : {bio}</p>
+                <h1 className="userName">{user.username}</h1>
+                <p>Age : {user.age}</p>
+                <p>Location : {user.location}</p>
+                <p>Bio : {user.bio}</p>
                 {userParam && (
                 <button className="btn ml-auto" onClick={handleClick}>
                     Add Friend

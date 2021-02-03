@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/react-hooks';
-import { ADD_USER } from '../../utils/mutations';
+import { UPDATE_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
-const SignupForm = () => {
+const EditUserForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', age: '' });
-  const [addUser, { error }] = useMutation(ADD_USER);
+  const [updateUser, { error }] = useMutation(UPDATE_USER);
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -29,7 +29,7 @@ const SignupForm = () => {
     }
 
     try {
-      const { data } = await addUser({
+      const { data } = await updateUser({
         variables: { 
             ...userFormData,
             age: parseInt(userFormData.age)
@@ -45,7 +45,8 @@ const SignupForm = () => {
       username: '',
       email: '',
       password: '',
-      age: '',
+      bio: '',
+      avatar: '',
     });
   };
 
@@ -98,17 +99,16 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='age'>Age</Form.Label>
+        <Form.Label htmlFor='bio'>Bio</Form.Label>
           <Form.Control
-            type='number'
-            placeholder='Your age'
-            name='age'
+            type='textarea'
+            placeholder='Your bio'
+            name='bio'
             onChange={handleInputChange}
-            value={userFormData.age}
-            required
+            value={userFormData.bio}
           />
-          <Form.Control.Feedback type='invalid'>Age is required!</Form.Control.Feedback>
         </Form.Group>
+
 
         <Button
           disabled={!(userFormData.username && userFormData.email && userFormData.password && userFormData.age)}
@@ -117,9 +117,9 @@ const SignupForm = () => {
           Submit
         </Button>
       </Form>
-      {error && <div>Sign up failed</div>}
+      {error && <div>Make sure all fields are filled in correctly</div>}
     </>
   );
 };
 
-export default SignupForm;
+export default EditUserForm;

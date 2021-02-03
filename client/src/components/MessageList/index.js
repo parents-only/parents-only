@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const MessageList = ({ messages, title }) => {
-  if (!messages.length) {
+  if (!messages || !messages.length) {
     return <h3>No Messages Yet</h3>;
   }
 
