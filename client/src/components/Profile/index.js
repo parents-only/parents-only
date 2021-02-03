@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import FriendList from '../FriendList'
+import FriendList from '../FriendList/index'
 import Status from '../Status'
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
@@ -10,10 +10,10 @@ import { ADD_FRIEND } from '../../utils/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 const Profile = () => {
-    //const { data:userData } = useQuery(QUERY_ME);
-    //const user = data?.user || [];
+    const { data } = useQuery(QUERY_ME);
+    const user = data
 
-    //const loggedIn = Auth.loggedIn();
+    const loggedIn = Auth.loggedIn();
   
     return (
         <div>
@@ -31,12 +31,8 @@ const Profile = () => {
                 <div class="grid-3">
                     <h4>Friends</h4>
                     
-                    <div >
-                        <FriendList
-                        //username={username}
-                        //friendCount={friendCount}
-                        //friends={friends}
-                        />
+                    <div className='container'>
+                        <FriendList />
                     </div>
                     
                 </div>
