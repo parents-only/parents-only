@@ -1,15 +1,15 @@
-import React, { useState, useQuery } from 'react';
+import React, { useState } from "react";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import { ADD_MESSAGE } from "../../utils/mutations";
+import { QUERY_MESSAGES, QUERY_ME } from "../../utils/queries";
 
-import { useMutation } from '@apollo/react-hooks';
-import { ADD_MESSAGE } from '../../utils/mutations';
-import { QUERY_MESSAGES, QUERY_ME, QUERY_USER } from '../../utils/queries';
+
 
 
 const MessageForm = () => {
   const [messageText, setText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
-  const { data } = useQuery(QUERY_ME)
-  const user = data?.me;
+  
     // Now if there's a value in userParam that we got from the URL bar, we'll use that value to run the QUERY_USER query. If there's no value in userParam, like if we simply visit /profile as a logged-in user, we'll execute the QUERY_ME query instead.
 
 
@@ -61,6 +61,8 @@ const MessageForm = () => {
     }
   };
 
+const user = useQuery(QUERY_ME)
+
   return (
     <div className="grid-1">
       <div className="grid-1">
@@ -73,9 +75,9 @@ const MessageForm = () => {
       <br></br>
       <div className="grid-2">
            <div className="statusCard">
-              <div className="row px-3"> <img className="profile-pic mr-3" src={data.user.avatar} />
+              <div className="row px-3"> <img className="profile-pic mr-3" src={user.avatar} />
                     <div className="flex-column">
-                        <h3 className="mb-0 font-weight-normal">{data.user.username}</h3> 
+                        <h3 className="mb-0 font-weight-normal">{user.username}</h3> 
                     </div>
               </div>
             <div className="row px-3 form-group" onSubmit={handleFormSubmit}>

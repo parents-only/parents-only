@@ -3,6 +3,8 @@ import './index.css';
 import MessageList from '../MessageList';
 import MessageForm from '../MessageForm'
 import FriendList from '../FriendList'
+import EditModal from '../EditModal'
+import EditProfile from '../EditProfile'
 //import Status from '../Status'
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
@@ -10,6 +12,7 @@ import { Redirect, useParams } from "react-router-dom";
 // This component, Redirect, will allow us to redirect the user to another route within the application. Think of it like how we've used location.replace() in the past, but it leverages React Router's ability to not reload the browser!
 import { ADD_FRIEND } from '../../utils/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+
 
 const Profile = () => {
     const { username: userParam } = useParams();
@@ -23,9 +26,11 @@ const Profile = () => {
 
     const [addFriend] = useMutation(ADD_FRIEND);
 
+   
+
     // redirect to personal profile page if username is the logged-in user's
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-        return <Redirect to={`/profile/${user.username}`} />;
+        return <Redirect to='/profile' />;
         // With this, we're checking to see if the user is logged in and if so, if the username stored in the JSON Web Token is the same as the userParam value. If they match, we return the <Redirect> component with the prop to set to the value /profile, which will redirect the user away from this URL and to the /profile route.
     }
 
@@ -72,7 +77,10 @@ const Profile = () => {
                  )}
             </div>
             <div className="wrapper" id="status">
-                    {/* <Status /> */}
+                    <MessageList/>
+
+                    {!userParam && 
+                    <MessageForm />} 
 
                     
 
@@ -220,6 +228,7 @@ const Profile = () => {
                 {!userParam && <MessageForm />}
                 </div> */}
                 <div className="grid-7">
+                    
                 </div>
             </div>
         </div>

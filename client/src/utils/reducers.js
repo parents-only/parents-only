@@ -1,6 +1,8 @@
 import { useReducer } from "react";
 import {
-    TOGGLE_CHAT
+    TOGGLE_CHAT,
+    UPDATE_USERS,
+    UPDATE_USER
 } from "./actions";
 
 const initialState = {
@@ -17,12 +19,26 @@ const reducer = (state, action) => {
                 ...state,
                 chatOpen: !state.chatOpen
             };
-        default:
-            return state;
+
+            case UPDATE_USER:
+                return {
+                  ...state,
+                  user: [...action.user],
+                };
+
+
+            case UPDATE_USERS:
+                    return {
+                        ...state,
+                        users: action.users
+                    }
+                default:
+                    return state;
     }
 };
+ 
 
-export default reducer;
+
 
 export function useProductReducer(initialState) {
     return useReducer(reducer, initialState)
