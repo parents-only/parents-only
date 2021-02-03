@@ -7,7 +7,7 @@ const FriendList = ({ friendCount, username, friends }) => {
   }
 
   return (
-    <div>
+    <div >
       <h5>
         {username}'s {friendCount} {friendCount === 1 ? 'friend' : 'friends'}
       </h5>
