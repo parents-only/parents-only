@@ -49,6 +49,7 @@ const typeDefs = gql `
     userById(_id: ID!): User
     messages(username: String): [Message]
     message(_id: ID!): Message
+    cards: [User]
   }
 
   type Mutation {
