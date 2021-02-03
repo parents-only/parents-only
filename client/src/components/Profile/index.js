@@ -25,7 +25,7 @@ const Profile = () => {
 
     // redirect to personal profile page if username is the logged-in user's
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-        return <Redirect to={`/profile/${user.username}`} />;
+        return <Redirect to='/profile' />;
         // With this, we're checking to see if the user is logged in and if so, if the username stored in the JSON Web Token is the same as the userParam value. If they match, we return the <Redirect> component with the prop to set to the value /profile, which will redirect the user away from this URL and to the /profile route.
     }
 
