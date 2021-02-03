@@ -10,6 +10,7 @@ import { Redirect, useParams } from "react-router-dom";
 // This component, Redirect, will allow us to redirect the user to another route within the application. Think of it like how we've used location.replace() in the past, but it leverages React Router's ability to not reload the browser!
 import { ADD_FRIEND } from '../../utils/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import { Button } from 'react-bootstrap';
 
 const Profile = () => {
     const { username: userParam } = useParams();
@@ -64,9 +65,9 @@ const Profile = () => {
                 <div id="bottomHalf">
                     <img src={user.avatar} alt={user.username} style={{ height: 150, width: 150 }} />
                     
-                    <button className="btn ml-auto" onClick={handleClick}>
+                    <Button variant="success" className="btn ml-auto centered" onClick={handleClick}>
                         Add Friend
-                    </button>
+                    </Button>
                 
                 </div>
                  )}

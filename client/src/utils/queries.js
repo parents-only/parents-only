@@ -107,6 +107,7 @@ export const QUERY_ME_BASIC = gql`
   }
 `;
 
+<<<<<<< HEAD
 // export const QUERY_FRIEND_CARD = gql`
 //   {
 //       cards [
@@ -115,3 +116,25 @@ export const QUERY_ME_BASIC = gql`
 //       ]
 //   }
 // `;
+=======
+export const QUERY_FRIEND_CARD = gql`
+  {
+      me{
+          _id
+          username
+          email
+          avatar
+          friendCount
+          friends {
+              _id
+              username
+          }
+      }
+      cards {
+          _id
+          username
+          avatar
+      }
+  }
+`;
+>>>>>>> ac8e0e18165768d9ebc8dc6c8bbb03c0251dcc68

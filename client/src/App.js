@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Footer from './components/Footer/index';
 import Profile from './components/Profile'
 import Explore from './pages/Explore';
+import EditProfile from './components/EditProfile';
 import SeeFriends from './pages/SeeFriends';
 import Chat from './pages/Chat';
 import NoMatch from './pages/NoMatch';
@@ -52,8 +53,8 @@ function App() {
               <Route exact path="/profile/:username?" component={Profile} />
               {/* <Route exact path='/profile' component={Profile} /> */}
               <Route exact path="/chat" component={Chat} />
-              <Route exact path="/friends" component={SeeFriends} />
               <Route exact path='/explore' component={Explore} />
+              <Route exact path='/editprofile' component={EditProfile} />
               <Route exact path="/messages/:username?" component={MessageList} />
               <Route component={NoMatch} />
             </Switch>
