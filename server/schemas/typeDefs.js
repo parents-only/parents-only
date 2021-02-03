@@ -8,6 +8,7 @@ const typeDefs = gql `
     username: String
     email: String
     password: String
+    image: String
     friendCount: Int
     messages: [Message]
     friends: [User]
