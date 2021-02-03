@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+
+import { useMutation } from '@apollo/react-hooks';
+import { ADD_MESSAGE } from '../../utils/mutations';
+import { QUERY_MESSAGES, QUERY_ME } from '../../utils/queries';
 
 
-class Status extends Component {
+const Status = () => {
     state = {
         userInput: ''
     }
@@ -14,7 +18,7 @@ class Status extends Component {
         return <div dangerouslySetInnerHTML={this.state.userInput} />;
     }
 
-    render() {
+    
         return (
 
             <div className="grid-1">
@@ -46,5 +50,5 @@ class Status extends Component {
 
         );
     }
-}
+
 export default Status;

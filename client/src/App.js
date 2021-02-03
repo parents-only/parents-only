@@ -17,6 +17,7 @@ import Chat from './pages/Chat';
 import NoMatch from './pages/NoMatch';
 import { ContextProvider } from '../src/utils/context';
 import { StoreProvider } from "./utils/GlobalState";
+import MessageList from './components/MessageList';
 
 const client = new ApolloClient({
   request: operation => {
@@ -49,6 +50,7 @@ function App() {
               <Route exact path="/chat" component={Chat} />
               <Route exact path='/explore' component={Explore} />
               <Route exact path='/editprofile' component={EditProfile} />
+              <Route exact path="/messages/:username?" component={MessageList} />
               <Route component={NoMatch} />
             </Switch>
             <Footer />
