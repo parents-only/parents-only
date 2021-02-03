@@ -66,10 +66,7 @@ const user = useQuery(QUERY_ME)
   return (
     <div className="grid-1">
       <div className="grid-1">
-      <p  id="status" className={` ${characterCount === 280 || error ? 'text-error' : ''}`}>
-        Character Count: {characterCount}/280
-        {error && <span className="ml-2">Something went wrong...</span>}
-      </p>
+      
       </div>
       <br></br>
       <br></br>
@@ -88,10 +85,11 @@ const user = useQuery(QUERY_ME)
                   onChange={handleChange}
                 ></textarea>
                 <div className="row px-3">
-                  <p className="fa fa-user options mb-0 mr-4"></p>
-                  <p className="fa fa-map-marker options mb-0 mr-4"></p>
-                  <p className="fa fa-image options mb-0 mr-4"></p> <img className="options" src="https://img.icons8.com/material/24/000000/more--v2.png" width="30px" height="28px" />
-                  <div className="btn btn-dark ml-auto" type="submit">Post</div>
+                  <div className="btn btn-dark col-ml-auto " type="submit">Post</div>
+                  <p  id="status" className={` ${characterCount === 280 || error ? 'text-error' : ''}`}>
+                  Character Count: {characterCount}/280
+                  {error && <span className="ml-2">Something went wrong...</span>}
+                </p>
                 </div>
               </div>
           </div>

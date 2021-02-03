@@ -78,10 +78,13 @@ const Profile = () => {
                  )}
             </div>
             <div className="wrapper" id="status">
-                    <MessageList/>
+            
 
                     {!userParam && 
                     <MessageForm />} 
+
+                    {!userParam && 
+                    <MessageList />}
 
                     
 
