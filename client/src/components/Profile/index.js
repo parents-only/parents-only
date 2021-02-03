@@ -26,39 +26,34 @@ const Profile = () => {
                     <img src="BabyAJ.JPG" alt="" style={{ height: 150, width: 150 }} />
                 </div>
             </div>
-            <div class="wrapper" id="status">
+            <div className="wrapper" id="status">
                     <Status />
-            </div>
-           
-                <div class="grid-3">
+            
+
+            {loggedIn && userData ? (
+                <div className="grid-3">
                     <h4>Friends</h4>
-                    {loggedIn && userData ? (
-                    <div className='container'>
                         <FriendList
                             username={userData.me.username}
                             friendCount={userData.me.friendCount}
                             friends={userData.me.friends}                        
-                        />
-                    </div>
-                    ) : null}
+                        /> 
                 </div>
-                   
-            
-                
-               
-                <div class="grid-4">
-                    {loggedIn && userData ? (
-                    <div className="myInfo">
+                ) : null}
+
+                {loggedIn && userData ? (
+                <div className="grid-4">
+                    
+                    
                     <h4>About me</h4>
                     <p>Age: </p>
                     <p>Location: </p>
-                    <p>Bio: </p>
-                    </div>
-                    ) : null}
+                    <p>Bio: </p>         
                 </div>
+                ) : null}
             )
             
-                <div class="grid-5">
+                <div className="grid-5">
                     <h4>Photos</h4>
                     <div id="gallery">
                         <div><img src="https://picsum.photos/600/600/?image=512" /><a href="#lightbox-1">512</a></div>
@@ -80,102 +75,103 @@ const Profile = () => {
                         <div><img src="https://picsum.photos/600/600/?image=528" /><a href="#lightbox-17">528</a></div>
                         <div><img src="https://picsum.photos/600/600/?image=529" /><a href="#lightbox-18">529</a></div>
                     </div>
-                    <div class="lightbox" id="lightbox-1">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=512" />
-                            <div class="title">No. <b>512</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-1">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=512" />
+                            <div className="title">No. <b>512</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-2">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=513" />
-                            <div class="title">No. <b>513</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-2">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=513" />
+                            <div className="title">No. <b>513</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-3">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=514" />
-                            <div class="title">No. <b>514</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-3">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=514" />
+                            <div className="title">No. <b>514</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-4">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=515" />
-                            <div class="title">No. <b>515</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-4">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=515" />
+                            <div className="title">No. <b>515</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-5">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=516" />
-                            <div class="title">No. <b>516</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-5">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=516" />
+                            <div className="title">No. <b>516</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-6">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=517" />
-                            <div class="title">No. <b>517</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-6">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=517" />
+                            <div className="title">No. <b>517</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-7">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=518" />
-                            <div class="title">No. <b>518</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-7">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=518" />
+                            <div className="title">No. <b>518</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-8">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=519" />
-                            <div class="title">No. <b>519</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-8">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=519" />
+                            <div className="title">No. <b>519</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-9">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=520" />
-                            <div class="title">No. <b>520</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-9">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=520" />
+                            <div className="title">No. <b>520</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-10">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=521" />
-                            <div class="title">No. <b>521</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-10">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=521" />
+                            <div className="title">No. <b>521</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-11">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=522" />
-                            <div class="title">No. <b>522</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-11">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=522" />
+                            <div className="title">No. <b>522</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-12">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=523" />
-                            <div class="title">No. <b>523</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-12">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=523" />
+                            <div className="title">No. <b>523</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-13">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=524" />
-                            <div class="title">No. <b>524</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-13">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=524" />
+                            <div className="title">No. <b>524</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-14">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=525" />
-                            <div class="title">No. <b>525</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-14">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=525" />
+                            <div className="title">No. <b>525</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-15">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=526" />
-                            <div class="title">No. <b>526</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-15">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=526" />
+                            <div className="title">No. <b>526</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-16">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=527" />
-                            <div class="title">No. <b>527</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-16">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=527" />
+                            <div className="title">No. <b>527</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-17">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=528" />
-                            <div class="title">No. <b>528</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-17">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=528" />
+                            <div className="title">No. <b>528</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
-                    <div class="lightbox" id="lightbox-18">
-                        <div class="content"><img src="https://picsum.photos/1920/1080/?image=529" />
-                            <div class="title">No. <b>529</b> from Picsum</div><a class="close" href="#gallery"></a>
+                    <div className="lightbox" id="lightbox-18">
+                        <div className="content"><img src="https://picsum.photos/1920/1080/?image=529" />
+                            <div className="title">No. <b>529</b> from Picsum</div><a className="close" href="#gallery"></a>
                         </div>
                     </div>
                 </div>
-                <div class="grid-6">
+                <div className="grid-6">
                     <h4>Recommended<br>
                     </br>Parents</h4>
                 </div>
-                <div class="grid-6"></div>
+                <div className="grid-6"></div>
+            </div>
             </div>
        
         
