@@ -29,14 +29,14 @@ const AppNavbar = () => {
                   {/* {<Nav.Link as={Link} to='/chat'>
                     Messages
                   </Nav.Link>} */}
-                  {<Nav.Link as={Link} to='/friends'>
-                    See Your Friends
-                  </Nav.Link>}
                   {<Nav.Link as={Link} to='/profile'>
                     Profile
                   </Nav.Link>}
                   <Nav.Link as={Link} to='/explore'>
                     Explore Parents
+                  </Nav.Link>
+                  <Nav.Link as={Link} to='/editprofile'>
+                    Edit Profile
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
