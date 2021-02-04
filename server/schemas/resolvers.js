@@ -1,183 +1,215 @@
 const {
-  User
+    User
 } = require("../models");
 const {
-  AuthenticationError
+    AuthenticationError
 } = require("apollo-server-express");
 const {
-  signToken
+    signToken
 } = require("../utils/auth");
+const haversine = require('haversine')
 
 const resolvers = {
-  Query: {
-    me: async (parent, args, context) => {
-      if (context.user) {
-        const userData = await User.findOne({
-            _id: context.user._id
-          })
-          .select('-__v -password')
-          .populate('messages')
-          .populate('friends');
+    Query: {
+        me: async (parent, args, context) => {
+            if (context.user) {
+                const userData = await User.findOne({
+                        _id: context.user._id
+                    })
+                    .select('-__v -password')
+                    .populate('messages')
+                    .populate('friends');
 
-        return userData;
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
-    users: async () => {
-      return User.find()
-        .select('-__v -password')
-        .populate('messages')
-        .populate('friends');
-    },
-    user: async (parent, {
-      username
-    }) => {
-      return User.findOne({
-          username
-        })
-        .select('-__v -password')
-        .populate('friends')
-        .populate('messages');
-    },
-
-    // get a user by _id
-    userById: async (parent, {
-      _id
-    }) => {
-      return User.findOne({
-        _id
-      }).select("-__v -password");
-    },
-    messages: async (parent, {
-      username
-    }) => {
-      const params = username ? {
-        username
-      } : {};
-      return Message.find(params).sort({
-        createdAt: -1
-      });
-    },
-    message: async (parent, {
-      _id
-    }) => {
-      return Message.findOne({
-        _id
-      });
-    }
-
-  },
-  Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
-
-      return {
-        token,
-        user
-      };
-    },
-    updateUser: async (parent, args, context) => {
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, {
-          new: true,
-        });
-      }
-
-      throw new AuthenticationError("Not logged in");
-    },
-    login: async (parent, {
-      email,
-      password
-    }) => {
-      const user = await User.findOne({
-        email
-      });
-
-      if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-
-      const token = signToken(user);
-      return {
-        token,
-        user
-      };
-    },
-
-    addMessage: async (parent, args, context) => {
-      if (context.user) {
-        const message = await Message.create({
-          ...args,
-          username: context.user.username
-        });
-
-        await User.findByIdAndUpdate({
-          _id: context.user._id
-        }, {
-          $push: {
-            messages: message._id
-          }
-        }, {
-          new: true
-        });
-
-        return message;
-      }
-
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    addReaction: async (parent, {
-      messageId,
-      reactionBody
-    }, context) => {
-      if (context.user) {
-        const updatedMessage = await Message.findOneAndUpdate({
-          _id: messageId
-        }, {
-          $push: {
-            reactions: {
-              reactionBody,
-              username: context.user.username
+                return userData;
             }
-          }
-        }, {
-          new: true,
-          runValidators: true
-        });
 
-        return updatedMessage;
-      }
+            throw new AuthenticationError('Not logged in');
+        },
+        users: async () => {
+            return User.find()
+                .select('-__v -password')
+                .populate('messages')
+                .populate('friends');
+        },
+        user: async (parent, {
+            username
+        }) => {
+            return User.findOne({
+                    username
+                })
+                .select('-__v -password')
+                .populate('friends')
+                .populate('messages');
+        },
 
-      throw new AuthenticationError('You need to be logged in!');
+        // get a user by _id
+        userById: async (parent, {
+            _id
+        }) => {
+            return User.findOne({
+                _id
+            }).select("-__v -password");
+        },
+        messages: async (parent, {
+            username
+        }) => {
+            const params = username ? {
+                username
+            } : {};
+            return Message.find(params).sort({
+                createdAt: -1
+            });
+        },
+        message: async (parent, {
+            _id
+        }) => {
+            return Message.findOne({
+                _id
+            });
+        },
+        cards: async (parent, args, context) => {
+            if (context.user) {
+                const userData = await User.findOne({
+                        _id: context.user._id
+                    })
+                    .select('-__v -password')
+                    .populate('messages')
+                    .populate('friends');
+
+                let viable = []
+                let users = await User.find({})
+                    .select('-__v -password')
+                users.forEach(element => {
+
+                    if (haversine({
+                            latitude: userData.location[0],
+                            longitude: userData.location[1]
+                        }, {
+                            latitude: element.location[0],
+                            longitude: element.location[1]
+                        }, {
+                            threshold: 200,
+                            unit: 'mile'
+                        }) && userData._id != element._id) {
+                        viable.push(element)
+                    }
+                });
+                return viable
+            }
+            throw new AuthenticationError('Not logged in');
+        }
+
     },
-    addFriend: async (parent, {
-      friendId
-    }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findOneAndUpdate({
-          _id: context.user._id
-        }, {
-          $addToSet: {
-            friends: friendId
-          }
-        }, {
-          new: true
-        }).populate('friends');
+    Mutation: {
+        addUser: async (parent, args) => {
+            const user = await User.create(args);
+            const token = signToken(user);
 
-        return updatedUser;
-      }
+            return {
+                token,
+                user
+            };
+        },
+        updateUser: async (parent, args, context) => {
+            if (context.user) {
+                return await User.findByIdAndUpdate(context.user._id, args, {
+                    new: true,
+                });
+            }
 
-      throw new AuthenticationError('You need to be logged in!');
+            throw new AuthenticationError("Not logged in");
+        },
+        login: async (parent, {
+            email,
+            password
+        }) => {
+            const user = await User.findOne({
+                email
+            });
+
+            if (!user) {
+                throw new AuthenticationError("Incorrect credentials");
+            }
+
+            const correctPw = await user.isCorrectPassword(password);
+
+            if (!correctPw) {
+                throw new AuthenticationError("Incorrect credentials");
+            }
+
+            const token = signToken(user);
+            return {
+                token,
+                user
+            };
+        },
+
+        addMessage: async (parent, args, context) => {
+            if (context.user) {
+                const message = await Message.create({
+                    ...args,
+                    username: context.user.username
+                });
+
+                await User.findByIdAndUpdate({
+                    _id: context.user._id
+                }, {
+                    $push: {
+                        messages: message._id
+                    }
+                }, {
+                    new: true
+                });
+
+                return message;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addReaction: async (parent, {
+            messageId,
+            reactionBody
+        }, context) => {
+            if (context.user) {
+                const updatedMessage = await Message.findOneAndUpdate({
+                    _id: messageId
+                }, {
+                    $push: {
+                        reactions: {
+                            reactionBody,
+                            username: context.user.username
+                        }
+                    }
+                }, {
+                    new: true,
+                    runValidators: true
+                });
+
+                return updatedMessage;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addFriend: async (parent, {
+            friendId
+        }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate({
+                    _id: context.user._id
+                }, {
+                    $addToSet: {
+                        friends: friendId
+                    }
+                }, {
+                    new: true
+                }).populate('friends');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        }
     }
-  }
 };
 
 

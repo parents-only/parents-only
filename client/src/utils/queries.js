@@ -84,6 +84,29 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_USERS = gql`
+  query users($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      age
+      bio
+      avatar
+      friendCount
+      friends {
+        _id
+        username
+      }
+      messages {
+        _id
+        messageText
+        createdAt
+        reactionCount
+      }
+    }
+  }
+`;
 
 
 export const QUERY_ME = gql`
@@ -96,6 +119,7 @@ export const QUERY_ME = gql`
       age
       bio
       avatar
+      gallery
       messages {
         _id
         messageText
@@ -128,5 +152,26 @@ export const QUERY_ME_BASIC = gql`
         username
       }
     }
+  }
+`;
+
+export const QUERY_FRIEND_CARD = gql`
+  {
+      me{
+          _id
+          username
+          email
+          avatar
+          friendCount
+          friends {
+              _id
+              username
+          }
+      }
+      cards {
+          _id
+          username
+          avatar
+      }
   }
 `;

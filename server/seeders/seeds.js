@@ -21,17 +21,17 @@ db.once('open', async () => {
   // create user data
   const userData = [];
 
-  for (let i = 0; i < 50; i += 1) {
+  for (let i = 0; i < 200; i += 1) {
     const username = faker.internet.userName();
     const email = faker.internet.email(username);
     const password = faker.internet.password();
-    const lat = faker.address.latitude();
-    const lon = faker.address.longitude();
+    // const lat = faker.address.latitude();
+    // const lon = faker.address.longitude();
     const bio = faker.lorem.sentences(3);
     const avatar = faker.internet.avatar();
     const age = moreLikelyToBeYounger()
 
-    userData.push({ username, email, password, location: [lat, lon], age, bio, avatar });
+    userData.push({ username, email, password, age, bio, avatar });
   }
 
   const createdUsers = await User.collection.insertMany(userData);
