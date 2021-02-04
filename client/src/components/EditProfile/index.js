@@ -80,7 +80,7 @@ const EditProfile = () => {
             <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
                 {/* show alert if server response is bad */}
                 <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-                    Something went wrong with your signup!
+                    Something went wrong with your edit!
                 </Alert>
 
                 <Form.Group>
@@ -152,7 +152,7 @@ const EditProfile = () => {
                 </Form.Group>
 
                 <Button
-                    disabled={!(userFormData.username || userFormData.email || userFormData.bio || userFormData.age || userAddress)}
+                    disabled={!(userFormData.username || userFormData.email || userFormData.bio || userFormData.age || userAddress || fileName)}
                     type='submit'
                     variant='success'>
                     Submit
