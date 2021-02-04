@@ -18,6 +18,9 @@ import NoMatch from './pages/NoMatch';
 import { ContextProvider } from '../src/utils/context';
 import { StoreProvider } from "./utils/GlobalState";
 import MessageList from './components/MessageList';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import lib from 'jwt-decode';
 
 const client = new ApolloClient({
   request: operation => {
@@ -31,6 +34,8 @@ const client = new ApolloClient({
   },
   uri: '/graphql'
 });
+
+library.add(fab);
 
 function App() {
 
@@ -53,7 +58,9 @@ function App() {
               <Route exact path="/messages/:username?" component={MessageList} />
               <Route component={NoMatch} />
             </Switch>
+            <div className="App">
             <Footer />
+            </div>
           </Router>
         </StoreProvider>
       </ContextProvider>

@@ -130,6 +130,16 @@ export const QUERY_ME_BASIC = gql`
   }
 `;
 
+<<<<<<< HEAD
+// export const QUERY_FRIEND_CARD = gql`
+//   {
+//       cards [
+//           _id
+//           username
+//       ]
+//   }
+// `;
+=======
 export const QUERY_FRIEND_CARD = gql`
   {
       me{
@@ -150,3 +160,4 @@ export const QUERY_FRIEND_CARD = gql`
       }
   }
 `;
+>>>>>>> ac8e0e18165768d9ebc8dc6c8bbb03c0251dcc68
