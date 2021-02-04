@@ -30,9 +30,9 @@ THEN I am presented with two input fields for an email address and password
 WHEN I am logged in to the site  
 THEN the navigation bar options change to "Home", "Profile", "Explore Parents", "Edit Profile", and "Logout"  
 WHEN I scroll to the bottom of the page   
-THEN I can see the footer where there are social media icons and “contact me” links    
-WHEN I click on the “contact me” links     
-THEN I am taken to a page with FAQ and presented  with a modal that accepts name, email, and message  
+THEN I can see the footer where there are social media icons  
+WHEN I click on the icons   
+THEN I am redirected to the page
 WHEN the "Home" navigation is toggled  
 THEN I am presented with the home-page with the landing-page  
 WHEN the "My Profile" navigation is toggled  

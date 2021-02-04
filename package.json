@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "apollo-server-express": "^2.19.2",
     "haversine": "^1.1.1",
     "if-env": "^1.0.4",

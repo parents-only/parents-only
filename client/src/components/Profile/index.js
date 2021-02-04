@@ -1,5 +1,7 @@
 import React from 'react';
 import './index.css';
+import MessageList from '../MessageList';
+import MessageForm from '../MessageForm'
 import FriendList from '../FriendList'
 //import Status from '../Status'
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
@@ -9,6 +11,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { ADD_FRIEND } from '../../utils/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Button } from 'react-bootstrap';
+
 
 const Profile = () => {
     const { username: userParam } = useParams();
@@ -22,6 +25,8 @@ const Profile = () => {
     user.gallery = user.gallery || []
 
     const [addFriend] = useMutation(ADD_FRIEND);
+
+   
 
     // redirect to personal profile page if username is the logged-in user's
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -71,33 +76,39 @@ const Profile = () => {
                 )}
             </div>
             <div className="wrapper" id="status">
-                {/* <Status /> */}
+            
 
+                    {!userParam && 
+                    <MessageForm />} 
 
+                    {!userParam && 
+                    <MessageList />}
 
+                    
 
-                <div className="grid-3">
-                    <h4>Friends</h4>
-                    <FriendList
-                        username={user.username}
-                        friendCount={user.friendCount}
-                        friends={user.friends}
-                    />
-                </div>
+                        
+                        <div className="grid-3">
+                            <h4>Friends</h4>
+                                <FriendList
+                                    username={user.username}
+                                    friendCount={user.friendCount}
+                                    friends={user.friends}                        
+                                /> 
+                        </div>
+                        
 
-
-
-                <div className="grid-4">
-
-
-                    <h4>About me</h4>
-                    <p>Age: {user.age}</p>
-                    <p>Location: coming soon</p>
-                    <p>Bio: {user.bio}</p>
-                </div>
-
-
-
+                        
+                        <div className="grid-4">
+                            
+                            
+                            <h4>About me</h4>
+                            <p>Age: {user.age}</p>
+                            <p>Location: coming soon</p>
+                            <p>Bio: {user.bio}</p>         
+                        </div>
+                        
+            
+            
                 <div className="grid-5">
                     <h4>Photos</h4>
                     <div id="gallery">
@@ -115,6 +126,7 @@ const Profile = () => {
                 {!userParam && <MessageForm />}
                 </div> */}
                 <div className="grid-7">
+                    
                 </div>
             </div>
         </div>
