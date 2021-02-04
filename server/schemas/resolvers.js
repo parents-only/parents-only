@@ -88,7 +88,7 @@ const resolvers = {
                             latitude: element.location[0],
                             longitude: element.location[1]
                         }, {
-                            threshold: 30,
+                            threshold: 200,
                             unit: 'mile'
                         }) && userData._id != element._id) {
                         viable.push(element)
