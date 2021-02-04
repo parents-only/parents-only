@@ -139,7 +139,7 @@ const EditProfile = () => {
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Label htmlFor='avatar'></Form.Label>
+                    <Form.Label htmlFor='avatar'>Avatar</Form.Label>
                     <Form.File id="avatar" custom>
                         <Form.File.Input
                         onChange={handleFileInput}
