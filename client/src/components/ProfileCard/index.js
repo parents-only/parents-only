@@ -1,35 +1,61 @@
-import React, { useState } from 'react';
-// import { Form, Button, Alert } from 'react-bootstrap';
-// import { useMutation } from '@apollo/react-hooks';
-// import { ADD_USER } from '../utils/mutations';
-// import Auth from '../utils/auth';
-import './style.css';
-import babyAJ from '../ProfileCard/BabyAJ.JPG';
+import React from "react";
+import { QUERY_USERS, QUERY_ME } from "../../utils/queries";
+//import Auth from "../utils/auth";
+import { Redirect, useParams } from "react-router-dom";
+// This component, Redirect, will allow us to redirect the user to another route within the application. Think of it like how we've used location.replace() in the past, but it leverages React Router's ability to not reload the browser!
+import { ADD_FRIEND } from '../../utils/mutations';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import MessageForm from '../MessageForm';
 
-const ProfileCard = ({img, name, age, location, bio, match, nomatch}) => {
 
-    var styleMatch = {
-        backgroundColor: 'skyblue'
-    }
+const ProfileCard = () => {
+    
+    const user = useQuery(QUERY_USERS)
 
-    var styleNext = {
-        backgroundColor: 'gray'
-    }
+    const [addFriend] = useMutation(ADD_FRIEND);
+
+
+    const handleClick = async () => {
+        try {
+        await addFriend({
+            variables: { id: user._id }
+        });
+        } catch (e) {
+        console.error(e);
+        }
+    };  
+    
+        var styleMatch = {
+            backgroundColor: 'skyblue'
+        }
+
+        var styleNext = {
+            backgroundColor: 'gray'
+        }
 
 
 
     return (
+    
+
         <div className="card">
+            <h2 className="bg-dark text-secondary p-3 display-inline-block">
+            Viewing {user.username}'s profile.
+            </h2>
+
             <div className="img-container">
-                <img src={babyAJ} alt={name} style={{width: "100%", borderRadius: ".5rem"}}></img>
+                <img src={user.avatar} alt={user.username} style={{width: "100%", borderRadius: ".5rem"}}></img>
             </div>
             <div className="content">
-                <h1 className="userName">{name}</h1>
-                <p>Age : {age}</p>
-                <p>Location : {location}</p>
-                <p>Bio : {bio}</p>
-                <p><button style={styleMatch} onClick={match}>Match</button></p>
-                <p><button style={styleNext} onClick={nomatch}>Next</button></p>
+                <h1 className="userName">{user.username}</h1>
+                <p>Age : {user.age}</p>
+                <p>Location : {user.location}</p>
+                <p>Bio : {user.bio}</p>
+               
+                <button className="btn ml-auto" onClick={handleClick}>
+                    Add Friend
+                </button>
+                
             </div>
         </div>
     )

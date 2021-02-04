@@ -1,13 +1,20 @@
 import React from 'react';
-import ViewMembersPage from '../components/ViewMembersPage/index';
+import Simple from '../components/SwitchCard/examples/Simple'
+import './explore.css';
+
 
 const Explore = () => {
+
     return (
-        <main>
-        <div className="flex-row justify-space-between">
-            <ViewMembersPage />
+
+        <div className="body">
+            <Simple />
         </div>
-        </main>
+        // <main>
+        // {/* <div className="flex-row justify-space-between">
+        //     <ViewMembersPage />
+        // </div> */}
+        // </main>
     )
 }
 
