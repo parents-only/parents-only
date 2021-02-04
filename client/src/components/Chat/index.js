@@ -4,19 +4,6 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { TOGGLE_CHAT } from "../../utils/actions";
 import MessageList from '../MessageList/index';
 import MessageForm from '../MessageForm/index';
-import { Message } from '@apollo/protobufjs';
-
-
-const DUMMY_DATA = [
-    {
-        senderId: "perborgen",
-        text: "what's up?"
-    },
-    {
-        senderId: "makedo",
-        text: "your mom"
-    }
-]
 
 const Chat = () => {
 
