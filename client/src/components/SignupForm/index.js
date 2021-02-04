@@ -3,15 +3,19 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
+import Location from '../Location';
+
 
 const SignupForm = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', age: '' });
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', age: '', location: '' });
   const [addUser, { error }] = useMutation(ADD_USER);
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
+  const location = Location();
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -46,6 +50,7 @@ const SignupForm = () => {
       email: '',
       password: '',
       age: '',
+      
     });
   };
 
@@ -109,6 +114,21 @@ const SignupForm = () => {
           />
           <Form.Control.Feedback type='invalid'>Age is required!</Form.Control.Feedback>
         </Form.Group>
+
+        {/* <Form.Group>
+          <Form.Label htmlFor='location'>Location</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="What is your location"
+            name="location"
+            onChange={handleInputChange}
+            value={location}
+            required
+          />
+        </Form.Group> */}
+        <div>
+          { location.loaded ? JSON.stringify(location) : "Location not available" }
+        </div>
 
         <Button
           disabled={!(userFormData.username && userFormData.email && userFormData.password && userFormData.age)}

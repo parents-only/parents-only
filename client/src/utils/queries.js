@@ -18,6 +18,30 @@ export const QUERY_MESSAGES = gql`
   }
 `;
 
+export const QUERY_USERS = gql`
+  query {
+    users {
+      _id
+      username
+      email
+      age
+      bio
+      avatar
+      friendCount
+      friends {
+        _id
+        username
+      }
+      messages {
+        _id
+        messageText
+        createdAt
+        reactionCount
+      }
+    }
+  }
+`;
+
 export const QUERY_MESSAGE = gql`
   query message($id: ID!) {
     message(_id: $id) {

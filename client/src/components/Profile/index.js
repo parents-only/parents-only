@@ -5,16 +5,20 @@ import { useParams } from 'react-router-dom';
 import Status from '../Status';
 import Post from '../Post';
 import { Avatar } from '@material-ui/core';
-
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
-// import { Redirect, useParams } from "react-router-dom";
-// This component, Redirect, will allow us to redirect the user to another route within the application. Think of it like how we've used location.replace() in the past, but it leverages React Router's ability to not reload the browser!
-// import { ADD_FRIEND } from '../../utils/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
-const Profile = ( ) => {
-    const { data: userData } = useQuery(QUERY_ME);
+const Profile = () => {
+    const { username: userParam } = useParams();
+  
+    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+        variables: { username: userParam }
+    });
+
+    const userData = data?.me || data?.user || {};
+    console.log(QUERY_USER);
+    
 
     const loggedIn = Auth.loggedIn();
   
