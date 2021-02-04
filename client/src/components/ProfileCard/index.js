@@ -8,7 +8,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import MessageForm from '../MessageForm';
 
 
-const ProfileCard = () => {
+const ProfileCard = ({ username, age }) => {
     
     const { username: userParam } = useParams();
 
@@ -64,15 +64,15 @@ const ProfileCard = () => {
 
         <div className="card">
             <h2 className="bg-dark text-secondary p-3 display-inline-block">
-            Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+            Viewing {userParam ? `${username}'s` : 'your'} profile.
             </h2>
 
             <div className="img-container">
                 <img src={user.avatar} alt={user.username} style={{width: "100%", borderRadius: ".5rem"}}></img>
             </div>
             <div className="content">
-                <h1 className="userName">{user.username}</h1>
-                <p>Age : {user.age}</p>
+                <h1 className="userName">{username}</h1>
+                <p>Age : {age}</p>
                 <p>Location : {user.location}</p>
                 <p>Bio : {user.bio}</p>
                 {userParam && (
