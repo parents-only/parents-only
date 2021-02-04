@@ -19,7 +19,7 @@ const EditProfile = () => {
               {/* edit form column */}
               <div className="col-md-9 personal-info">
                 <h3>Personal info</h3>
-                <form className="form-horizontal" role="form">
+                <form className="form-horizontal">
                   <div className="form-group">
                     <label className="col-lg-3 control-label">First name:</label>
                     <div className="col-lg-8">

@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { ApolloProvider } from "@apollo/react-hooks";
 // import Switch from 'react-ios-switch';
 import ApolloClient from "apollo-boost";
@@ -12,7 +12,6 @@ import Footer from './components/Footer/index';
 import Profile from './components/Profile'
 import Explore from './pages/Explore';
 import EditProfile from './components/EditProfile';
-import SeeFriends from './pages/SeeFriends';
 import Chat from './pages/Chat';
 import NoMatch from './pages/NoMatch';
 import { ContextProvider } from '../src/utils/context';

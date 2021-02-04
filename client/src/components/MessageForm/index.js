@@ -2,14 +2,14 @@ import React, { useState, useQuery } from 'react';
 
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_MESSAGE } from '../../utils/mutations';
-import { QUERY_MESSAGES, QUERY_ME, QUERY_USER } from '../../utils/queries';
+import { QUERY_MESSAGES, QUERY_ME } from '../../utils/queries';
 
 
 const MessageForm = () => {
   const [messageText, setText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
   const { data } = useQuery(QUERY_ME)
-  const user = data?.me;
+  
     // Now if there's a value in userParam that we got from the URL bar, we'll use that value to run the QUERY_USER query. If there's no value in userParam, like if we simply visit /profile as a logged-in user, we'll execute the QUERY_ME query instead.
 
 
@@ -73,7 +73,7 @@ const MessageForm = () => {
       <br></br>
       <div className="grid-2">
            <div className="statusCard">
-              <div className="row px-3"> <img className="profile-pic mr-3" src={data.user.avatar} />
+              <div className="row px-3"> <img className="profile-pic mr-3" src={data.user.avatar} alt="" />
                     <div className="flex-column">
                         <h3 className="mb-0 font-weight-normal">{data.user.username}</h3> 
                     </div>
@@ -88,7 +88,7 @@ const MessageForm = () => {
                 <div className="row px-3">
                   <p className="fa fa-user options mb-0 mr-4"></p>
                   <p className="fa fa-map-marker options mb-0 mr-4"></p>
-                  <p className="fa fa-image options mb-0 mr-4"></p> <img className="options" src="https://img.icons8.com/material/24/000000/more--v2.png" width="30px" height="28px" />
+                  <p className="fa fa-image options mb-0 mr-4"></p> <img className="options" src="https://img.icons8.com/material/24/000000/more--v2.png" width="30px" height="28px" alt="" />
                   <div className="btn btn-dark ml-auto" type="submit">Post</div>
                 </div>
               </div>

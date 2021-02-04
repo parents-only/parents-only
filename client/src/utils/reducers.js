@@ -3,13 +3,6 @@ import {
     TOGGLE_CHAT
 } from "./actions";
 
-const initialState = {
-    messages: [],
-    friends: [],
-    status: {},
-    chatOpen : false
-}
-
 const reducer = (state, action) => {
     switch(action.type) {
         case TOGGLE_CHAT:

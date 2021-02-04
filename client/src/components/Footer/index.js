@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import Auth from '../../utils/auth';
 import Chat from '../../components/Chat/index';
 

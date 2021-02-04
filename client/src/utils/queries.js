@@ -72,6 +72,7 @@ export const QUERY_ME = gql`
       age
       bio
       avatar
+      gallery
       messages {
         _id
         messageText

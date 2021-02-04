@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 // import TinderCard from '../react-tinder-card/index'
 import TinderCard from 'react-tinder-card'
 import { useMutation, useQuery } from "@apollo/react-hooks";
@@ -10,17 +10,15 @@ import { ADD_FRIEND } from "../../../utils/mutations";
 
 function Simple() {
     const { loading, data } = useQuery(QUERY_FRIEND_CARD);
-    const [addFriend, { error }] = useMutation(ADD_FRIEND);
+    const [addFriend] = useMutation(ADD_FRIEND);
 
-    const [lastDirection, setLastDirection] = useState()
 
     if (loading) {
         return <div>Loading...</div>;
     }
     let characters = data.cards.filter(item => item._id !== data.me._id)
     async function swiped(direction, nameToDelete) {
-        setLastDirection(direction)
-        if (direction == "right" || direction == "up") {
+        if (direction === "right" || direction === "up") {
             try {
                 await addFriend({
                     variables: { id: nameToDelete }
@@ -49,7 +47,6 @@ function Simple() {
                     </TinderCard>
                 )}
             </div>
-            {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
         </div>
     )
 }
