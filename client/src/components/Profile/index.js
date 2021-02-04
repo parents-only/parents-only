@@ -3,6 +3,8 @@ import './index.css';
 import MessageList from '../MessageList';
 import MessageForm from '../MessageForm'
 import FriendList from '../FriendList'
+import EditModal from '../EditModal'
+import EditProfile from '../EditProfile'
 //import Status from '../Status'
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
@@ -11,6 +13,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { ADD_FRIEND } from '../../utils/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Button } from 'react-bootstrap';
+
 
 const Profile = () => {
     const { username: userParam } = useParams();
@@ -23,6 +26,8 @@ const Profile = () => {
     const user = data?.me || data?.user || {};
 
     const [addFriend] = useMutation(ADD_FRIEND);
+
+   
 
     // redirect to personal profile page if username is the logged-in user's
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -73,7 +78,13 @@ const Profile = () => {
                  )}
             </div>
             <div className="wrapper" id="status">
-                    {/* <Status /> */}
+            
+
+                    {!userParam && 
+                    <MessageForm />} 
+
+                    {!userParam && 
+                    <MessageList />}
 
                     
 
@@ -221,6 +232,7 @@ const Profile = () => {
                 {!userParam && <MessageForm />}
                 </div> */}
                 <div className="grid-7">
+                    
                 </div>
             </div>
         </div>

@@ -60,6 +60,29 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_USERS = gql`
+  query users($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      age
+      bio
+      avatar
+      friendCount
+      friends {
+        _id
+        username
+      }
+      messages {
+        _id
+        messageText
+        createdAt
+        reactionCount
+      }
+    }
+  }
+`;
 
 
 export const QUERY_ME = gql`
