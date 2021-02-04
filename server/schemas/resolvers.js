@@ -101,7 +101,7 @@ const resolvers = {
 
     },
     Mutation: {
-        addUser: async (parent, args) => {
+        addUser: async (_, args) => {
             const user = await User.create(args);
             const token = signToken(user);
 
@@ -110,16 +110,24 @@ const resolvers = {
                 user
             };
         },
-        updateUser: async (parent, args, context) => {
+        updateUser: async (_, args, context) => {
             if (context.user) {
-                return await User.findByIdAndUpdate(context.user._id, args, {
+                const user = User.findById(context.user._id)
+                const temp = {
+                    username: args.username || user.username,
+                    age: args.age || user.age,
+                    email: args.email || user.email,
+                    avatar: args.avatar || user.avatar,
+                    bio: args.bio || user.bio,
+                }
+                return await User.findByIdAndUpdate(context.user._id, { $set: temp } , {
                     new: true,
                 });
             }
 
             throw new AuthenticationError("Not logged in");
         },
-        login: async (parent, {
+        login: async (_, {
             email,
             password
         }) => {

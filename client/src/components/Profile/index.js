@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './index.css';
 import MessageList from '../MessageList';
 import MessageForm from '../MessageForm'
@@ -11,9 +11,13 @@ import { Redirect, useParams } from "react-router-dom";
 import { ADD_FRIEND } from '../../utils/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { UPDATE_USER } from '../../utils/actions';
 
 
 const Profile = () => {
+    const dispatch = useDispatch();
+    
     const { username: userParam } = useParams();
 
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -26,13 +30,23 @@ const Profile = () => {
 
     const [addFriend] = useMutation(ADD_FRIEND);
 
-   
+    useEffect(() => {
+        if (!userParam && !loading) {
+            dispatch({
+                type: UPDATE_USER,
+                user: data
+            })
+        }
+    }, [dispatch, data, userParam, loading]
+    )
 
     // redirect to personal profile page if username is the logged-in user's
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
         return <Redirect to='/profile' />;
         // With this, we're checking to see if the user is logged in and if so, if the username stored in the JSON Web Token is the same as the userParam value. If they match, we return the <Redirect> component with the prop to set to the value /profile, which will redirect the user away from this URL and to the /profile route.
     }
+
+    
 
     if (loading) {
         return <div>Loading...</div>;
