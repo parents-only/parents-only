@@ -17,6 +17,7 @@ const EditProfile = () => {
     const [showAlert, setShowAlert] = useState(false);
     const [fileName, setFileName] = useState("Profile Picture")
     const [fileData, setFileData] = useState()
+    const [userAddress, setUserAddress] = useState()
 
     const handleFileInput = (event) => {
         setFileName(event.target.files[0].name)
@@ -28,6 +29,10 @@ const EditProfile = () => {
         reader.readAsDataURL(event.target.files[0])
         console.log(event.target.files)
     };
+
+    const handleAddress = (event) => {
+        setUserAddress(event.target.value)
+    }
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -101,7 +106,40 @@ const EditProfile = () => {
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Label htmlFor='avatar'>Avatar</Form.Label>
+                    <Form.Label htmlFor='bio'>Bio</Form.Label>
+                    <Form.Control
+                        type='text'
+                        placeholder='Write about yourself'
+                        name='bio'
+                        onChange={handleInputChange}
+                        value={userFormData.bio}
+                    />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Label htmlFor='age'>Age</Form.Label>
+                    <Form.Control
+                        type='number'
+                        placeholder='Your age'
+                        name='age'
+                        onChange={handleInputChange}
+                        value={userFormData.age}
+                    />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Label htmlFor='address'>Address</Form.Label>
+                    <Form.Control
+                        type='text'
+                        placeholder='Your address'
+                        name='address'
+                        onChange={handleAddress}
+                        value={userAddress}
+                    />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Label htmlFor='avatar'></Form.Label>
                     <Form.File id="avatar" custom>
                         <Form.File.Input
                         onChange={handleFileInput}
@@ -114,7 +152,7 @@ const EditProfile = () => {
                 </Form.Group>
 
                 <Button
-                    disabled={!(userFormData.username || userFormData.email)}
+                    disabled={!(userFormData.username || userFormData.email || userFormData.bio || userFormData.age || userAddress)}
                     type='submit'
                     variant='success'>
                     Submit
