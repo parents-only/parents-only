@@ -32,7 +32,7 @@ function Simple() {
     }
 
     return (
-        <div>
+        <div style={{marginBottom: "80%"}}>
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
             <h1>React Tinder Card</h1>
