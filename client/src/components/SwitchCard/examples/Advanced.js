@@ -1,56 +1,70 @@
-import { useQuery } from '@apollo/react-hooks';
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 // import TinderCard from '../react-tinder-card/index'
 import TinderCard from 'react-tinder-card';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QUERY_FRIEND_CARD } from '../../../utils/queries';
+import { ADD_FRIEND } from '../../../utils/mutations';
 
 
 const db = [
     {
-        name: 'Richard Hendricks',
-        url: '/img/richard.jpg'
+        "username": "merayoussef",
+        "email": "mera@mera.com",
+        "password": "coding",
+        "age": "29",
+        "distance": "5 miles away" 
     },
     {
-        name: 'Erlich Bachman',
-        url: '/img/erlich.jpg'
-    },
-    {
-        name: 'Monica Hall',
-        url: '/img/monica.jpg'
-    },
-    {
-        name: 'Jared Dunn',
-        url: '/img/jared.jpg'
-    },
-    {
-        name: 'Dinesh Chugtai',
-        url: '/img/dinesh.jpg'
+        "username": "sydneyporter",
+        "email": "sydney@sydney.com",
+        "password": "coding",
+        "age": "26",
+        "distance":"10 miles away "
     }
 ]
 
-const alreadyRemoved = []
+const alreadyRemoved = [];
 let charactersState = db // This fixes issues with updating characters state forcing it to use the current state and not the state that was active when the card was created.
 
 function Advanced() {
 
-    //const { loading, data } = useQuery(QUERY_FRIEND_CARD);
+    const { loading, data } = useQuery(QUERY_FRIEND_CARD);
+    const [addFriend] = useMutation(ADD_FRIEND);
 
     const [lastDirection, setLastDirection] = useState()
     const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
     const [characters, setCharacters] = useState(db)
 
-    
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
+    console.log(data);
 
-    //setCharacters(data.cards.filter(item => item._id !== data._id))
-    const swiped = (direction, nameToDelete) => {
+    // useEffect(() => {
+    //     setCharacters(data.cards.filter(item => item._id !== data._id) || {} )
+    // },[data]) 
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+     
+
+
+    
+    async function swiped(direction, nameToDelete) {
         console.log('removing: ' + nameToDelete)
         setLastDirection(direction)
         alreadyRemoved.push(nameToDelete)
         
         console.log (direction)
+        if (direction === "right") {
+            console.log("Howdy");
+            try {
+                await addFriend({
+                    variables: { id: nameToDelete }
+                });
+            } catch (e) {
+                console.error(e);
+            }
+        }
     }
 
     const outOfFrame = (name) => {

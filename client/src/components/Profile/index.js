@@ -1,14 +1,17 @@
 import React from 'react';
 import './index.css';
 import FriendList from '../FriendList/';
-import { useParams } from 'react-router-dom';
-import Status from '../Status';
-import Post from '../Post';
-import { Avatar } from '@material-ui/core';
+import { useParams, Redirect } from 'react-router-dom';
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Button } from 'react-bootstrap';
+import { ADD_FRIEND } from '../../utils/mutations';
+import MessageForm from '../MessageForm';
+import MessageList from '../MessageList';
+import loggedIn from '../../utils/auth';
+
+
 
 
 const Profile = () => {
@@ -18,8 +21,8 @@ const Profile = () => {
         variables: { username: userParam }
     });
 
-    const user = data?.me || data?.user || {};
-    user.gallery = user.gallery || []
+    const userData = data?.me || data?.user || {};
+    userData.gallery = userData.gallery || []
 
     const [addFriend] = useMutation(ADD_FRIEND);
 
@@ -35,7 +38,7 @@ const Profile = () => {
         return <div>Loading...</div>;
     }
 
-    if (!user?.username) {
+    if (!userData?.username) {
         return (
             <h4>
                 You need to be logged in to see this page. Use the navigation links above to sign up or log in!
@@ -46,7 +49,7 @@ const Profile = () => {
     const handleClick = async () => {
         try {
             await addFriend({
-                variables: { id: user._id }
+                variables: { id: userData._id }
             });
         } catch (e) {
             console.error(e);
@@ -63,7 +66,7 @@ const Profile = () => {
                 </div>
                 {userParam && (
                     <div id="bottomHalf">
-                        <img src={user.avatar} alt={user.username} style={{ height: 150, width: 150 }} />
+                        <img src={userData.avatar} alt={userData.username} style={{ height: 150, width: 150 }} />
 
                         <Button variant="success" className="btn ml-auto centered" onClick={handleClick}>
                             Add Friend
@@ -107,7 +110,7 @@ const Profile = () => {
                 <div class="grid-5">
                     <h4>Photos</h4>
                     <div id="gallery">
-                        {user.gallery.map(friend => (
+                        {userData.gallery.map(friend => (
                             <div><img src={friend} alt=""/></div>
                                 
                           ))}
