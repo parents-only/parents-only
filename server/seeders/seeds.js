@@ -25,13 +25,14 @@ db.once('open', async () => {
     const username = faker.internet.userName();
     const email = faker.internet.email(username);
     const password = faker.internet.password();
-    // const lat = faker.address.latitude();
-    // const lon = faker.address.longitude();
+    const lat = faker.address.latitude();
+    const lon = faker.address.longitude();
     const bio = faker.lorem.sentences(3);
     const avatar = faker.internet.avatar();
     const age = moreLikelyToBeYounger()
 
-    userData.push({ username, email, password, age, bio, avatar });
+    userData.push({ username, email, password, age, bio, avatar, location: [lon, lat]});
+
   }
 
   const createdUsers = await User.collection.insertMany(userData);
