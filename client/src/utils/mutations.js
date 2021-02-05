@@ -39,7 +39,7 @@ export const ADD_MESSAGE = gql`
       messageText
       createdAt
       username
-      reactionCount
+      chatRoom_id
       reactions {
         _id
       }

@@ -93,12 +93,13 @@ const Profile = () => {
             
 
                     {!userParam && 
-                    <MessageForm />} 
+                    <MessageForm 
+                        username={user.username}
+                        friends={user.friends}
+                    />} 
 
-                    {!userParam && 
-                    <MessageList />}
-
-                    
+                    {/* {!userParam && 
+                    <MessageList />} */}
 
                         
                         <div className="grid-3">

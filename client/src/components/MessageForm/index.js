@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { ADD_MESSAGE } from "../../utils/mutations";
 import { QUERY_MESSAGES, QUERY_ME } from "../../utils/queries";
-
+import MessageList from '../MessageList';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 
 
 
-const MessageForm = () => {
+const MessageForm = ({ username, friends }) => {
   const [messageText, setText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
   // const state = useStore().getState();
@@ -19,11 +19,27 @@ const MessageForm = () => {
   //   const [editUser, { error }] = useMutation(UPDATE_USER);
   
     // Now if there's a value in userParam that we got from the URL bar, we'll use that value to run the QUERY_USER query. If there's no value in userParam, like if we simply visit /profile as a logged-in user, we'll execute the QUERY_ME query instead.
+const options = [];
+    // {friends.map(friend => (
+    //   <button className="btn w-100 display-block mb-2" key={friend._id}>
+    //     <Link to={`/profile/${friend.username}`}>{friend.username}</Link>
+    //   </button>
+    // ))}
 
-    const options = [
-      'one', 'two', 'three'
-    ];
-    const defaultOption = options[0];
+    // const options = [
+    //   'one', 'two', 'three'
+    // ];
+    // const defaultOption = options[0];
+
+    // things to consider for the message
+    // _id: ID
+    // messageText: String
+    // createdAt: String
+    // username: String
+    // chatRoom_id: ID
+    // sentBy( _id: ID ): User
+    // receivedBy( _id: ID ): User
+    // numberOfMessage: Int
     
   const [addMessage, { error }] = useMutation(ADD_MESSAGE, {
     update(cache, { data: { addMessage } }) {
@@ -89,7 +105,7 @@ const user = useQuery(QUERY_ME)
                         <h3 className="mb-0 font-weight-normal">{user.username}</h3> 
                     </div>
               </div>
-              <Dropdown options={options} value={defaultOption} placeholder="Select a user to send a message to:" />;
+              <Dropdown options={friends.map(friend=> friend.username)} placeholder="Select a friend to send a message to:" />;
             <div className="row px-3 form-group" onSubmit={handleFormSubmit}>
                 <textarea
                   placeholder="Here's a new message..."
@@ -107,6 +123,7 @@ const user = useQuery(QUERY_ME)
               </div>
           </div>
         </div>
+        <MessageList />
       </div>
   
     )
