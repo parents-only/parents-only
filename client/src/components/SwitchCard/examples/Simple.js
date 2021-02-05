@@ -5,16 +5,6 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import { QUERY_FRIEND_CARD } from "../../../utils/queries";
 import { ADD_FRIEND } from "../../../utils/mutations";
 
-
-const db = [{
-    "username": "merayoussef",
-    "email": "mera@mera.com",
-    "password": "coding",
-    "age": "29",
-    "location":"Nashville"
-
-}]
-
 function Simple() {
     
     const { loading, data } = useQuery(QUERY_FRIEND_CARD);
@@ -24,7 +14,7 @@ function Simple() {
         return <div>Loading...</div>;
     }
     console.log(data)
-    let characters = [data.cards.filter(item => item._id !== data.me._id)]
+    let characters = data.cards.filter(item => item._id !== data.me._id)
     async function swiped(direction, nameToDelete) {
         if (direction === "right" || direction === "up") {
             try {

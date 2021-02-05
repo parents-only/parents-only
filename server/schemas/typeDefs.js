@@ -59,11 +59,9 @@ const typeDefs = gql `
     addReaction(messageId: ID!, reactionBody: String!): Message
     addFriend(friendId: ID!): User
     updateUser(
+      _id: ID
       username: String
-      firstName: String
-      lastName: String
       email: String
-      password: String
       age: Int
       location: String
       bio: String
