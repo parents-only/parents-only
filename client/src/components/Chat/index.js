@@ -1,27 +1,17 @@
 import React from 'react';
 import './style.css';
-import { useStoreContext } from "../../utils/GlobalState";
 import { TOGGLE_CHAT } from "../../utils/actions";
 import MessageList from '../MessageList/index';
 import MessageForm from '../MessageForm/index';
-import { Message } from '@apollo/protobufjs';
+import { useDispatch, useStore } from "react-redux";
 
 
-const DUMMY_DATA = [
-    {
-        senderId: "perborgen",
-        text: "what's up?"
-    },
-    {
-        senderId: "makedo",
-        text: "your mom"
-    }
-]
 
 const Chat = () => {
 
-    const [state, dispatch] = useStoreContext();
-
+    const store = useStore();
+    const dispatch = useDispatch();
+    const state = store.getState();
     // constructor() {
     //     super()
     //     this.state = {
@@ -32,7 +22,6 @@ const Chat = () => {
     function toggleChat() {
         dispatch({ type: TOGGLE_CHAT });
     }
-
 
     if (!state.chatOpen) {
         return (

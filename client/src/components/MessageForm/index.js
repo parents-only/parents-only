@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import { ADD_MESSAGE } from "../../utils/mutations";
+import { QUERY_MESSAGES, QUERY_ME } from "../../utils/queries";
 
-import { useMutation } from '@apollo/react-hooks';
-import { ADD_MESSAGE } from '../../utils/mutations';
-import { QUERY_MESSAGES, QUERY_ME } from '../../utils/queries';
+
+
 
 const MessageForm = () => {
   const [messageText, setText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
+  
+    // Now if there's a value in userParam that we got from the URL bar, we'll use that value to run the QUERY_USER query. If there's no value in userParam, like if we simply visit /profile as a logged-in user, we'll execute the QUERY_ME query instead.
+
 
   const [addMessage, { error }] = useMutation(ADD_MESSAGE, {
     update(cache, { data: { addMessage } }) {
@@ -56,29 +61,42 @@ const MessageForm = () => {
     }
   };
 
+const user = useQuery(QUERY_ME)
+
   return (
-    <div>
+    <div className="grid-1">
+      <div className="grid-1">
       
-      <form
-        className="flex-row justify-center justify-space-between-md align-stretch"
-        onSubmit={handleFormSubmit}
-      >
-        <textarea
-          placeholder="Here's a new message..."
-          value={messageText}
-          className="form-input col-12 col-md-9"
-          onChange={handleChange}
-        ></textarea>
-        <button className="btn col-12 col-md-3" type="submit">
-          Submit
-        </button>
-      </form>
-      <p className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}>
-        Character Count: {characterCount}/280
-        {error && <span className="ml-2">Something went wrong...</span>}
-      </p>
-    </div>
-  );
-};
+      </div>
+      <br></br>
+      <br></br>
+      <div className="grid-2">
+           <div className="statusCard">
+              <div className="row px-3"> <img className="profile-pic mr-3" src={user.avatar} alt=""/>
+                    <div className="flex-column">
+                        <h3 className="mb-0 font-weight-normal">{user.username}</h3> 
+                    </div>
+              </div>
+            <div className="row px-3 form-group" onSubmit={handleFormSubmit}>
+                <textarea
+                  placeholder="Here's a new message..."
+                  value={messageText}
+                  className="text-muted bg-light mt-4 mb-3"
+                  onChange={handleChange}
+                ></textarea>
+                <div className="row px-3">
+                  <div className="btn btn-dark col-ml-auto " type="submit">Post</div>
+                  <p  id="status" className={` ${characterCount === 280 || error ? 'text-error' : ''}`}>
+                  Character Count: {characterCount}/280
+                  {error && <span className="ml-2">Something went wrong...</span>}
+                </p>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+  
+    )
+}
 
 export default MessageForm;

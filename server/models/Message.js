@@ -6,7 +6,7 @@ const reactionSchema = require('./Reaction');
 const MessageSchema = new mongoose.Schema({
     messageText: {
         type: String,
-        required: true,
+        required: 'You need to leave a message',
         minlength: 1,
         maxlength: 280
     },

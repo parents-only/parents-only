@@ -8,6 +8,7 @@ const typeDefs = gql `
     username: String
     email: String
     password: String
+    image: String
     friendCount: Int
     messages: [Message]
     friends: [User]
@@ -49,20 +50,19 @@ const typeDefs = gql `
     userById(_id: ID!): User
     messages(username: String): [Message]
     message(_id: ID!): Message
+    cards: [User]
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!, age: Int!, location: [Float!]): Auth
     addMessage(messageText: String!): Message
     addReaction(messageId: ID!, reactionBody: String!): Message
     addFriend(friendId: ID!): User
     updateUser(
+      _id: ID
       username: String
-      firstName: String
-      lastName: String
       email: String
-      password: String
       age: Int
       location: String
       bio: String
