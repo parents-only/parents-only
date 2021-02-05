@@ -16,6 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "apollo-server-express": "^2.19.2",
     "haversine": "^1.1.1",
