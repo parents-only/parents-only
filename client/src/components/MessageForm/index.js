@@ -3,16 +3,28 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import { ADD_MESSAGE } from "../../utils/mutations";
 import { QUERY_MESSAGES, QUERY_ME } from "../../utils/queries";
 
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+
 
 
 
 const MessageForm = () => {
   const [messageText, setText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
+  // const state = useStore().getState();
+
+  //   // set initial form state
+  //   const [userFormData, setUserFormData] = useState(state.user);
+  //   const [editUser, { error }] = useMutation(UPDATE_USER);
   
     // Now if there's a value in userParam that we got from the URL bar, we'll use that value to run the QUERY_USER query. If there's no value in userParam, like if we simply visit /profile as a logged-in user, we'll execute the QUERY_ME query instead.
 
-
+    const options = [
+      'one', 'two', 'three'
+    ];
+    const defaultOption = options[0];
+    
   const [addMessage, { error }] = useMutation(ADD_MESSAGE, {
     update(cache, { data: { addMessage } }) {
       try {
@@ -77,6 +89,7 @@ const user = useQuery(QUERY_ME)
                         <h3 className="mb-0 font-weight-normal">{user.username}</h3> 
                     </div>
               </div>
+              <Dropdown options={options} value={defaultOption} placeholder="Select a user to send a message to:" />;
             <div className="row px-3 form-group" onSubmit={handleFormSubmit}>
                 <textarea
                   placeholder="Here's a new message..."
@@ -85,7 +98,7 @@ const user = useQuery(QUERY_ME)
                   onChange={handleChange}
                 ></textarea>
                 <div className="row px-3">
-                  <div className="btn btn-dark col-ml-auto " type="submit">Post</div>
+                  <div className="btn btn-dark col-ml-auto " type="submit">Send</div>
                   <p  id="status" className={` ${characterCount === 280 || error ? 'text-error' : ''}`}>
                   Character Count: {characterCount}/280
                   {error && <span className="ml-2">Something went wrong...</span>}

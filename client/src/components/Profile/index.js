@@ -78,35 +78,6 @@ const Profile = () => {
                 <div id="topHalf">
                     <img src={"http://www.boostnet.in/wp-content/uploads/2016/10/Header-1.png"} alt="" />
                 </div>
-<<<<<<< HEAD
-                <div id="bottomHalf">
-                    <img src="BabyAJ.JPG" alt="" style={{ height: 150, width: 150 }} />
-                </div>
-            </div>
-            <div class="wrapper" id="status">
-                    <Status />
-                <div class="grid-3">
-                    <h4>Friends</h4>
-                    {loggedIn && userData ? (
-                    <div >
-                        <FriendList
-                        username={userData.username}
-                        friendCount={userData.friendCount}
-                        friends={userData.friends}
-                        />
-                    </div>
-                    ) : null}
-                </div>
-                {loggedIn && userData ? (
-                <div class="grid-4">
-                    <h4>About me</h4>
-                    <p>Age: {userData.age}</p>
-                    <p>Location: {userData.location}</p>
-                    <p>Bio: {userData.bio}</p>
-                </div>
-                 ) : null}
-                <div class="grid-5">
-=======
                 {userParam && (
                     <div id="bottomHalf">
                         <img src={user.avatar} alt={user.username} style={{ height: 150, width: 150 }} />
@@ -153,7 +124,6 @@ const Profile = () => {
             
             
                 <div className="grid-5">
->>>>>>> develop
                     <h4>Photos</h4>
                     <div id="gallery">
                         {user.gallery.map(friend => (
