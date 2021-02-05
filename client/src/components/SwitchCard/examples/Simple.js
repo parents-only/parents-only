@@ -14,7 +14,16 @@ function Simple() {
         return <div>Loading...</div>;
     }
     console.log(data)
-    let characters = data.cards.filter(item => item._id !== data.me._id)
+    let clippedList = data.cards.filter(item => item._id !== data.me._id)
+    clippedList.forEach(element => {
+        let id = element._id
+        data.me.friends.forEach(friendElement => {
+            if (id == friendElement._id) {
+                clippedList = clippedList.filter( item => item._id !== friendElement._id)
+            }
+        });
+    });
+    let characters = clippedList
     async function swiped(direction, nameToDelete) {
         if (direction === "right" || direction === "up") {
             try {

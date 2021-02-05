@@ -137,6 +137,10 @@ export const QUERY_FRIEND_CARD = gql`
           _id
           username
           email
+          friends {
+              _id
+              username
+          }
       }
       cards {
           _id
