@@ -1,5 +1,4 @@
-import React from 'react'
-// import TinderCard from '../react-tinder-card/index'
+import React, { useState, useMemo } from 'react'
 import TinderCard from 'react-tinder-card'
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { QUERY_FRIEND_CARD } from "../../../utils/queries";
@@ -16,6 +15,10 @@ const db = [{
 }]
 
 function Simple() {
+
+    const [lastDirection, setLastDirection] = useState()
+    const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
+    // const [characters, setCharacters] = useState(db)
     
     const { loading, data } = useQuery(QUERY_FRIEND_CARD);
     const [addFriend] = useMutation(ADD_FRIEND);
@@ -55,6 +58,11 @@ function Simple() {
                     </TinderCard>
                 )}
             </div>
+            <div className='buttons'>
+                <button onClick={swiped('left')}>No Thanks</button>
+                <button onClick={swiped('right')}>Match</button>
+            </div>
+            {lastDirection ? <h2 key={lastDirection} className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText'>Swipe a card or press a button to get started!</h2>}
         </div>
     )
 }

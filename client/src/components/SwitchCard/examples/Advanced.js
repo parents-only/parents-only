@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useMemo } from 'react'
 // import TinderCard from '../react-tinder-card/index'
 import TinderCard from 'react-tinder-card';
+import { User } from '../../../../../server/models';
 import { QUERY_FRIEND_CARD } from '../../../utils/queries';
 
 
