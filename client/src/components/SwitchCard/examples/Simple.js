@@ -14,7 +14,7 @@ function Simple() {
         return <div>Loading...</div>;
     }
     console.log(data)
-    let characters = [data.cards.filter(item => item._id !== data.me._id)]
+    let characters = data.cards.filter(item => item._id !== data.me._id)
     async function swiped(direction, nameToDelete) {
         if (direction === "right" || direction === "up") {
             try {
