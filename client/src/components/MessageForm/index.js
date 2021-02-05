@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { ADD_MESSAGE } from "../../utils/mutations";
 import { QUERY_MESSAGES, QUERY_ME } from "../../utils/queries";
-
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 
 
@@ -63,6 +64,15 @@ const MessageForm = () => {
 
 const user = useQuery(QUERY_ME)
 
+
+
+const options = [
+  'one', 'two', 'three'
+];
+const defaultOption = options[0];
+
+
+
   return (
     <div className="grid-1">
       <div className="grid-1">
@@ -77,6 +87,7 @@ const user = useQuery(QUERY_ME)
                         <h3 className="mb-0 font-weight-normal">{user.username}</h3> 
                     </div>
               </div>
+              <Dropdown options={options}  value={defaultOption} placeholder="Select an option" />
             <div className="row px-3 form-group" onSubmit={handleFormSubmit}>
                 <textarea
                   placeholder="Here's a new message..."
