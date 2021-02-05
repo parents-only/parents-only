@@ -31,7 +31,8 @@ db.once('open', async () => {
     const avatar = faker.internet.avatar();
     const age = moreLikelyToBeYounger()
 
-    userData.push({ username, email, password, age, bio, avatar, location: {lat, lon} });
+    userData.push({ username, email, password, age, bio, avatar, location: [lon, lat]});
+
   }
 
   const createdUsers = await User.collection.insertMany(userData);
