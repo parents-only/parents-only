@@ -28,7 +28,7 @@ db.once('open', async () => {
     const lat = faker.address.latitude();
     const lon = faker.address.longitude();
     const bio = faker.lorem.sentences(3);
-    const avatar = faker.internet.avatar();
+    const avatar = `https://i.pravatar.cc/150?u=${faker.random.uuid()}`
     const age = moreLikelyToBeYounger()
 
     userData.push({ username, email, password, age, bio, avatar, location: [lon, lat]});
