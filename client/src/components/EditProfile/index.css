@@ -1,0 +1,41 @@
+:root {
+    --main-color: skyblue;
+    --secondary-color: white;
+    --main-text-color: #3e5869;
+    --secondary-text-color: #b0c7d6;
+}
+
+.EditForm {
+    padding: 5rem 10rem 10rem 10rem;
+}
+
+.btn {
+    margin-top: 5rem;
+    padding: .5rem;
+    /* margin: 4% 40%; */
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: var(--main-text-color);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    border-radius: .5rem;
+    
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    color: white;
+    background: var(--secondary-text-color);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 500;
+    text-align: center;
+}

@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -13,8 +13,8 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
+  mutation addUser($username: String!, $email: String!, $password: String!, $age: Int!, $location: [Float!] ) {
+    addUser(username: $username, email: $email, password: $password, age: $age, location: $location) {
       token
       user {
         _id
@@ -24,34 +24,67 @@ export const ADD_USER = gql`
   }
 `;
 
-/*export const SAVE_BOOK = gql`
-  mutation saveBook($input: BookInput!) {
-    saveBook(input: $input) {
+export const UPDATE_USER = gql`
+  mutation updateUser($username: String, $email: String, $age: Int, $bio: String ) {
+    updateUser(username: $username, email: $email, age: $age, bio: $bio) {
+        _id
+    }
+  }
+`;
+
+export const ADD_STATUS = gql`
+  mutation addStatus($messageText: String!) {
+    addStatus(messageText: $messageText) {
       _id
+      messageText
+      createdAt
       username
-      email
-      savedBooks {
-        bookId
-        authors
-        title
-        description
-        image
-        link
+      reactionCount
+      reactions {
+        _id
       }
     }
   }
 `;
 
-export const REMOVE_BOOK = gql`
-  mutation removeBook($bookId: String!) {
-    removeBook(bookId: $bookId) {
+export const ADD_REACTION = gql`
+  mutation addReaction($messageId: ID!, $reactionBody: String!) {
+    addReaction(messageId: $messageId, reactionBody: $reactionBody) {
       _id
-      username
-      savedBooks {
-        title
-        authors
+      reactionCount
+      reactions {
+        _id
+        reactionBody
+        createdAt
+        username
       }
     }
   }
 `;
-*/
+
+export const ADD_FRIEND = gql`
+  mutation addFriend($id: ID!) {
+    addFriend(friendId: $id) {
+      _id
+      username
+      friendCount
+      friends {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const REMOVE_FRIEND = gql`
+  mutation removeFriend($id: ID!) {
+    removeFriend(friendId: $id) {
+      _id
+      username
+      friends {
+        _id
+        username
+      }
+    }
+  }
+`;
