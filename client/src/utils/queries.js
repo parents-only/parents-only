@@ -96,6 +96,7 @@ export const QUERY_ME = gql`
       bio
       avatar
       gallery
+      address
       statuses {
         _id
         messageText
