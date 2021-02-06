@@ -19,16 +19,16 @@ const MessageForm = ({ username, friends }) => {
   //   const [editUser, { error }] = useMutation(UPDATE_USER);
   
     // Now if there's a value in userParam that we got from the URL bar, we'll use that value to run the QUERY_USER query. If there's no value in userParam, like if we simply visit /profile as a logged-in user, we'll execute the QUERY_ME query instead.
-const options = [];
+
     // {friends.map(friend => (
     //   <button className="btn w-100 display-block mb-2" key={friend._id}>
     //     <Link to={`/profile/${friend.username}`}>{friend.username}</Link>
     //   </button>
     // ))}
 
-    // const options = [
-    //   'one', 'two', 'three'
-    // ];
+    const options = [
+      'one', 'two', 'three'
+    ];
     // const defaultOption = options[0];
 
     // things to consider for the message
@@ -105,7 +105,7 @@ const user = useQuery(QUERY_ME)
                         <h3 className="mb-0 font-weight-normal">{user.username}</h3> 
                     </div>
               </div>
-              <Dropdown options={friends.map(friend=> friend.username)} placeholder="Select a friend to send a message to:" />;
+              <Dropdown options={options} placeholder="Select a friend to send a message to:" />;
             <div className="row px-3 form-group" onSubmit={handleFormSubmit}>
                 <textarea
                   placeholder="Here's a new message..."
