@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
-export const QUERY_MESSAGES = gql`
-  query messages($username: String) {
-    messages(username: $username) {
+export const QUERY_STATUSES = gql`
+  query statuses($username: String) {
+    statuses(username: $username) {
       _id
       messageText
       createdAt
@@ -18,9 +18,9 @@ export const QUERY_MESSAGES = gql`
   }
 `;
 
-export const QUERY_MESSAGE = gql`
-  query message($id: ID!) {
-    message(_id: $id) {
+export const QUERY_STATUS = gql`
+  query status($id: ID!) {
+    status(_id: $id) {
       _id
       messageText
       createdAt
@@ -50,7 +50,7 @@ export const QUERY_USER = gql`
         _id
         username
       }
-      messages {
+      statuses {
         _id
         messageText
         createdAt
@@ -74,7 +74,7 @@ export const QUERY_USERS = gql`
         _id
         username
       }
-      messages {
+      statuses {
         _id
         messageText
         createdAt
@@ -96,7 +96,7 @@ export const QUERY_ME = gql`
       bio
       avatar
       gallery
-      messages {
+      statuses {
         _id
         messageText
         createdAt
@@ -146,6 +146,7 @@ export const QUERY_FRIEND_CARD = gql`
           _id
           username
           avatar
+          bio
       }
   }
 `;

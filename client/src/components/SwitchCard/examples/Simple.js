@@ -13,7 +13,6 @@ function Simple() {
     if (loading) {
         return <div>Loading...</div>;
     }
-    console.log(data)
     let clippedList = data.cards.filter(item => item._id !== data.me._id)
     clippedList.forEach(element => {
         let id = element._id
@@ -23,7 +22,8 @@ function Simple() {
             }
         });
     });
-    let characters = clippedList
+    let characters = clippedList;
+    console.log(characters);
     async function swiped(direction, nameToDelete) {
         if (direction === "right" || direction === "up") {
             try {
@@ -44,7 +44,7 @@ function Simple() {
         <div style={{marginBottom: "80%"}}>
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
-            <h1>React Tinder Card</h1>
+            {/* <h1>{character.name}</h1> */}
             <div className='cardContainer'>
                 {characters.map((character) =>
                     <TinderCard className='swipe' key={character._id} onSwipe={(dir) => swiped(dir, character._id)} onCardLeftScreen={() => outOfFrame(character._id)}>
@@ -52,6 +52,8 @@ function Simple() {
                             <h3>{character.username}</h3>
                         </div>
                     </TinderCard>
+                   
+                   
                 )}
             </div>
         </div>

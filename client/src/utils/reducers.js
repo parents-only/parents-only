@@ -10,7 +10,8 @@ import {
 const initialState = {
     user: {},
     chatOpen: false,
-    chat: {}
+    chat: {},
+    statuses: []
 }
 
 export default function reducer(state = initialState, action) {
