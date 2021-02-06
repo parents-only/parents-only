@@ -1,60 +1,34 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { ADD_MESSAGE } from "../../utils/mutations";
-import { QUERY_MESSAGES, QUERY_ME } from "../../utils/queries";
-import Dropdown from 'react-dropdown';
+import { ADD_STATUS } from "../../utils/mutations";
 import 'react-dropdown/style.css';
 import { useStore } from "react-redux";
+import { Button, Form } from "react-bootstrap";
 
 const MessageForm = () => {
-    const [messageText, setText] = useState('');
-    const [characterCount, setCharacterCount] = useState(0);
+    const [messageText, setText] = useState();
     const state = useStore().getState();
-    
 
-    const [addMessage, { error }] = useMutation(ADD_MESSAGE, {
-        update(cache, { data: { addMessage } }) {
-            try {
-                // update message array's cache
-                // could potentially not exist yet, so wrap in a try/catch
-                const { messages } = cache.readQuery({ query: QUERY_MESSAGES });
-                cache.writeQuery({
-                    query: QUERY_MESSAGES,
-                    data: { messages: [addMessage, ...messages] }
-                });
-            } catch (e) {
-                console.error(e);
-            }
 
-            // update me object's cache
-            const { me } = cache.readQuery({ query: QUERY_ME });
-            cache.writeQuery({
-                query: QUERY_ME,
-                data: { me: { ...me, messages: [...me.messages, addMessage] } }
-            });
-        }
-    });
+    const [addStatus] = useMutation(ADD_STATUS);
 
     // update state based on form input changes
     const handleChange = event => {
         if (event.target.value.length <= 280) {
             setText(event.target.value);
-            setCharacterCount(event.target.value.length);
         }
     };
 
     // submit form
     const handleFormSubmit = async event => {
         event.preventDefault();
-
         try {
-            await addMessage({
+            await addStatus({
                 variables: { messageText }
             });
 
             // clear form value
             setText('');
-            setCharacterCount(0);
         } catch (e) {
             console.error(e);
         }
@@ -63,12 +37,15 @@ const MessageForm = () => {
     const user = state.user;
     console.log(user);
 
+<<<<<<< HEAD
     const option = [];
     user.friends.forEach(friend => {
       option.push(friend.username);
     });
     console.log(option);
 
+=======
+>>>>>>> develop
     return (
         <div className="grid-1">
             <div className="grid-1">
@@ -83,6 +60,7 @@ const MessageForm = () => {
                             <h3 className="mb-0 font-weight-normal">{user.username}'s Messages</h3>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <Dropdown options={option} placeholder="Select a friend to message" />
                     <div className="row px-3 form-group" onSubmit={handleFormSubmit}>
                         <textarea
@@ -99,6 +77,27 @@ const MessageForm = () => {
                             </p>
                         </div>
                     </div>
+=======
+                    <Form noValidate onSubmit={handleFormSubmit}>
+                        <Form.Group>
+                            <Form.Control
+                                type='text'
+                                placeholder='How are you feeling today?'
+                                name='username'
+                                onChange={handleChange}
+                                value={messageText}
+                                required
+                            />
+                        </Form.Group>
+
+                        <Button
+                            disabled={!(messageText)}
+                            type='submit'
+                            variant='success'>
+                            Submit
+                        </Button>
+                    </Form>
+>>>>>>> develop
                 </div>
             </div>
         </div>

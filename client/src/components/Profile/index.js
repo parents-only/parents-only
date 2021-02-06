@@ -18,7 +18,6 @@ import { UPDATE_USER } from '../../utils/actions';
 const Profile = () => {
     const dispatch = useDispatch();
     const userState = useStore().getState().user;
-
     const { username: userParam } = useParams();
 
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -48,7 +47,7 @@ const Profile = () => {
             const val2 = object2[key];
             const areObjects = isObject(val1) && isObject(val2);
             if (
-               ( areObjects && !deepEqual(val1, val2) ) || ( !areObjects && val1 !== val2 )
+                (areObjects && !deepEqual(val1, val2)) || (!areObjects && val1 !== val2)
             ) {
                 return false;
             }
@@ -56,7 +55,6 @@ const Profile = () => {
 
         return true;
     }
-
 
     if ((!userParam && !loading) || deepEqual(userState, user)) {
         dispatch({
@@ -70,8 +68,6 @@ const Profile = () => {
         return <Redirect to='/profile' />;
         // With this, we're checking to see if the user is logged in and if so, if the username stored in the JSON Web Token is the same as the userParam value. If they match, we return the <Redirect> component with the prop to set to the value /profile, which will redirect the user away from this URL and to the /profile route.
     }
-
-    
 
     if (loading) {
         return <div>Loading...</div>;
@@ -95,8 +91,6 @@ const Profile = () => {
         }
     };
 
-
-
     return (
         <div>
             <div id="mainProfile">
@@ -114,15 +108,11 @@ const Profile = () => {
             </div>
             <div className="wrapper" id="status">
 
-
                 {!userParam &&
                     <MessageForm />}
 
                 {!userParam &&
                     <MessageList />}
-
-
-
 
                 <div className="grid-3">
                     <h4>Friends</h4>
@@ -133,8 +123,6 @@ const Profile = () => {
                     />
                 </div>
 
-
-
                 <div className="grid-4">
 
 
@@ -143,8 +131,6 @@ const Profile = () => {
                     <p>Location: coming soon</p>
                     <p>Bio: {user.bio}</p>
                 </div>
-
-
 
                 <div className="grid-5">
                     <h4>Photos</h4>

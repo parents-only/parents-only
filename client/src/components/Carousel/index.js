@@ -11,9 +11,9 @@ const PictureSlider = () => {
             <Carousel.Item>
                 <img
                 className="d-block w-100"
-                src="/img/beach-family.jpg"
+                src="/img/landingpage1.jpg"
                 alt="First slide"
-                style={{ width: "5325", height: "3550" }}
+                style={{ width: "5616", height: "3744" }}
                 />
             </Carousel.Item>
             <Carousel.Item>
@@ -27,9 +27,9 @@ const PictureSlider = () => {
             <Carousel.Item>
                 <img
                 className="d-block w-100"
-                src="/img/walk-family.jpg"
+                src="/img/landingpage3.jpg"
                 alt="Third slide"
-                style={{ width: "6016", height: "4016" }}
+                style={{ width: "6000", height: "4000" }}
                 />
             </Carousel.Item>
         </Carousel>

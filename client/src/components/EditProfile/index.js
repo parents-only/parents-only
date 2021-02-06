@@ -24,10 +24,8 @@ const EditProfile = () => {
     const reader = new FileReader();
     reader.addEventListener("load", function () {
       setFileData(reader.result);
-      console.log(reader.result)
     }, false)
     reader.readAsDataURL(event.target.files[0])
-    console.log(event.target.files)
   };
 
   const handleAddress = (event) => {
