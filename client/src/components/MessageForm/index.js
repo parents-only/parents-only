@@ -4,13 +4,17 @@ import { ADD_MESSAGE } from "../../utils/mutations";
 import { QUERY_MESSAGES, QUERY_ME } from "../../utils/queries";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import { Redirect, useParams } from "react-router-dom";
 
 
 
-const MessageForm = () => {
+const MessageForm = ({ username, friends, messages}) => {
+
   const [messageText, setText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
   
+  const { username: userParam } = useParams();
+
     // Now if there's a value in userParam that we got from the URL bar, we'll use that value to run the QUERY_USER query. If there's no value in userParam, like if we simply visit /profile as a logged-in user, we'll execute the QUERY_ME query instead.
 
 
@@ -87,7 +91,7 @@ const defaultOption = options[0];
                         <h3 className="mb-0 font-weight-normal">{user.username}</h3> 
                     </div>
               </div>
-              <Dropdown options={options}  value={defaultOption} placeholder="Select an option" />
+              <Dropdown options={options} placeholder="Select a friend to message:" />
             <div className="row px-3 form-group" onSubmit={handleFormSubmit}>
                 <textarea
                   placeholder="Here's a new message..."
