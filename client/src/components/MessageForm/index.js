@@ -26,9 +26,7 @@ const MessageForm = ({ username, friends }) => {
     //   </button>
     // ))}
 
-    const options = [
-      'one', 'two', 'three'
-    ];
+    
     // const defaultOption = options[0];
 
     // things to consider for the message
