@@ -13,7 +13,7 @@ const MessageList = () => {
 
   return (
     <div className="grid">
-      <h3>{state.user.username}'s Messages</h3>
+      <h3>{state.user.username}'s Posts</h3>
       {statuses &&
         statuses.map(message => (
           <div key={message._id} className="card mb-3">

@@ -51,7 +51,7 @@ const EditProfile = () => {
     }
 
     try {
-      if (fileData.length) {
+      if (fileData) {
         await editUser({
           variables: {
             ...userFormData,
