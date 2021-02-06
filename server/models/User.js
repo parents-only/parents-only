@@ -46,6 +46,10 @@ const userSchema = new Schema({
         location: {
             type: [Number]
         },
+        address: {
+            type: String,
+            required: true
+        },
         bio: {
             type: String,
         },

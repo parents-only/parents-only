@@ -6,7 +6,7 @@ import Auth from '../../utils/auth';
 
 const SignupForm = () => {
     // set initial form state
-    const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', age: '' });
+    const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', age: '', address: '' });
     const [addUser, { error }] = useMutation(ADD_USER);
     // set state for form validation
     const [validated] = useState(false);
@@ -18,19 +18,6 @@ const SignupForm = () => {
         setUserFormData({ ...userFormData, [name]: value });
     };
 
-    async function success(position) {
-        const {
-            data
-        } = await addUser({
-            variables: {
-                ...userFormData,
-                age: parseInt(userFormData.age),
-                location: [position.coords.latitude, position.coords.longitude]
-            }
-        });
-        Auth.login(data.addUser.token);
-    }
-
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
@@ -41,20 +28,16 @@ const SignupForm = () => {
             event.stopPropagation();
         }
 
-        try {
-            if (!navigator.geolocation) {
-                setShowAlert(true)
-                alert("Geolocation must be allowed to sign up, location is used to search for friends physically nearby")
-            } else {
-                navigator.geolocation.getCurrentPosition(success, function() {
-                    setShowAlert(true)
-                    alert("Unable to retrieve location, cannot sign up.")
-                })
+        const {
+            data
+        } = await addUser({
+            variables: {
+                ...userFormData,
+                age: parseInt(userFormData.age),
             }
-        } catch (err) {
-            console.error(err);
-            setShowAlert(true);
-        }
+        });
+
+        Auth.login(data.addUser.token);
 
         setUserFormData({
             username: '',
@@ -110,6 +93,19 @@ const SignupForm = () => {
                         required
                     />
                     <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Label htmlFor='address'>Address</Form.Label>
+                    <Form.Control
+                        type='text'
+                        placeholder='Your address'
+                        name='address'
+                        onChange={handleInputChange}
+                        value={userFormData.address}
+                        required
+                    />
+                    <Form.Control.Feedback type='invalid'>Address is required!</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group>

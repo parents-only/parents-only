@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/react-hooks';
 import { UPDATE_USER } from '../../utils/mutations';
@@ -9,7 +9,10 @@ const EditProfile = () => {
   const state = useStore().getState();
 
   // set initial form state
-  const [userFormData, setUserFormData] = useState(state.user);
+  const [userFormData, setUserFormData] = useState({ username: "", email: "", bio: "", age: 0 });
+  useEffect(() => {
+    setUserFormData(state.user)
+  }, [state])
   const [editUser, { error }] = useMutation(UPDATE_USER);
   // set state for form validation
   const [validated] = useState(false);
@@ -48,7 +51,7 @@ const EditProfile = () => {
     }
 
     try {
-      if (fileData.length > 1) {
+      if (fileData.length) {
         await editUser({
           variables: {
             ...userFormData,
@@ -80,7 +83,7 @@ const EditProfile = () => {
         <h2>Edit Profile</h2>
       <div className="EditForm">
         {/* This is needed for the validation functionality above */}
-        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <Form noValidate validated={validated} onSubmit={handleFormSubmit} >
           {/* show alert if server response is bad */}
           <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
             Something went wrong with your edit!
@@ -140,7 +143,7 @@ const EditProfile = () => {
               value={userAddress}
             />
           </Form.Group>
-
+{/* 
           <Form.Group>
             <Form.Label htmlFor='avatar'>Avatar</Form.Label>
             <Form.File id="avatar" custom>
@@ -152,7 +155,7 @@ const EditProfile = () => {
                 {fileName}
               </Form.File.Label>
             </Form.File>
-          </Form.Group>
+          </Form.Group> */}
 
           <Button
             disabled={!(userFormData.username || userFormData.email || userFormData.bio || userFormData.age || userAddress || fileName)}
