@@ -32,8 +32,9 @@ db.once('open', async () => {
     const bio = faker.lorem.sentences(3);
     const avatar = `https://i.pravatar.cc/150?u=${faker.random.uuid()}`
     const age = moreLikelyToBeYounger()
+    const address = "Default Address";
 
-    userData.push({ username, email, password, age, bio, avatar, location: [lon, lat]});
+    userData.push({ username, email, password, age, bio, avatar, location: [lon, lat], address});
 
   }
 
