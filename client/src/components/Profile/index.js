@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './index.css';
 import MessageList from '../MessageList';
 import MessageForm from '../MessageForm'
@@ -11,13 +11,14 @@ import { Redirect, useParams } from "react-router-dom";
 import { ADD_FRIEND } from '../../utils/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useStore } from 'react-redux';
 import { UPDATE_USER } from '../../utils/actions';
 
 
 const Profile = () => {
     const dispatch = useDispatch();
-    
+    const userState = useStore().getState().user;
+
     const { username: userParam } = useParams();
 
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -30,15 +31,39 @@ const Profile = () => {
 
     const [addFriend] = useMutation(ADD_FRIEND);
 
-    useEffect(() => {
-        if (!userParam && !loading) {
-            dispatch({
-                type: UPDATE_USER,
-                user: data
-            })
+    function isObject(object) {
+        return object != null && typeof object === 'object';
+    }
+
+    function deepEqual(object1, object2) {
+        const keys1 = Object.keys(object1);
+        const keys2 = Object.keys(object2);
+
+        if (keys1.length !== keys2.length) {
+            return false;
         }
-    }, [dispatch, data, userParam, loading]
-    )
+
+        for (const key of keys1) {
+            const val1 = object1[key];
+            const val2 = object2[key];
+            const areObjects = isObject(val1) && isObject(val2);
+            if (
+               ( areObjects && !deepEqual(val1, val2) ) || ( !areObjects && val1 !== val2 )
+            ) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    if ((!userParam && !loading) || deepEqual(userState, user)) {
+        dispatch({
+            type: UPDATE_USER,
+            user: user
+        })
+    }
 
     // redirect to personal profile page if username is the logged-in user's
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -78,62 +103,56 @@ const Profile = () => {
                 <div id="topHalf">
                     <img src={"http://www.boostnet.in/wp-content/uploads/2016/10/Header-1.png"} alt="" />
                 </div>
-                {userParam && (
-                    <div id="bottomHalf">
-                        <img src={user.avatar} alt={user.username} style={{ height: 150, width: 150 }} />
+                <div id="bottomHalf">
+                    <img src={user.avatar} alt={user.username} style={{ height: 150, width: 150 }} />
 
-                        <Button variant="success" className="btn ml-auto centered" onClick={handleClick}>
-                            Add Friend
-                    </Button>
+                    {userParam && (<Button variant="success" className="btn ml-auto centered" onClick={handleClick}>
+                        Add Friend
+                    </Button>)}
 
-                    </div>
-                )}
+                </div>
             </div>
             <div className="wrapper" id="status">
-            
 
-                    {!userParam && 
-                    <MessageForm 
-                        username={user.username}
-                        friends={user.friends}
-                        messages={user.messages}
-                    />} 
 
-                    {!userParam && 
+                {!userParam &&
+                    <MessageForm />}
+
+                {!userParam &&
                     <MessageList />}
 
-                    
 
-                        
-                        <div className="grid-3">
-                            <h4>Friends</h4>
-                                <FriendList
-                                    username={user.username}
-                                    friendCount={user.friendCount}
-                                    friends={user.friends}                        
-                                /> 
-                        </div>
-                        
 
-                        
-                        <div className="grid-4">
-                            
-                            
-                            <h4>About me</h4>
-                            <p>Age: {user.age}</p>
-                            <p>Location: coming soon</p>
-                            <p>Bio: {user.bio}</p>         
-                        </div>
-                        
-            
-            
+
+                <div className="grid-3">
+                    <h4>Friends</h4>
+                    <FriendList
+                        username={user.username}
+                        friendCount={user.friendCount}
+                        friends={user.friends}
+                    />
+                </div>
+
+
+
+                <div className="grid-4">
+
+
+                    <h4>About me</h4>
+                    <p>Age: {user.age}</p>
+                    <p>Location: coming soon</p>
+                    <p>Bio: {user.bio}</p>
+                </div>
+
+
+
                 <div className="grid-5">
                     <h4>Photos</h4>
                     <div id="gallery">
                         {user.gallery.map(friend => (
-                            <div><img src={friend} alt=""/></div>
-                                
-                          ))}
+                            <div><img src={friend} alt="" /></div>
+
+                        ))}
                     </div>
                 </div>
                 {/* <div className="grid-6">
@@ -144,7 +163,7 @@ const Profile = () => {
                 {!userParam && <MessageForm />}
                 </div> */}
                 <div className="grid-7">
-                    
+
                 </div>
             </div>
         </div>
