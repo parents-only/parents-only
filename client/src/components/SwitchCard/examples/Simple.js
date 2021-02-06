@@ -18,7 +18,7 @@ function Simple() {
     clippedList.forEach(element => {
         let id = element._id
         data.me.friends.forEach(friendElement => {
-            if (id === friendElement._id) {
+            if (id == friendElement._id) {
                 clippedList = clippedList.filter( item => item._id !== friendElement._id)
             }
         });
