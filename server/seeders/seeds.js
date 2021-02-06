@@ -25,8 +25,10 @@ db.once('open', async () => {
     const username = faker.internet.userName();
     const email = faker.internet.email(username);
     const password = faker.internet.password();
-    const lat = faker.address.latitude();
-    const lon = faker.address.longitude();
+    // const lat = faker.address.latitude();
+    // const lon = faker.address.longitude();
+    const lat = (Math.floor(Math.random() * 10000)/10000)+36
+    const lon = (Math.floor(Math.random() * 10000)/10000)-87
     const bio = faker.lorem.sentences(3);
     const avatar = `https://i.pravatar.cc/150?u=${faker.random.uuid()}`
     const age = moreLikelyToBeYounger()
