@@ -1,0 +1,22 @@
+h3 {
+    text-decoration: underline;
+    text-shadow: skyblue;
+}
+
+.mb-0 {
+    text-decoration: underline;
+    text-shadow: skyblue;
+}
+
+.message {
+    font-weight: bold;
+}
+
+.grid {
+    text-align: center;
+}
+
+.card {
+    text-align: center;
+    margin: auto;
+}
