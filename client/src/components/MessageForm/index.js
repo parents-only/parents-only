@@ -1,112 +1,78 @@
 import React, { useState } from "react";
-import { useMutation, useQuery } from "@apollo/react-hooks";
-import { ADD_MESSAGE } from "../../utils/mutations";
-import { QUERY_MESSAGES, QUERY_ME } from "../../utils/queries";
-import Dropdown from 'react-dropdown';
+import { useMutation } from "@apollo/react-hooks";
+import { ADD_STATUS } from "../../utils/mutations";
 import 'react-dropdown/style.css';
-
-
+import { useStore } from "react-redux";
+import { Button, Form } from "react-bootstrap";
 
 const MessageForm = () => {
-  const [messageText, setText] = useState('');
-  const [characterCount, setCharacterCount] = useState(0);
-  
-    // Now if there's a value in userParam that we got from the URL bar, we'll use that value to run the QUERY_USER query. If there's no value in userParam, like if we simply visit /profile as a logged-in user, we'll execute the QUERY_ME query instead.
+    const [messageText, setText] = useState();
+    const state = useStore().getState();
 
 
-  const [addMessage, { error }] = useMutation(ADD_MESSAGE, {
-    update(cache, { data: { addMessage } }) {
-      try {
-        // update message array's cache
-        // could potentially not exist yet, so wrap in a try/catch
-        const { messages } = cache.readQuery({ query: QUERY_MESSAGES });
-        cache.writeQuery({
-          query: QUERY_MESSAGES,
-          data: { messages: [addMessage, ...messages] }
-        });
-      } catch (e) {
-        console.error(e);
-      }
+    const [addStatus] = useMutation(ADD_STATUS);
 
-      // update me object's cache
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, messages: [...me.messages, addMessage] } }
-      });
-    }
-  });
+    // update state based on form input changes
+    const handleChange = event => {
+        if (event.target.value.length <= 280) {
+            setText(event.target.value);
+        }
+    };
 
-  // update state based on form input changes
-  const handleChange = event => {
-    if (event.target.value.length <= 280) {
-      setText(event.target.value);
-      setCharacterCount(event.target.value.length);
-    }
-  };
+    // submit form
+    const handleFormSubmit = async event => {
+        event.preventDefault();
+        try {
+            await addStatus({
+                variables: { messageText }
+            });
 
-  // submit form
-  const handleFormSubmit = async event => {
-    event.preventDefault();
+            // clear form value
+            setText('');
+        } catch (e) {
+            console.error(e);
+        }
+    };
 
-    try {
-      await addMessage({
-        variables: { messageText }
-      });
+    const user = state.user;
 
-      // clear form value
-      setText('');
-      setCharacterCount(0);
-    } catch (e) {
-      console.error(e);
-    }
-  };
+    return (
+        <div className="grid-1">
+            <div className="grid-1">
 
-const user = useQuery(QUERY_ME)
-
-
-
-const options = [
-  'one', 'two', 'three'
-];
-const defaultOption = options[0];
-
-
-
-  return (
-    <div className="grid-1">
-      <div className="grid-1">
-      
-      </div>
-      <br></br>
-      <br></br>
-      <div className="grid-2">
-           <div className="statusCard">
-              <div className="row px-3"> <img className="profile-pic mr-3" src={user.avatar} alt=""/>
-                    <div className="flex-column">
-                        <h3 className="mb-0 font-weight-normal">{user.username}</h3> 
+            </div>
+            <br></br>
+            <br></br>
+            <div className="grid-2">
+                <div className="statusCard">
+                    <div className="row px-3">
+                        <div className="flex-column">
+                            <h3 className="mb-0 font-weight-normal">{user.username}'s Messages</h3>
+                        </div>
                     </div>
-              </div>
-              <Dropdown options={options}  value={defaultOption} placeholder="Select an option" />
-            <div className="row px-3 form-group" onSubmit={handleFormSubmit}>
-                <textarea
-                  placeholder="Here's a new message..."
-                  value={messageText}
-                  className="text-muted bg-light mt-4 mb-3"
-                  onChange={handleChange}
-                ></textarea>
-                <div className="row px-3">
-                  <div className="btn btn-dark col-ml-auto " type="submit">Post</div>
-                  <p  id="status" className={` ${characterCount === 280 || error ? 'text-error' : ''}`}>
-                  Character Count: {characterCount}/280
-                  {error && <span className="ml-2">Something went wrong...</span>}
-                </p>
+                    <Form noValidate onSubmit={handleFormSubmit}>
+                        <Form.Group>
+                            <Form.Control
+                                type='text'
+                                placeholder='How are you feeling today?'
+                                name='username'
+                                onChange={handleChange}
+                                value={messageText}
+                                required
+                            />
+                        </Form.Group>
+
+                        <Button
+                            disabled={!(messageText)}
+                            type='submit'
+                            variant='success'>
+                            Submit
+                        </Button>
+                    </Form>
                 </div>
-              </div>
-          </div>
+            </div>
         </div>
-      </div>
-  
+
     )
 }
 

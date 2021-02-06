@@ -19,8 +19,8 @@ const resolvers = {
                         _id: context.user._id
                     })
                     .select('-__v -password')
-                    .populate('messages')
-                    .populate('friends');
+                    .populate('friends')
+                    .populate('statuses');
 
                 return userData;
             }
@@ -30,7 +30,7 @@ const resolvers = {
         users: async () => {
             return User.find()
                 .select('-__v -password')
-                .populate('messages')
+                .populate('statuses')
                 .populate('friends');
         },
         user: async (parent, {
@@ -41,7 +41,7 @@ const resolvers = {
                 })
                 .select('-__v -password')
                 .populate('friends')
-                .populate('messages');
+                .populate('statuses');
         },
 
         // get a user by _id

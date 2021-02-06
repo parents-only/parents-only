@@ -32,9 +32,9 @@ export const UPDATE_USER = gql`
   }
 `;
 
-export const ADD_MESSAGE = gql`
-  mutation addMessage($messageText: String!) {
-    addMessage(messageText: $messageText) {
+export const ADD_STATUS = gql`
+  mutation addStatus($messageText: String!) {
+    addStatus(messageText: $messageText) {
       _id
       messageText
       createdAt
