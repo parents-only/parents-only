@@ -56,7 +56,7 @@ const EditProfile = () => {
           variables: {
             ...userFormData,
             age: parseInt(userFormData.age),
-            avatar: fileData
+            //avatar: fileData
           }
         });
       } else {
