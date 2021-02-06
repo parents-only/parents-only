@@ -11,7 +11,7 @@ const initialState = {
     user: {},
     chatOpen: false,
     chat: {},
-    messages: []
+    statuses: []
 }
 
 export default function reducer(state = initialState, action) {

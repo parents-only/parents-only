@@ -56,7 +56,6 @@ const Profile = () => {
         return true;
     }
 
-
     if ((!userParam && !loading) || deepEqual(userState, user)) {
         dispatch({
             type: UPDATE_USER,

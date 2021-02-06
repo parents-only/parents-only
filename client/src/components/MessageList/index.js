@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 
 const MessageList = () => {
     const state = useStore().getState();
-    let messages = state.messages
+    let statuses = state.user.statuses
 
-  if (messages.length === 0) {
-    return <h3>No Messages Yet</h3>;
+  if (statuses.length === 0) {
+    return <h3>No Status Updates Yet</h3>;
   }
 
   return (
     <div>
       <h3>{state.user.username}'s Messages</h3>
-      {messages &&
-        messages.map(message => (
+      {statuses &&
+        statuses.map(message => (
           <div key={message._id} className="card mb-3">
             <p className="card-header">
               <Link

@@ -10,7 +10,7 @@ const typeDefs = gql `
     password: String
     image: String
     friendCount: Int
-    messages: [Message]
+    statuses: [Status]
     friends: [User]
     location: [Float]
     age: Int

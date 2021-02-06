@@ -13,7 +13,6 @@ function Simple() {
     if (loading) {
         return <div>Loading...</div>;
     }
-    console.log(data)
     let clippedList = data.cards.filter(item => item._id !== data.me._id)
     clippedList.forEach(element => {
         let id = element._id
