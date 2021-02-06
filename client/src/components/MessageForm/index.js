@@ -4,6 +4,7 @@ import { ADD_STATUS } from "../../utils/mutations";
 import 'react-dropdown/style.css';
 import { useStore } from "react-redux";
 import { Button, Form } from "react-bootstrap";
+import './index.css';
 
 const MessageForm = () => {
     const [messageText, setText] = useState();
@@ -48,7 +49,7 @@ const MessageForm = () => {
                 <div className="statusCard">
                     <div className="row px-3">
                         <div className="flex-column">
-                            <h3 className="mb-0 font-weight-normal">{user.username}'s Message</h3>
+                            <h3 className="mb-0 font-weight-normal">{user.username}'s Status</h3>
                         </div>
                     </div>
                     <Form noValidate onSubmit={handleFormSubmit}>

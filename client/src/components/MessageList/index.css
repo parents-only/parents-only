@@ -1,7 +1,4 @@
-h3 {
-    text-decoration: underline;
-    text-shadow: skyblue;
-}
+
 
 .mb-0 {
     text-decoration: underline;
@@ -14,6 +11,13 @@ h3 {
 
 .grid {
     text-align: center;
+    margin: auto;
+}
+
+.grid h3 {
+    background-color: skyblue;
+    border-radius: 5em;
+    color: white;
 }
 
 .card {

@@ -23,12 +23,12 @@
 
 .grid {
     grid-column: 3 / 7;
-    grid-row: 1;
+    grid-row: 2;
 }
 
 .grid-1 {
     grid-column: 3 / 7;
-    grid-row: 2;
+    grid-row: 1;
 }
 
 .grid-2 {
@@ -358,12 +358,12 @@ body {
     
     .grid {
         grid-column: 3 / 7;
-        grid-row: 1;
+        grid-row: 2;
     }
 
     .grid-1 {
         grid-column: 3 / 7;
-        grid-row: 2;
+        grid-row: 1;
     }
     
     .grid-2 {
