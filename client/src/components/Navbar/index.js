@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-import {wrapContext} from '../../utils/context';
+import { wrapContext } from '../../utils/context';
 import SignUpForm from '../SignupForm';
 import LoginForm from '../LoginForm';
 import Auth from '../../utils/auth';
 import logo from './parents-only.png';
-
 
 const AppNavbar = () => {
   // set modal display state
@@ -41,8 +40,8 @@ const AppNavbar = () => {
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => handlers.setShowModal(true)}>Login/Sign Up</Nav.Link>
-              )}
+                  <Nav.Link onClick={() => handlers.setShowModal(true)}>Login/Sign Up</Nav.Link>
+                )}
             </Nav>
           </Navbar.Collapse>
         </Container>

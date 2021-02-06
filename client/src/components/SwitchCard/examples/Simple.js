@@ -6,10 +6,10 @@ import { QUERY_FRIEND_CARD } from "../../../utils/queries";
 import { ADD_FRIEND } from "../../../utils/mutations";
 
 function Simple() {
-    
+
     const { loading, data } = useQuery(QUERY_FRIEND_CARD);
     const [addFriend] = useMutation(ADD_FRIEND);
-    
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -18,7 +18,7 @@ function Simple() {
         let id = element._id
         data.me.friends.forEach(friendElement => {
             if (id === friendElement._id) {
-                clippedList = clippedList.filter( item => item._id !== friendElement._id)
+                clippedList = clippedList.filter(item => item._id !== friendElement._id)
             }
         });
     });
@@ -41,7 +41,7 @@ function Simple() {
     }
 
     return (
-        <div style={{marginBottom: "80%"}}>
+        <div style={{ marginBottom: "80%" }}>
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
             {/* <h1>{character.name}</h1> */}
@@ -52,8 +52,8 @@ function Simple() {
                             <h3>{character.username}</h3>
                         </div>
                     </TinderCard>
-                   
-                   
+
+
                 )}
             </div>
         </div>
@@ -61,4 +61,3 @@ function Simple() {
 }
 
 export default Simple;
-

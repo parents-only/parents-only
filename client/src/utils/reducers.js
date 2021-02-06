@@ -6,13 +6,12 @@ import {
     UPDATE_USER
 } from "./actions";
 
-
 const initialState = {
     user: {},
     chatOpen: false,
     chat: {},
     statuses: []
-}
+};
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -22,10 +21,10 @@ export default function reducer(state = initialState, action) {
                 chatOpen: !state.chatOpen
             };
         case UPDATE_USER:
-            
+
             return {
                 ...state,
-                user: {...action.user},
+                user: { ...action.user },
             };
         default:
             return state;
@@ -34,4 +33,4 @@ export default function reducer(state = initialState, action) {
 
 export function useProductReducer(initialState) {
     return useReducer(reducer, initialState)
-}
+};

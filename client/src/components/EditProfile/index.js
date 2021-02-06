@@ -80,7 +80,7 @@ const EditProfile = () => {
       <div id="topHalf">
         {/* <img src={"http://www.boostnet.in/wp-content/uploads/2016/10/Header-1.png"} alt="" /> */}
       </div>
-        <h2>Edit Profile</h2>
+      <h2>Edit Profile</h2>
       <div className="EditForm">
         {/* This is needed for the validation functionality above */}
         <Form noValidate validated={validated} onSubmit={handleFormSubmit} >
@@ -143,7 +143,7 @@ const EditProfile = () => {
               value={userAddress}
             />
           </Form.Group>
-{/* 
+          {/* 
           <Form.Group>
             <Form.Label htmlFor='avatar'>Avatar</Form.Label>
             <Form.File id="avatar" custom>
@@ -167,7 +167,6 @@ const EditProfile = () => {
         {error && <div>Sign up failed</div>}
       </div>
     </>
-
   );
 };
 

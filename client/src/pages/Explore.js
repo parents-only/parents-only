@@ -6,7 +6,6 @@ import './explore.css';
 const Explore = () => {
 
     return (
-
         <div className="body">
             <Simple />
         </div>

@@ -39,7 +39,7 @@ function Advanced() {
     const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
     const [characters, setCharacters] = useState(db)
 
-    
+
     // if (loading) {
     //     return <div>Loading...</div>;
     // }
@@ -49,7 +49,7 @@ function Advanced() {
         console.log('removing: ' + nameToDelete)
         setLastDirection(direction)
         alreadyRemoved.push(nameToDelete)
-        
+
     }
 
     const outOfFrame = (name) => {

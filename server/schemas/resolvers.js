@@ -23,8 +23,8 @@ const resolvers = {
         me: async (parent, args, context) => {
             if (context.user) {
                 const userData = await User.findOne({
-                        _id: context.user._id
-                    })
+                    _id: context.user._id
+                })
                     .select('-__v -password')
                     .populate('friends')
                     .populate('statuses');
@@ -44,8 +44,8 @@ const resolvers = {
             username
         }) => {
             return User.findOne({
-                    username
-                })
+                username
+            })
                 .select('-__v -password')
                 .populate('friends')
                 .populate('statuses');
@@ -76,14 +76,14 @@ const resolvers = {
         messagesBySender: async (parent, {
             sender
         }) => {
-            return Message.find({sender}).sort({
+            return Message.find({ sender }).sort({
                 createdAt: -1
             });
         },
         messagesByRecipient: async (parent, {
             recipient
         }) => {
-            return Message.find({recipient}).sort({
+            return Message.find({ recipient }).sort({
                 createdAt: -1
             });
         },
@@ -97,8 +97,8 @@ const resolvers = {
         cards: async (parent, args, context) => {
             if (context.user) {
                 const userData = await User.findOne({
-                        _id: context.user._id
-                    })
+                    _id: context.user._id
+                })
                     .select('-__v -password')
                     .populate('messages')
                     .populate('friends');
@@ -109,15 +109,15 @@ const resolvers = {
                 users.forEach(element => {
 
                     if (haversine({
-                            latitude: userData.location[0],
-                            longitude: userData.location[1]
-                        }, {
-                            latitude: element.location[0],
-                            longitude: element.location[1]
-                        }, {
-                            threshold: 200,
-                            unit: 'mile'
-                        }) && userData._id != element._id) {
+                        latitude: userData.location[0],
+                        longitude: userData.location[1]
+                    }, {
+                        latitude: element.location[0],
+                        longitude: element.location[1]
+                    }, {
+                        threshold: 200,
+                        unit: 'mile'
+                    }) && userData._id != element._id) {
                         viable.push(element)
                     }
                 });
@@ -130,20 +130,20 @@ const resolvers = {
     Mutation: {
         addUser: async (_, args) => {
             return await geocoder.geocode(args.address)
-            .then(async function(result) {
-                console.log(result)
-                const user = await User.create({
-                    ...args,
-                    location: [result[0].latitude, result[0].longitude]
-                });
-                const token = signToken(user);
+                .then(async function (result) {
+                    console.log(result)
+                    const user = await User.create({
+                        ...args,
+                        location: [result[0].latitude, result[0].longitude]
+                    });
+                    const token = signToken(user);
 
-                return {
-                    token,
-                    user
-                };
-            })
-            
+                    return {
+                        token,
+                        user
+                    };
+                })
+
         },
         updateUser: async (_, args, context) => {
             if (context.user) {
@@ -155,7 +155,7 @@ const resolvers = {
                     avatar: args.avatar || user.avatar,
                     bio: args.bio || user.bio,
                 }
-                return await User.findByIdAndUpdate(context.user._id, { $set: temp } , {
+                return await User.findByIdAndUpdate(context.user._id, { $set: temp }, {
                     new: true,
                 });
             }
@@ -265,9 +265,6 @@ const resolvers = {
         }
     }
 };
-
-
-
 
 module.exports = resolvers;
 

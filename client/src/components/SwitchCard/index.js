@@ -134,7 +134,7 @@ const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, o
   let elementGlobal
 
   React.useImperativeHandle(perentRef, () => ({
-    async swipe (dir = 'right') {
+    async swipe(dir = 'right') {
       if (onSwipe) onSwipe(dir)
       const power = 1000
       const disturbance = (Math.random() - 0.5) * 100
@@ -244,4 +244,4 @@ const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, o
   )
 })
 
-module.exports = TinderCard
+module.exports = TinderCard;

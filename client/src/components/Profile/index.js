@@ -14,7 +14,6 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useStore } from 'react-redux';
 import { UPDATE_USER } from '../../utils/actions';
 
-
 const Profile = () => {
     const dispatch = useDispatch();
     const userState = useStore().getState().user;
@@ -52,7 +51,6 @@ const Profile = () => {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -73,14 +71,6 @@ const Profile = () => {
         return <div>Loading...</div>;
     }
 
-    // if (!user?.username) {
-    //     return (
-    //         <h4>
-    //             You need to be logged in to see this page. Use the navigation links above to sign up or log in!
-    //         </h4>
-    //     );
-    // }
-
     const handleClick = async () => {
         try {
             await addFriend({
@@ -99,21 +89,16 @@ const Profile = () => {
                 </div>
                 <div id="bottomHalf">
                     <img src={user.avatar} alt={user.username} style={{ height: 150, width: 150 }} />
-
                     {userParam && (<Button variant="success" className="btn ml-auto centered" onClick={handleClick}>
                         Add Friend
                     </Button>)}
-
                 </div>
             </div>
             <div className="wrapper" id="status">
-
                 {!userParam &&
                     <MessageForm />}
-
                 {!userParam &&
                     <MessageList />}
-
                 <div className="grid-3">
                     <h4>Friends</h4>
                     <FriendList
@@ -122,7 +107,6 @@ const Profile = () => {
                         friends={user.friends}
                     />
                 </div>
-
                 <div className="grid-4">
 
                     <h4>About me</h4>
@@ -130,7 +114,6 @@ const Profile = () => {
                     <p>Address: {user.address || "That's private"}</p>
                     <p>Bio: {user.bio}</p>
                 </div>
-
                 <div className="grid-5">
                     <h4>Photos</h4>
                     <div id="gallery">
@@ -140,25 +123,11 @@ const Profile = () => {
                         ))}
                     </div>
                 </div>
-                {/* <div className="grid-6">
-                <MessageList
-                messagess={user.messagess}
-                title={`${user.username}'s thoughts...`}
-                />
-                {!userParam && <MessageForm />}
-                </div> */}
                 <div className="grid-7">
-
                 </div>
             </div>
         </div>
-
-
-
     );
 };
 
 export default Profile;
-
-
-

@@ -6,11 +6,11 @@ import LandingForm from '../components/LandingForm';
 const Home = () => {
     return (
         <main>
-        <div className="flex-row justify-space-between">
-            <PictureSlider />
-            <LandingForm /> 
-            <LandingPage />
-        </div>
+            <div className="flex-row justify-space-between">
+                <PictureSlider />
+                <LandingForm />
+                <LandingPage />
+            </div>
         </main>
     )
 }

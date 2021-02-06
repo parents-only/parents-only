@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import './index.css';
 
 const MessageList = () => {
-    const state = useStore().getState();
-    let statuses = state.user.statuses
+  const state = useStore().getState();
+  let statuses = state.user.statuses
 
   if (statuses.length === 0) {
     return <h3>No Status Updates Yet</h3>;
@@ -28,12 +28,12 @@ const MessageList = () => {
               Message on {message.createdAt}
             </p>
             <div className="card-body">
-            <p className="message">{message.messageText}</p>
+              <p className="message">{message.messageText}</p>
               <Link to={`/message/${message._id}`}>
                 <p className="mb-0">
-                  Reactions: {message.reactionCount} 
+                  Reactions: {message.reactionCount}
                   <br></br>
-                  <br></br> 
+                  <br></br>
                   Click to{' '}
                   {message.reactionCount ? 'see' : 'start'} the discussion!
                 </p>

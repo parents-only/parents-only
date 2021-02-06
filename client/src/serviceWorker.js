@@ -55,7 +55,7 @@ export function register(config) {
       }
     });
   }
-}
+};
 
 function registerValidSW(swUrl, config) {
   navigator.serviceWorker
@@ -99,7 +99,7 @@ function registerValidSW(swUrl, config) {
     .catch(error => {
       console.error('Error during service worker registration:', error);
     });
-}
+};
 
 function checkValidServiceWorker(swUrl, config) {
   // Check if the service worker can be found. If it can't reload the page.
@@ -129,7 +129,7 @@ function checkValidServiceWorker(swUrl, config) {
         'No internet connection found. App is running in offline mode.'
       );
     });
-}
+};
 
 export function unregister() {
   if ('serviceWorker' in navigator) {
@@ -141,4 +141,4 @@ export function unregister() {
         console.error(error.message);
       });
   }
-}
+};

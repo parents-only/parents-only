@@ -3,8 +3,6 @@ import { Card, Modal, Nav, Tab } from 'react-bootstrap';
 import SignUpForm from '../SignupForm';
 import LoginForm from '../LoginForm';
 
-
-
 const LandingForm = () => {
     
     const [showModal, setShowModal] = useState(false);
@@ -57,7 +55,6 @@ const LandingForm = () => {
                 </Modal>
             </div>
         </div>
-        
     )   
 }
 

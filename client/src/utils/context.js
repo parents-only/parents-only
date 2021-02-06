@@ -19,4 +19,4 @@ const ContextProvider = (props) => {
     )
 }
 
-export {wrapContext, ContextProvider}
+export { wrapContext, ContextProvider }

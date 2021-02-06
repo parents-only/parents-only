@@ -33,7 +33,7 @@ const ViewMembersPage = () => {
     };
 
     return (
-        <ProfileCard match={match} nomatch={nomatch} age={Users[currentUser].Age} location={Users[currentUser].Location} bio={Users[currentUser].Bio}/>
+        <ProfileCard match={match} nomatch={nomatch} age={Users[currentUser].Age} location={Users[currentUser].Location} bio={Users[currentUser].Bio} />
     );
 };
 
