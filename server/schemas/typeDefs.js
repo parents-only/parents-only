@@ -25,13 +25,20 @@ const typeDefs = gql `
       name: String
   }
 
-  type Message {
+  type Status {
     _id: ID
     messageText: String
     createdAt: String
     username: String
     reactionCount: Int
     reactions: [Reaction]
+  }
+
+  type Message {
+      _id: ID
+      messageText: String
+      sender: ID
+      recipient: ID
   }
 
   type Reaction {
@@ -47,7 +54,10 @@ const typeDefs = gql `
     users: [User]
     user(username: String!): User
     userById(_id: ID!): User
-    messages(username: String): [Message]
+    statuses(username: String!): [Status]
+    status(_id: ID!): Status
+    messagesBySender(sender: ID!): [Message]
+    messagesByRecipient(recipient: ID!): [Message]
     message(_id: ID!): Message
     cards: [User]
   }
@@ -55,8 +65,9 @@ const typeDefs = gql `
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, age: Int!, location: [Float!]): Auth
-    addMessage(messageText: String!): Message
-    addReaction(messageId: ID!, reactionBody: String!): Message
+    addStatus(messageText: String!): Status
+    addMessage(messageText: String!, recipient: ID!): Message
+    addReaction(messageId: ID!, reactionBody: String!): Status
     addFriend(friendId: ID!): User
     updateUser(
       _id: ID

@@ -1,14 +1,18 @@
 import React from 'react';
+import { useStore } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const MessageList = ({ messages, title }) => {
-  if (!messages || !messages.length) {
+const MessageList = () => {
+    const state = useStore().getState();
+    let messages = state.messages
+
+  if (messages.length === 0) {
     return <h3>No Messages Yet</h3>;
   }
 
   return (
     <div>
-      <h3>{title}</h3>
+      <h3>{state.user.username}'s Messages</h3>
       {messages &&
         messages.map(message => (
           <div key={message._id} className="card mb-3">

@@ -17,7 +17,7 @@ import { UPDATE_USER } from '../../utils/actions';
 
 const Profile = () => {
     const dispatch = useDispatch();
-    
+
     const { username: userParam } = useParams();
 
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -30,15 +30,12 @@ const Profile = () => {
 
     const [addFriend] = useMutation(ADD_FRIEND);
 
-    useEffect(() => {
-        if (!userParam && !loading) {
-            dispatch({
-                type: UPDATE_USER,
-                user: data
-            })
-        }
-    }, [dispatch, data, userParam, loading]
-    )
+    if (!userParam && !loading) {
+        dispatch({
+            type: UPDATE_USER,
+            user: data
+        })
+    }
 
     // redirect to personal profile page if username is the logged-in user's
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -46,7 +43,7 @@ const Profile = () => {
         // With this, we're checking to see if the user is logged in and if so, if the username stored in the JSON Web Token is the same as the userParam value. If they match, we return the <Redirect> component with the prop to set to the value /profile, which will redirect the user away from this URL and to the /profile route.
     }
 
-    
+
 
     if (loading) {
         return <div>Loading...</div>;
@@ -90,46 +87,46 @@ const Profile = () => {
                 )}
             </div>
             <div className="wrapper" id="status">
-            
 
-                    {!userParam && 
-                    <MessageForm />} 
 
-                    {!userParam && 
+                {!userParam &&
+                    <MessageForm />}
+
+                {!userParam &&
                     <MessageList />}
 
-                    
 
-                        
-                        <div className="grid-3">
-                            <h4>Friends</h4>
-                                <FriendList
-                                    username={user.username}
-                                    friendCount={user.friendCount}
-                                    friends={user.friends}                        
-                                /> 
-                        </div>
-                        
 
-                        
-                        <div className="grid-4">
-                            
-                            
-                            <h4>About me</h4>
-                            <p>Age: {user.age}</p>
-                            <p>Location: coming soon</p>
-                            <p>Bio: {user.bio}</p>         
-                        </div>
-                        
-            
-            
+
+                <div className="grid-3">
+                    <h4>Friends</h4>
+                    <FriendList
+                        username={user.username}
+                        friendCount={user.friendCount}
+                        friends={user.friends}
+                    />
+                </div>
+
+
+
+                <div className="grid-4">
+
+
+                    <h4>About me</h4>
+                    <p>Age: {user.age}</p>
+                    <p>Location: coming soon</p>
+                    <p>Bio: {user.bio}</p>
+                </div>
+
+
+
                 <div className="grid-5">
                     <h4>Photos</h4>
                     <div id="gallery">
                         {user.gallery.map(friend => (
-                            <div><img src={friend} alt=""/></div>
-                                
-                          ))}
+                            <div><img src={friend} alt="" /></div>
+
+                        ))}
                     </div>
                 </div>
                 {/* <div className="grid-6">
@@ -140,7 +137,7 @@ const Profile = () => {
                 {!userParam && <MessageForm />}
                 </div> */}
                 <div className="grid-7">
-                    
+
                 </div>
             </div>
         </div>
