@@ -37,15 +37,6 @@ const MessageForm = () => {
     const user = state.user;
     console.log(user);
 
-<<<<<<< HEAD
-    const option = [];
-    user.friends.forEach(friend => {
-      option.push(friend.username);
-    });
-    console.log(option);
-
-=======
->>>>>>> develop
     return (
         <div className="grid-1">
             <div className="grid-1">
@@ -60,24 +51,6 @@ const MessageForm = () => {
                             <h3 className="mb-0 font-weight-normal">{user.username}'s Messages</h3>
                         </div>
                     </div>
-<<<<<<< HEAD
-                    <Dropdown options={option} placeholder="Select a friend to message" />
-                    <div className="row px-3 form-group" onSubmit={handleFormSubmit}>
-                        <textarea
-                            placeholder="Here's a new message..."
-                            value={messageText}
-                            className="text-muted bg-light mt-4 mb-3"
-                            onChange={handleChange}
-                        ></textarea>
-                        <div className="row px-3">
-                            <div className="btn btn-dark col-ml-auto " type="submit">Post</div>
-                            <p id="status" className={` ${characterCount === 280 || error ? 'text-error' : ''}`}>
-                                Character Count: {characterCount}/280
-                  {error && <span className="ml-2">Something went wrong...</span>}
-                            </p>
-                        </div>
-                    </div>
-=======
                     <Form noValidate onSubmit={handleFormSubmit}>
                         <Form.Group>
                             <Form.Control
@@ -97,7 +70,6 @@ const MessageForm = () => {
                             Submit
                         </Button>
                     </Form>
->>>>>>> develop
                 </div>
             </div>
         </div>

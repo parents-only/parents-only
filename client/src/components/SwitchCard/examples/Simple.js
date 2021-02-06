@@ -49,12 +49,7 @@ function Simple() {
                 {characters.map((character) =>
                     <TinderCard className='swipe' key={character._id} onSwipe={(dir) => swiped(dir, character._id)} onCardLeftScreen={() => outOfFrame(character._id)}>
                         <div style={{ backgroundImage: 'url(' + character.avatar + ')' }} className='card'>
-<<<<<<< HEAD
-                        <h3>{character.username}</h3>
-                        <ul>Bio: {character.bio}</ul>
-=======
                             <h3>{character.username}</h3>
->>>>>>> develop
                         </div>
                     </TinderCard>
                    
