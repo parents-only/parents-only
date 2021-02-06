@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStore } from 'react-redux';
 import { Link } from 'react-router-dom';
+import './index.css';
 
 const MessageList = () => {
     const state = useStore().getState();
@@ -11,7 +12,7 @@ const MessageList = () => {
   }
 
   return (
-    <div>
+    <div className="grid">
       <h3>{state.user.username}'s Messages</h3>
       {statuses &&
         statuses.map(message => (
@@ -24,13 +25,16 @@ const MessageList = () => {
               >
                 {message.username}
               </Link>{' '}
-              message on {message.createdAt}
+              Message on {message.createdAt}
             </p>
             <div className="card-body">
+            <p className="message">{message.messageText}</p>
               <Link to={`/message/${message._id}`}>
-                <p>{message.messageText}</p>
                 <p className="mb-0">
-                  Reactions: {message.reactionCount} || Click to{' '}
+                  Reactions: {message.reactionCount} 
+                  <br></br>
+                  <br></br> 
+                  Click to{' '}
                   {message.reactionCount ? 'see' : 'start'} the discussion!
                 </p>
               </Link>

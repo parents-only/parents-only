@@ -24,7 +24,7 @@ const Profile = () => {
         variables: { username: userParam },
         // Now if there's a value in userParam that we got from the URL bar, we'll use that value to run the QUERY_USER query. If there's no value in userParam, like if we simply visit /profile as a logged-in user, we'll execute the QUERY_ME query instead.
     });
-
+    console.log(data);
     const user = data?.me || data?.user || {};
     user.gallery = user.gallery || []
 

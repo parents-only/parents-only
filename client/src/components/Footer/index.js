@@ -42,11 +42,11 @@ const FooterItems = [
         {
             Auth.loggedIn() ? (
                 <>
-                    <Chat />
+                    
                 </>
             ) : (
                     <>
-                    <Chat />
+                    
                     </>
                 )
         }

@@ -35,6 +35,7 @@ const MessageForm = () => {
     };
 
     const user = state.user;
+    console.log(user);
 
     return (
         <div className="grid-1">
@@ -47,7 +48,7 @@ const MessageForm = () => {
                 <div className="statusCard">
                     <div className="row px-3">
                         <div className="flex-column">
-                            <h3 className="mb-0 font-weight-normal">{user.username}'s Messages</h3>
+                            <h3 className="mb-0 font-weight-normal">{user.username}'s Message</h3>
                         </div>
                     </div>
                     <Form noValidate onSubmit={handleFormSubmit}>
@@ -65,7 +66,7 @@ const MessageForm = () => {
                         <Button
                             disabled={!(messageText)}
                             type='submit'
-                            variant='success'>
+                            variant='dark'>
                             Submit
                         </Button>
                     </Form>
