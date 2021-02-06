@@ -13,6 +13,7 @@ const typeDefs = gql `
     statuses: [Status]
     friends: [User]
     location: [Float]
+    address: String
     age: Int
     bio: String
     gallery: [String]
@@ -64,7 +65,7 @@ const typeDefs = gql `
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!, age: Int!, location: [Float!]): Auth
+    addUser(username: String!, email: String!, password: String!, age: Int!, address: String!): Auth
     addStatus(messageText: String!): Status
     addMessage(messageText: String!, recipient: ID!): Message
     addReaction(messageId: ID!, reactionBody: String!): Status

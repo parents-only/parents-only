@@ -125,10 +125,9 @@ const Profile = () => {
 
                 <div className="grid-4">
 
-
                     <h4>About me</h4>
                     <p>Age: {user.age}</p>
-                    <p>Location: coming soon</p>
+                    <p>Address: {user.address || "That's private"}</p>
                     <p>Bio: {user.bio}</p>
                 </div>
 

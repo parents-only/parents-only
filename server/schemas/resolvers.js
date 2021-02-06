@@ -10,6 +10,13 @@ const {
     signToken
 } = require("../utils/auth");
 const haversine = require('haversine');
+const NodeGeocoder = require('node-geocoder')
+
+const options = {
+    provider: "openstreetmap"
+}
+
+const geocoder = NodeGeocoder(options)
 
 const resolvers = {
     Query: {
@@ -122,13 +129,21 @@ const resolvers = {
     },
     Mutation: {
         addUser: async (_, args) => {
-            const user = await User.create(args);
-            const token = signToken(user);
+            return await geocoder.geocode(args.address)
+            .then(async function(result) {
+                console.log(result)
+                const user = await User.create({
+                    ...args,
+                    location: [result[0].latitude, result[0].longitude]
+                });
+                const token = signToken(user);
 
-            return {
-                token,
-                user
-            };
+                return {
+                    token,
+                    user
+                };
+            })
+            
         },
         updateUser: async (_, args, context) => {
             if (context.user) {

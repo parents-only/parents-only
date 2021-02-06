@@ -20,8 +20,9 @@ const server = new ApolloServer({
 // integrate our Apollo server with the Express application as middleware
 server.applyMiddleware({ app });
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: false, limit: "50mb" }));
+app.use(express.raw({ limit: '50mb' }));
+app.use(express.json({ limit: "50mb" }));
 
 // Serve up static assets
 if (process.env.NODE_ENV === 'production') {
