@@ -19,9 +19,8 @@ const SignupForm = () => {
     };
 
     async function success(position) {
-        const {
-            data
-        } = await addUser({
+       try { 
+           const { data } = await addUser({
             variables: {
                 ...userFormData,
                 age: parseInt(userFormData.age),
@@ -29,8 +28,10 @@ const SignupForm = () => {
             }
         });
         Auth.login(data.addUser.token);
+    } catch (e) {
+        console.error(e)
     }
-
+};
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
