@@ -61,10 +61,13 @@ const MessageForm = () => {
     };
 
     const user = state.user;
+    console.log(user);
 
-
-
-    const options = user.friends;
+    const option = [];
+    user.friends.forEach(friend => {
+      option.push(friend.username);
+    });
+    console.log(option);
 
     return (
         <div className="grid-1">
@@ -80,7 +83,7 @@ const MessageForm = () => {
                             <h3 className="mb-0 font-weight-normal">{user.username}'s Messages</h3>
                         </div>
                     </div>
-                    <Dropdown options={options} placeholder="Select a friend to message" />
+                    <Dropdown options={option} placeholder="Select a friend to message" />
                     <div className="row px-3 form-group" onSubmit={handleFormSubmit}>
                         <textarea
                             placeholder="Here's a new message..."
