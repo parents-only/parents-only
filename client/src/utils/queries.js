@@ -146,6 +146,7 @@ export const QUERY_FRIEND_CARD = gql`
           _id
           username
           avatar
+          bio
       }
   }
 `;
