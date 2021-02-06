@@ -11,6 +11,7 @@ const {
 } = require("../utils/auth");
 const haversine = require('haversine');
 const NodeGeocoder = require('node-geocoder')
+const faker = require('faker');
 
 const options = {
     provider: "openstreetmap"
@@ -134,7 +135,8 @@ const resolvers = {
                 console.log(result)
                 const user = await User.create({
                     ...args,
-                    location: [result[0].latitude, result[0].longitude]
+                    location: [result[0].latitude, result[0].longitude],
+                    avatar: `https://i.pravatar.cc/150?u=${faker.random.uuid()}`
                 });
                 const token = signToken(user);
 
