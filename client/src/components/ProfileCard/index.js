@@ -33,6 +33,7 @@ const ProfileCard = () => {
             backgroundColor: 'gray'
         }
 
+    
 
 
     return (
