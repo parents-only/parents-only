@@ -5,18 +5,25 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import { QUERY_FRIEND_CARD } from "../../../utils/queries";
 import { ADD_FRIEND } from "../../../utils/mutations";
 
-
-
-
 function Simple() {
+    
     const { loading, data } = useQuery(QUERY_FRIEND_CARD);
     const [addFriend] = useMutation(ADD_FRIEND);
-
-
+    
     if (loading) {
         return <div>Loading...</div>;
     }
-    let characters = data.cards.filter(item => item._id !== data.me._id)
+    console.log(data)
+    let clippedList = data.cards.filter(item => item._id !== data.me._id)
+    clippedList.forEach(element => {
+        let id = element._id
+        data.me.friends.forEach(friendElement => {
+            if (id === friendElement._id) {
+                clippedList = clippedList.filter( item => item._id !== friendElement._id)
+            }
+        });
+    });
+    let characters = clippedList
     async function swiped(direction, nameToDelete) {
         if (direction === "right" || direction === "up") {
             try {
@@ -34,7 +41,7 @@ function Simple() {
     }
 
     return (
-        <div>
+        <div style={{marginBottom: "80%"}}>
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
             <h1>React Tinder Card</h1>
@@ -42,7 +49,7 @@ function Simple() {
                 {characters.map((character) =>
                     <TinderCard className='swipe' key={character._id} onSwipe={(dir) => swiped(dir, character._id)} onCardLeftScreen={() => outOfFrame(character._id)}>
                         <div style={{ backgroundImage: 'url(' + character.avatar + ')' }} className='card'>
-                            <h3>{character.name}</h3>
+                            <h3>{character.username}</h3>
                         </div>
                     </TinderCard>
                 )}

@@ -15,7 +15,6 @@ import EditProfile from './components/EditProfile';
 import Chat from './pages/Chat';
 import NoMatch from './pages/NoMatch';
 import { ContextProvider } from '../src/utils/context';
-import { StoreProvider } from "./utils/GlobalState";
 import MessageList from './components/MessageList';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -42,7 +41,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <ContextProvider>
-        <StoreProvider>
           <Router>
             <Navbar />
             <Switch>
@@ -60,7 +58,6 @@ function App() {
             <Footer />
             </div>
           </Router>
-        </StoreProvider>
       </ContextProvider>
     </ApolloProvider>
   );
