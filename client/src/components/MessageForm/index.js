@@ -2,15 +2,10 @@ import React, { useState } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { ADD_MESSAGE } from "../../utils/mutations";
 import { QUERY_MESSAGES, QUERY_ME } from "../../utils/queries";
-<<<<<<< HEAD
 import MessageList from '../MessageList';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
-=======
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
->>>>>>> develop
 
 
 
