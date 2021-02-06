@@ -16,7 +16,7 @@ const typeDefs = gql `
     age: Int
     bio: String
     gallery: [String]
-    avatar: String
+    avatar: File
     hobbies: [Hobby]
   }
 
@@ -48,6 +48,11 @@ const typeDefs = gql `
     username: String
   }
 
+  type File {
+    filename: String
+    mimetype: String
+    encoding: String
+  }
 
   type Query {
     me: User
@@ -76,6 +81,15 @@ const typeDefs = gql `
       age: Int
       location: String
       bio: String
+    ): User
+    updateUserWithAvatar(
+      _id: ID
+      username: String
+      email: String
+      age: Int
+      location: String
+      bio: String
+      avatar: Upload
     ): User
   }
 

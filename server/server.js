@@ -7,9 +7,15 @@ const path = require('path');
 // import our typeDefs and resolvers
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
+const multer = require('multer');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+const storage = multer.memoryStorage();
+app.use(multer({
+  storage,
+}).single('file'));
 // create a new Apollo server and pass in our schema data
 const server = new ApolloServer({
   typeDefs,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/react-hooks';
-import { UPDATE_USER } from '../../utils/mutations';
+import { UPDATE_USER, UPDATE_USER_WITH_AVATAR } from '../../utils/mutations';
 import './index.css';
 import { useStore } from 'react-redux';
 
@@ -14,6 +14,7 @@ const EditProfile = () => {
     setUserFormData(state.user)
   }, [state])
   const [editUser, { error }] = useMutation(UPDATE_USER);
+  const [editUserWithAvatar, { error: errorWithAvatar }] = useMutation(UPDATE_USER_WITH_AVATAR);
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -23,12 +24,8 @@ const EditProfile = () => {
   const [userAddress, setUserAddress] = useState()
 
   const handleFileInput = (event) => {
-    setFileName(event.target.files[0].name)
-    const reader = new FileReader();
-    reader.addEventListener("load", function () {
-      setFileData(reader.result);
-    }, false)
-    reader.readAsDataURL(event.target.files[0])
+    setFileData(event.target.files[0])
+    setFileName(event.target.files[0].name || "Profile Picture")
   };
 
   const handleAddress = (event) => {
@@ -51,8 +48,8 @@ const EditProfile = () => {
     }
 
     try {
-      if (fileData.length) {
-        await editUser({
+      if (fileData) {
+        await editUserWithAvatar({
           variables: {
             ...userFormData,
             age: parseInt(userFormData.age),
@@ -68,7 +65,6 @@ const EditProfile = () => {
         });
       }
 
-      window.location.assign("/profile")
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -143,7 +139,7 @@ const EditProfile = () => {
               value={userAddress}
             />
           </Form.Group>
-{/* 
+
           <Form.Group>
             <Form.Label htmlFor='avatar'>Avatar</Form.Label>
             <Form.File id="avatar" custom>
@@ -155,7 +151,7 @@ const EditProfile = () => {
                 {fileName}
               </Form.File.Label>
             </Form.File>
-          </Form.Group> */}
+          </Form.Group>
 
           <Button
             disabled={!(userFormData.username || userFormData.email || userFormData.bio || userFormData.age || userAddress || fileName)}
@@ -164,7 +160,7 @@ const EditProfile = () => {
             Save Changes
         </Button>
         </Form>
-        {error && <div>Sign up failed</div>}
+        {(error || errorWithAvatar)&& <div>Sign up failed</div>}
       </div>
     </>
 

@@ -6,7 +6,7 @@ const MessageList = () => {
     const state = useStore().getState();
     let statuses = state.user.statuses
 
-  if (statuses.length === 0) {
+  if (!statuses) {
     return <h3>No Status Updates Yet</h3>;
   }
 

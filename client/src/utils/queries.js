@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const QUERY_STATUSES = gql`
+export const QUERY_STATUSES = gql `
   query statuses($username: String) {
     statuses(username: $username) {
       _id
@@ -18,7 +18,7 @@ export const QUERY_STATUSES = gql`
   }
 `;
 
-export const QUERY_STATUS = gql`
+export const QUERY_STATUS = gql `
   query status($id: ID!) {
     status(_id: $id) {
       _id
@@ -36,7 +36,7 @@ export const QUERY_STATUS = gql`
   }
 `;
 
-export const QUERY_USER = gql`
+export const QUERY_USER = gql `
   query user($username: String!) {
     user(username: $username) {
       _id
@@ -60,7 +60,7 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_USERS = gql`
+export const QUERY_USERS = gql `
   query users($username: String!) {
     user(username: $username) {
       _id
@@ -85,7 +85,7 @@ export const QUERY_USERS = gql`
 `;
 
 
-export const QUERY_ME = gql`
+export const QUERY_ME = gql `
   {
     me {
       _id
@@ -94,7 +94,9 @@ export const QUERY_ME = gql`
       friendCount
       age
       bio
-      avatar
+      avatar {
+          filename
+      }
       gallery
       statuses {
         _id
@@ -116,7 +118,7 @@ export const QUERY_ME = gql`
   }
 `;
 
-export const QUERY_ME_BASIC = gql`
+export const QUERY_ME_BASIC = gql `
   {
     me {
       _id
@@ -131,7 +133,7 @@ export const QUERY_ME_BASIC = gql`
   }
 `;
 
-export const QUERY_FRIEND_CARD = gql`
+export const QUERY_FRIEND_CARD = gql `
   {
       me {
           _id
