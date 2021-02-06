@@ -44,14 +44,16 @@ function Simple() {
         <div style={{marginBottom: "80%"}}>
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
-            <h1>React Tinder Card</h1>
+            {/* <h1>{character.name}</h1> */}
             <div className='cardContainer'>
                 {characters.map((character) =>
                     <TinderCard className='swipe' key={character._id} onSwipe={(dir) => swiped(dir, character._id)} onCardLeftScreen={() => outOfFrame(character._id)}>
                         <div style={{ backgroundImage: 'url(' + character.avatar + ')' }} className='card'>
-                            <h3>{character.name}</h3>
+                            <h3>{character.username}</h3>
+                            
                         </div>
                     </TinderCard>
+                   
                 )}
             </div>
         </div>
