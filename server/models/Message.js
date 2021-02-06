@@ -1,6 +1,7 @@
-const dateFormat = require('../utils/dateFormat');
-const { Schema, model } = require('mongoose');
-const reactionSchema = require('./Reaction');
+const {
+    Schema,
+    model
+} = require('mongoose');
 
 const MessageSchema = new Schema({
     messageText: {
@@ -9,30 +10,22 @@ const MessageSchema = new Schema({
         minlength: 1,
         maxlength: 280
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        get: createdAtVal => dateFormat(createdAtVal)
+    sender: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
-    username: {
-        type: String,
-        required: true,
-        trim: true
+    recipient: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
-    reactions: [reactionSchema]
-},
-    {
-        toJSON: {
-            virtuals: true,
-            getters: true
-        },
-        id: false
-    }
-);
-
-MessageSchema.virtual('reactionCount').get(function () {
-    return this.reactions.length;
+}, {
+    toJSON: {
+        virtuals: true,
+        getters: true
+    },
+    id: false
 });
+
 
 const Message = model('Message', MessageSchema);
 

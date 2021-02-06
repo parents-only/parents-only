@@ -1,5 +1,7 @@
 const {
-    User
+    User,
+    Status,
+    Message
 } = require("../models");
 const {
     AuthenticationError
@@ -7,7 +9,7 @@ const {
 const {
     signToken
 } = require("../utils/auth");
-const haversine = require('haversine')
+const haversine = require('haversine');
 
 const resolvers = {
     Query: {
@@ -17,8 +19,8 @@ const resolvers = {
                         _id: context.user._id
                     })
                     .select('-__v -password')
-                    .populate('messages')
-                    .populate('friends');
+                    .populate('friends')
+                    .populate('statuses');
 
                 return userData;
             }
@@ -28,7 +30,7 @@ const resolvers = {
         users: async () => {
             return User.find()
                 .select('-__v -password')
-                .populate('messages')
+                .populate('statuses')
                 .populate('friends');
         },
         user: async (parent, {
@@ -39,7 +41,7 @@ const resolvers = {
                 })
                 .select('-__v -password')
                 .populate('friends')
-                .populate('messages');
+                .populate('statuses');
         },
 
         // get a user by _id
@@ -50,13 +52,31 @@ const resolvers = {
                 _id
             }).select("-__v -password");
         },
-        messages: async (parent, {
+        statuses: async (parent, {
             username
         }) => {
-            const params = username ? {
-                username
-            } : {};
-            return Message.find(params).sort({
+            return Message.find(username).sort({
+                createdAt: -1
+            });
+        },
+        status: async (parent, {
+            _id
+        }) => {
+            return Message.findOne({
+                _id
+            });
+        },
+        messagesBySender: async (parent, {
+            sender
+        }) => {
+            return Message.find({sender}).sort({
+                createdAt: -1
+            });
+        },
+        messagesByRecipient: async (parent, {
+            recipient
+        }) => {
+            return Message.find({recipient}).sort({
                 createdAt: -1
             });
         },
@@ -151,10 +171,9 @@ const resolvers = {
                 user
             };
         },
-
-        addMessage: async (parent, args, context) => {
+        addStatus: async (parent, args, context) => {
             if (context.user) {
-                const message = await Message.create({
+                const status = await Status.create({
                     ...args,
                     username: context.user.username
                 });
@@ -163,13 +182,13 @@ const resolvers = {
                     _id: context.user._id
                 }, {
                     $push: {
-                        messages: message._id
+                        statuses: status._id
                     }
                 }, {
                     new: true
                 });
 
-                return message;
+                return status;
             }
 
             throw new AuthenticationError('You need to be logged in!');
@@ -213,6 +232,18 @@ const resolvers = {
                 }).populate('friends');
 
                 return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addMessage: async (_, args, context) => {
+            if (context.user) {
+                const message = Message.create({
+                    ...args,
+                    sender: context.user._id
+                })
+
+                return message;
             }
 
             throw new AuthenticationError('You need to be logged in!');

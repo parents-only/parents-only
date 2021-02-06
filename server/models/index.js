@@ -1,5 +1,6 @@
 const User = require('./User');
-const Message = require('./Message');
+const Status = require('./Status');
 const Hobby = require ('./Hobby');
+const Message = require('./Message')
 
-module.exports = { User, Message, Hobby };
+module.exports = { User, Status, Hobby, Message };
