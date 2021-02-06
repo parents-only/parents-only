@@ -18,7 +18,7 @@ function Simple() {
     clippedList.forEach(element => {
         let id = element._id
         data.me.friends.forEach(friendElement => {
-            if (id === friendElement._id) {
+            if (id == friendElement._id) {
                 clippedList = clippedList.filter( item => item._id !== friendElement._id)
             }
         });
@@ -49,7 +49,7 @@ function Simple() {
                 {characters.map((character) =>
                     <TinderCard className='swipe' key={character._id} onSwipe={(dir) => swiped(dir, character._id)} onCardLeftScreen={() => outOfFrame(character._id)}>
                         <div style={{ backgroundImage: 'url(' + character.avatar + ')' }} className='card'>
-                            <h3>{character.name}</h3>
+                            <h3>{character.username}</h3>
                         </div>
                     </TinderCard>
                 )}
