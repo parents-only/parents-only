@@ -250,6 +250,13 @@ const Profile = () => {
     <div class="title">No. <b>529</b> from Picsum</div><a class="close" href="#gallery"></a>
   </div>
 </div>
+
+{/* //                     <div id="gallery">
+//                     <img src= {family2}></img>
+//                     <img src= {family2}></img>
+//                     <img src= {family2}></img>
+//                     </div> */}
+
                 </div>
                 {/* <div className="grid-6">
                 <MessageList
