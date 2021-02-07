@@ -49,6 +49,8 @@
     width: 90vw;
     max-width: 260px;
     height: 300px;
+    position: absolute;
+    top: 50%
   }
   
   .card {
@@ -57,10 +59,11 @@
     width: 80vw;
     max-width: 260px;
     height: 300px;
-    box-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.30);
     border-radius: 20px;
     background-size: cover;
     background-position: center;
+    margin-top: 5em;
   }
   
   .cardContent {

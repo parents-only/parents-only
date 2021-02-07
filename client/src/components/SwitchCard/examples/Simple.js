@@ -41,7 +41,7 @@ function Simple() {
     }
 
     return (
-        <div style={{marginBottom: "80%"}}>
+        <div style={{marginBottom: "60%"}}>
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
             {/* <h1>{character.name}</h1> */}

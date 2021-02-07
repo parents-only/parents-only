@@ -8,7 +8,7 @@ const MessageList = () => {
     let statuses = state.user.statuses
 
   if (statuses.length === 0) {
-    return <h3>No Status Updates Yet</h3>;
+    return <div className="grid"><h3>No Status Updates Yet</h3></div>;
   }
 
   return (

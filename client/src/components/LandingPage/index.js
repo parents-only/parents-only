@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal, Nav, Tab } from 'react-bootstrap';
 import SignUpForm from '../SignupForm';
 import LoginForm from '../LoginForm';
-
+import ContactForm from '../ContactForm';
 
 
 
@@ -10,6 +10,8 @@ const LandingPage = () => {
 
     const [showModal, setShowModal] = useState(false);
     const [key, setKey] = useState('login')
+    const [showContactModal, setShowContactModal] = useState(false);
+
     return (
         <div>
             <div className="container">
@@ -21,7 +23,7 @@ const LandingPage = () => {
                             setKey('signup')
                             setShowModal(true)
                             }} style={{ margin: "1em", width: "200px" }} >Join Free</Button>
-                        <Button variant="primary" size="lg" style={{ margin: "1em", width: "200px" }}>Contact us</Button>
+                        <Button variant="primary" size="lg" onClick={() => setShowContactModal(true)} style={{ margin: "1em", width: "200px" }}>Contact us</Button>
                     </div> 
                 </div>
             </div>
@@ -57,12 +59,36 @@ const LandingPage = () => {
                 </Tab.Container>
             </Modal>
             
+
+            <Modal
+                size='lg'
+                show={showContactModal}
+                onHide={() => setShowContactModal(false)}
+                aria-labelledby='contact-modal'>
+                {/* tab container to do either signup or login component */}
+                <Tab.Container defaultActiveKey='contact'>
+                <Modal.Header closeButton>
+                    <Modal.Title id='contact-modal'>
+                    <Nav variant='pills'>
+                        <Nav.Item>
+                        <Nav.Link eventKey='contact'>Contact Us</Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Tab.Content>
+                    <Tab.Pane eventKey='contact'>
+                        <ContactForm handleModalClose={() => setShowModal(false)} />
+                    </Tab.Pane>
+                    </Tab.Content>
+                </Modal.Body>
+                </Tab.Container>
+            </Modal>
         </div>
     )
     
 
 } 
-
-
 
 export default LandingPage; 
