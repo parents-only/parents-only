@@ -154,12 +154,35 @@ const resolvers = {
                     username: args.username || user.username,
                     age: args.age || user.age,
                     email: args.email || user.email,
-                    avatar: args.avatar || user.avatar,
                     bio: args.bio || user.bio,
                 }
-                return await User.findByIdAndUpdate(context.user._id, { $set: temp } , {
-                    new: true,
-                });
+                if (!args.address) {
+
+                    return await User.findByIdAndUpdate(context.user._id, {
+                        $set: temp
+                    }, {
+                        new: true,
+                    });
+                } else {
+                    return await geocoder.geocode(args.address)
+                        .then(async function (result) {
+                            console.log(result)
+                            const user = await User.findByIdAndUpdate(context.user._id, {
+                                $set: {
+                                    ...args,
+                                    location: [result[0].latitude, result[0].longitude],
+                                }
+                            }, {
+                                new: true
+                            });
+                            const token = signToken(user);
+
+                            return {
+                                token,
+                                user
+                            };
+                        })
+                }
             }
 
             throw new AuthenticationError("Not logged in");

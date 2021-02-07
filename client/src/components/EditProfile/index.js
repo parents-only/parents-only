@@ -9,7 +9,7 @@ const EditProfile = () => {
   const state = useStore().getState();
 
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: "", email: "", bio: "", age: 0 });
+  const [userFormData, setUserFormData] = useState({ username: "", email: "", bio: "", age: 0, address: "" });
   useEffect(() => {
     setUserFormData(state.user)
   }, [state])
@@ -139,8 +139,8 @@ const EditProfile = () => {
               type='text'
               placeholder='Your address'
               name='address'
-              onChange={handleAddress}
-              value={userAddress}
+              onChange={handleInputChange}
+              value={userFormData.address}
             />
           </Form.Group>
 {/* 
