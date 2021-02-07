@@ -24,16 +24,9 @@ const PictureSlider = () => {
                 style={{ width: "4626", height: "3168" }}
                 />
             </Carousel.Item>
-            <Carousel.Item>
-                <img
-                className="d-block w-100"
-                src="/img/landingpage.jpg"
-                alt="Third slide"
-                style={{ width: "6000", height: "4000" }}
-                />
-            </Carousel.Item>
         </Carousel>
     )
 };
+
 
 export default PictureSlider;

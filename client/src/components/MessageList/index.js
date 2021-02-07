@@ -16,7 +16,7 @@ const MessageList = () => {
       <h3>{state.user.username}'s Posts</h3>
       {statuses &&
         statuses.map(message => (
-          <div key={message._id} className="card mb-3">
+          <div key={message._id} className="message-card mb-3" style={{height: 'fit-content' ,borderRadius:'.5rem', border: "solid", textAlign: "center", margin: "auto"}}>
             <p className="card-header">
               <Link
                 to={`/profile/${message.username}`}
@@ -30,13 +30,13 @@ const MessageList = () => {
             <div className="card-body">
             <p className="message">{message.messageText}</p>
               <Link to={`/message/${message._id}`}>
-                <p className="mb-0">
+                {/* <p className="mb-0">
                   Reactions: {message.reactionCount} 
                   <br></br>
                   <br></br> 
                   Click to{' '}
                   {message.reactionCount ? 'see' : 'start'} the discussion!
-                </p>
+                </p> */}
               </Link>
             </div>
           </div>
