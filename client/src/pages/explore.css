@@ -49,6 +49,8 @@
     width: 90vw;
     max-width: 260px;
     height: 300px;
+    position: absolute;
+    top: 50%
   }
   
   .card {
