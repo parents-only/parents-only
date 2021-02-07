@@ -56,6 +56,18 @@ const Profile = () => {
         return true;
     }
 
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (!userParam && userState.username === undefined) {
+        return (
+            <h4>
+                You need to be logged in to see this page. Use the navigation links above to sign up or log in!
+            </h4>
+        );
+    }
+
     if ((!userParam && !loading) || deepEqual(userState, user)) {
         dispatch({
             type: UPDATE_USER,
@@ -69,17 +81,7 @@ const Profile = () => {
         // With this, we're checking to see if the user is logged in and if so, if the username stored in the JSON Web Token is the same as the userParam value. If they match, we return the <Redirect> component with the prop to set to the value /profile, which will redirect the user away from this URL and to the /profile route.
     }
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    // if (!user?.username) {
-    //     return (
-    //         <h4>
-    //             You need to be logged in to see this page. Use the navigation links above to sign up or log in!
-    //         </h4>
-    //     );
-    // }
+    
 
     const handleClick = async () => {
         try {

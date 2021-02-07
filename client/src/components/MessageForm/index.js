@@ -10,7 +10,6 @@ const MessageForm = () => {
     const [messageText, setText] = useState();
     const state = useStore().getState();
 
-
     const [addStatus] = useMutation(ADD_STATUS);
 
     // update state based on form input changes
@@ -25,7 +24,10 @@ const MessageForm = () => {
         event.preventDefault();
         try {
             await addStatus({
-                variables: { messageText }
+                variables: { 
+                    messageText,
+                    username: state.user.username
+                 }
             });
 
             // clear form value

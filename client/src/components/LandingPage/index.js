@@ -9,7 +9,7 @@ import LoginForm from '../LoginForm';
 const LandingPage = () => {
 
     const [showModal, setShowModal] = useState(false);
-
+    const [key, setKey] = useState('login')
     return (
         <div>
             <div className="container">
@@ -17,7 +17,10 @@ const LandingPage = () => {
                     <div className="display-4" style={{ marginTop: "1em" }}>FIND YOUR NEW BEST FRIENDS TODAY</div>
                     <div style={{ fontSize: "20px", marginBottom: "1em"}}>Looking for friends with children? Do you have children? Start looking for your new best friends today!</div>
                     <div className="mb-2" style={{ marginBottom: "2em" }}>
-                        <Button variant="primary" size="lg" onClick={() => setShowModal(true)} style={{ margin: "1em", width: "200px" }} >Join Free</Button>
+                        <Button variant="primary" size="lg" onClick={() => {
+                            setKey('signup')
+                            setShowModal(true)
+                            }} style={{ margin: "1em", width: "200px" }} >Join Free</Button>
                         <Button variant="primary" size="lg" style={{ margin: "1em", width: "200px" }}>Contact us</Button>
                     </div> 
                 </div>
@@ -28,7 +31,7 @@ const LandingPage = () => {
                 onHide={() => setShowModal(false)}
                 aria-labelledby='signup-modal'>
                 {/* tab container to do either signup or login component */}
-                <Tab.Container defaultActiveKey='login'>
+                <Tab.Container defaultActiveKey='login' activeKey={key}>
                 <Modal.Header closeButton>
                     <Modal.Title id='signup-modal'>
                     <Nav variant='pills'>
