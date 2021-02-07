@@ -77,6 +77,7 @@ const typeDefs = gql `
       age: Int
       location: String
       bio: String
+      address: String
     ): User
   }
 
