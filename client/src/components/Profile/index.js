@@ -13,7 +13,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useStore } from 'react-redux';
 import { UPDATE_USER } from '../../utils/actions';
-
+import Header from './Header-1.png'
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -95,7 +95,7 @@ const Profile = () => {
         <div>
             <div id="mainProfile">
                 <div id="topHalf">
-                    <img src={"http://www.boostnet.in/wp-content/uploads/2016/10/Header-1.png"} alt="" />
+                    <img src={Header} alt="" />
                 </div>
                 <div id="bottomHalf">
                     <img src={user.avatar} alt={user.username} style={{ height: 150, width: 150 }} />

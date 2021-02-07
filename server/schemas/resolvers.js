@@ -154,7 +154,7 @@ const resolvers = {
                     username: args.username || user.username,
                     age: args.age || user.age,
                     email: args.email || user.email,
-                    avatar: args.avatar || user.avatar,
+                    //avatar: args.avatar || user.avatar,
                     bio: args.bio || user.bio,
                 }
                 return await User.findByIdAndUpdate(context.user._id, { $set: temp } , {

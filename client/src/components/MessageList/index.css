@@ -12,6 +12,7 @@
 .grid {
     text-align: center;
     margin: auto;
+    width: 100%;
 }
 
 .grid h3 {
@@ -20,7 +21,8 @@
     color: white;
 }
 
-.card {
+.message-card {
     text-align: center;
     margin: auto;
+    height: fit-content;
 }
