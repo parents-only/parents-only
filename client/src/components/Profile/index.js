@@ -61,13 +61,13 @@ const Profile = () => {
         return <div>Loading...</div>;
     }
 
-    if (!userParam && userState.username === undefined) {
-        return (
-            <h4>
-                You need to be logged in to see this page. Use the navigation links above to sign up or log in!
-            </h4>
-        );
-    }
+    // if (!userParam && userState.username === undefined) {
+    //     return (
+    //         <h4>
+    //             You need to be logged in to see this page. Use the navigation links above to sign up or log in!
+    //         </h4>
+    //     );
+    // }
 
     if ((!userParam && !loading) || deepEqual(userState, user)) {
         dispatch({
