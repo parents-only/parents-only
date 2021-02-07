@@ -28,4 +28,5 @@ const PictureSlider = () => {
     )
 };
 
+
 export default PictureSlider;
