@@ -14,6 +14,7 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useStore } from 'react-redux';
 import { UPDATE_USER } from '../../utils/actions';
 import Header from './Header-1.png'
+import family2 from './family2.jpg'
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -133,6 +134,7 @@ const Profile = () => {
 
                 <div className="grid-5">
                     <h4>Photos</h4>
+
                     {/* <div id="gallery"> */}
                         {/* {user.gallery.map(friend => (
                             <div><img src={friend} alt="" /></div>
@@ -249,6 +251,13 @@ const Profile = () => {
     <div class="title">No. <b>529</b> from Picsum</div><a class="close" href="#gallery"></a>
   </div>
 </div>
+
+//                     <div id="gallery">
+//                     <img src= {family2}></img>
+//                     <img src= {family2}></img>
+//                     <img src= {family2}></img>
+//                     </div>
+
                 </div>
                 {/* <div className="grid-6">
                 <MessageList
