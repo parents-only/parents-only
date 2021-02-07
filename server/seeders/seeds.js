@@ -34,7 +34,7 @@ db.once('open', async () => {
     const age = moreLikelyToBeYounger()
     const address = "Default Address";
 
-    userData.push({ username, email, password, age, bio, avatar, location: [lon, lat], address});
+    userData.push({ username, email, password, age, bio, avatar, location: [lat, lon], address});
 
   }
 
