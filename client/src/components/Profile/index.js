@@ -14,6 +14,7 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useStore } from 'react-redux';
 import { UPDATE_USER } from '../../utils/actions';
 import Header from './Header-1.png'
+import family2 from './family2.jpg'
 
 const Profile = () => {
     const dispatch = useDispatch();
