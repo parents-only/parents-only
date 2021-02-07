@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
-const LoginForm = () => {
+const ContactForm = () => {
     const [userFormData, setUserFormData] = useState({ email: "", password: "" });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
@@ -54,8 +54,26 @@ const LoginForm = () => {
                     show={showAlert}
                     variant="danger"
                 >
-                    Something went wrong with your login credentials!
+                    Oops! Something went wrong!
         </Alert>
+
+
+
+                <Form.Group>
+                    <Form.Label htmlFor="username">Username</Form.Label>
+                    <Form.Control
+                        type="username"
+                        placeholder="Your username"
+                        name="username"
+                        onChange={handleInputChange}
+                        value={userFormData.username}
+                        required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        Username is required!
+          </Form.Control.Feedback>
+                </Form.Group>
+
                 <Form.Group>
                     <Form.Label htmlFor="email">Email</Form.Label>
                     <Form.Control
@@ -72,19 +90,22 @@ const LoginForm = () => {
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Label htmlFor="password">Password</Form.Label>
+                    <Form.Label htmlFor="feedback">Your Feedback</Form.Label>
                     <Form.Control
-                        type="password"
-                        placeholder="Your password"
-                        name="password"
+                        // type="feedback"
+                        as="textarea"
+                        rows={8}
+                        placeholder="Your feedback"
+                        name="feedback"
                         onChange={handleInputChange}
-                        value={userFormData.password}
+                        // value={userFormData.password}
                         required
                     />
                     <Form.Control.Feedback type="invalid">
-                        Password is required!
+                        Feedback is required!
           </Form.Control.Feedback>
                 </Form.Group>
+
                 <Button
                     disabled={!(userFormData.email && userFormData.password)}
                     type="submit"
@@ -98,4 +119,4 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+export default ContactForm;
